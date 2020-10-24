@@ -1,10 +1,10 @@
 import React from 'react';
 import useApplicationData from './hooks/useApplicationData';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import './App.scss';
 
-import Introduction from "./components/Introduction";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+import Home from "./routes/Home";
+import Game from "./routes/Game";
 
 function App() {
 
@@ -13,12 +13,14 @@ function App() {
   //const userList = state.users.map((user) => (<li key={user.id}> {user.first_name} {user.last_name} {user.email}</li>));
 	
 	return (
-    <main className="App">
-      
-      <Introduction />
-      <Signup />
-      <Login />
-    </main>
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/game" component={Game} />
+        </Switch>
+      </Router>
+    </div>
 	)
 }
 
