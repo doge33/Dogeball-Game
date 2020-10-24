@@ -2,6 +2,9 @@ import React from 'react';
 import useApplicationData from './hooks/useApplicationData';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import './App.scss';
+import { SET_USERS, SET_MATCHES } from './reducers/dataReducer';
+
+
 
 import Home from "./routes/Home";
 import Game from "./routes/Game";
