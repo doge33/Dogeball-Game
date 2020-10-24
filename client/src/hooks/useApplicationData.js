@@ -12,6 +12,7 @@ const useApplicationData = () => {
     users: [],
     loading: true,
   });
+
   useEffect(() => {
     axios({
       method: 'GET',
@@ -20,7 +21,7 @@ const useApplicationData = () => {
       .then(({
         data
       }) => {
-        console.log(data);
+        console.log("inside useApplicationData! ", data);
         dispatch({
           type: SET_USERS,
           users: data

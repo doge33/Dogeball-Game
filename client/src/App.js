@@ -11,23 +11,27 @@ function App() {
 
   const { state, dispatch } = useApplicationData();
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    axios({
-      method: 'GET',
-      url: '/api/users'
-    })
-      .then(result => dispatch({ type: SET_USERS, users: result.data }))
-      .catch(err => console.log(err.message))
+  //   axios({
+  //     method: 'GET',
+  //     url: '/api/users'
+  //   })
+  //     .then(result => {
+  //       dispatch({ type: SET_USERS, users: result.data })
+  //       console.log("inside axios request in App.js")
+  //     })
+  //     .catch(err => console.log(err.message))
 
-  }, [])
-  const userList = state.users.map((user) => (<li key={user.id}> {user.first_name} {user.last_name} {user.email}</li>));
+  // }, [])
+
+  //const userList = state.users.map((user) => (<li key={user.id}> {user.first_name} {user.last_name} {user.email}</li>));
 
 
   return (<div className="App" >
-    <h1> Users </h1>
+    <h1> WELCOME TO DOGEBALL! </h1>
 
-    <ul> {userList} </ul>
+    <ul> Hello! </ul>
   </div >
   );
 }
