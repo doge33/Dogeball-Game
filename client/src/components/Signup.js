@@ -31,13 +31,16 @@ function Signup(props) {
    */
   const handleSubmit = () => {
     // POST request to the rails server to enter the data to the database
-    axios.post("/api/users", {
-      username: state.username,
-      email: state.email,
-      password: state.password,
-      password_confirmation: state.password_confirmation
+    axios.post("api/users", {
+      "user":
+      {
+        username: state.username,
+        email: state.email,
+        password: state.password,
+        password_confirmation: state.password_confirmation
+      }
     })
-      .then(res => console.log(res))
+      .then(res => console.log(res, "check"))
       .catch(err => console.log(err))
   }
 
