@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import axios from 'axios'
 //import className from "classnames";
 
 function Signup(props) {
@@ -9,16 +10,37 @@ function Signup(props) {
     username: '',
     email: '',
     password: '',
-    confirm_password: ''
+    password_confirmation: ''
   })
 
+  /** Function setting the state of controlled inputs
+   * @param {event} change object occurs when there is change in input element of form
+  */
   const handleChange = event => {
     const value = event.target.value
+    // Set the state of controlled inputs
     setState({
       ...state,
       [event.target.name]: value
     });
   }
+
+  /** Submits the Form when the button is clicked
+   * takes no argument
+   * executes the asyc flow of axios to api call
+   */
+  const handleSubmit = () => {
+    // POST request to the rails server to enter the data to the database
+    axios.post("/api/users", {
+      username: state.username,
+      email: state.email,
+      password: state.password,
+      password_confirmation: state.password_confirmation
+    })
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+
   return (
     <main>
       <section>
@@ -55,16 +77,16 @@ function Signup(props) {
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>Password Confirmation</Form.Label>
             <Form.Control
-              name="confirm_password"
+              name="password_confirmation"
               type="password"
-              placeholder="Confirm Password"
+              placeholder="Password Confirmation"
               value={state.confirm_password}
               onChange={handleChange} />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button onClick={handleSubmit} variant="primary" type="submit">
             Signup
         </Button>
         </Form>

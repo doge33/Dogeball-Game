@@ -29,7 +29,7 @@ const useApplicationData = () => {
         });
       })
       .catch((err) => console.log(err));
-      
+
     axios({
       method: 'GET',
       url: '/api/matches',
