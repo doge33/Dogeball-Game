@@ -1,5 +1,7 @@
 # README
 
+rails s -p 3001 -b 0.0.0.0
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
