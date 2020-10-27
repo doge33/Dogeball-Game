@@ -2,6 +2,7 @@ import React, {useRef, useState, useEffect} from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet"
 import {drawSkeleton, drawKeypoints} from "../../utilities";
+import drawHand from "./draw";
 import "./Game.scss";
 
 //1. Install dependencis DONE
@@ -67,6 +68,8 @@ function Camera() {
         });
     setLoadState(prev => ({...prev, model: true}))
     //console.log(pose.keypoints);
+    
+    //const leftWrist = 
 
 
     // const videoWidth = webcamFeed.current.videoWidth;
@@ -130,7 +133,8 @@ function Camera() {
           textAlign: "center",
           zindex: 9,
           width: 480,
-          height: 640
+          height: 640,
+          border: "1px solid blue"
           }}
        />
     

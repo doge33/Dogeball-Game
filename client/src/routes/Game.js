@@ -1,12 +1,12 @@
 import React from "react";
 import className from "classnames";
 //import "../components/Game.scss";
-import Camera from "../components/Game/Camera"
+import Newcamera from "../components/Game/Newcamera"
 
 function Game() {
     //if mode === PREGAME
   return(  <div>
-    <Camera />
+    <Newcamera />
     </div>
   )
 }
