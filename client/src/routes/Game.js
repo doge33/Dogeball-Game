@@ -4,17 +4,10 @@ import className from "classnames";
 import Newcamera from "../components/Game/Newcamera"
 
 function Game() {
-<<<<<<< HEAD
   //if mode === PREGAME
-  return (
-    <div>
-      <Camera width={"500"} height={"500"} />
-=======
-    //if mode === PREGAME
-  return(  <div>
+  return (<div>
     <Newcamera />
->>>>>>> get-coordinates
-    </div>
+  </div>
   )
 }
 
