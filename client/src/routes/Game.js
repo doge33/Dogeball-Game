@@ -4,10 +4,10 @@ import className from "classnames";
 import Newcamera from "../components/Game/Newcamera"
 
 function Game() {
-    //if mode === PREGAME
-  return(  <div>
+  //if mode === PREGAME
+  return (<div>
     <Newcamera />
-    </div>
+  </div>
   )
 }
 
