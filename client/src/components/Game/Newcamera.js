@@ -13,10 +13,10 @@ import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import {drawKeypoints, drawSkeleton} from "../../utilities";
-import drawHand from "./draw";
+import DrawHand from "./DrawHand";
 
 
-function Newcamera() {
+function NewCamera() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -41,8 +41,8 @@ function Newcamera() {
     if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState === 4) {
       //Get Video Properties
       const video = webcamRef.current.video
-      const videoWidth = webcamRef.current.video.videoWidth;
-      const videoHeight = webcamRef.current.video.videoHeight;
+      const videoWidth = webcamRef.current.video.videoWidth / 2;
+      const videoHeight = webcamRef.current.video.videoHeight / 2;
 
       // Set video width
       webcamRef.current.video.width = videoWidth;
@@ -59,7 +59,7 @@ function Newcamera() {
       // const rightWrist = pose.keypoints.filter(point => point.part == "rightWrist")
       // const {y, x} = rightWrist.position
       //console.log(rightWrist.position)
-      drawHand(canvasRef, video, videoWidth, videoHeight, 20);
+      DrawHand(canvasRef);
     }
 
     
@@ -84,15 +84,9 @@ function Newcamera() {
         ref={webcamRef}
         style= {{
           position: "absolute",
-          marginLeft: "auto",
-          marginRight: "auto",
-          left: 0,
+          bottom: 0,
           right: 0,
-          textAlign: "center",
-          zindex: 9, //an element with a higher zindex number is always in front of an element with a lower zindex number
-          width: 720,
-          height: 1020,
-          display: "none"
+          zindex: 8 //an element with a higher zindex number is always in front of an element with a lower zindex number
           }}
        />
       
@@ -104,10 +98,7 @@ function Newcamera() {
           marginRight: "auto",
           left: 0,
           right: 0,
-          textAlign: "center",
-          zindex: 9,
-          width: 720,
-          height: 1020
+          zindex: 9
           }}
        />
      
@@ -116,4 +107,4 @@ function Newcamera() {
   );
 }
 
-export default Newcamera;
+export default NewCamera;
