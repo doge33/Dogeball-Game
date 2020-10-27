@@ -90,8 +90,8 @@ function Newcamera() {
           right: 0,
           textAlign: "center",
           zindex: 9, //an element with a higher zindex number is always in front of an element with a lower zindex number
-          width: 480,
-          height: 640
+          width: 320,
+          height: 240
           }}
        />
       
@@ -105,8 +105,8 @@ function Newcamera() {
           right: 0,
           textAlign: "center",
           zindex: 9,
-          width: 480,
-          height: 640
+          width: 320,
+          height: 240
           }}
        />
      
