@@ -1,7 +1,7 @@
 import React from "react";
 import className from "classnames";
 //import "../components/Game.scss";
-import NewCamera from "../components/Game/Newcamera"
+import NewCamera from "../components/Game/NewCamera"
 import useVisualMode from "../hooks/useVisualMode"
 
 
