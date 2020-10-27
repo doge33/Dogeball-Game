@@ -32,6 +32,7 @@
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
         ctx.drawImage(imgTag, 0, 0, 486, 597, x, y, 100, 120);                       // draw image at current position
+        //ctx.drawImage(imgTag, x, y)
         x -= 4;
         if (x > 0) {
           requestAnimationFrame(animate)        // loop
