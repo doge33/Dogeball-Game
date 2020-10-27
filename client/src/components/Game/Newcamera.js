@@ -33,7 +33,7 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 100)
+    }, 1000)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
@@ -52,14 +52,14 @@ function NewCamera() {
       const pose = await net.estimateSinglePose(video, {
         flipHorizontal: true
       });
-      //console.log(pose.keypoints);
+    
       // drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
       
-      
-      // const rightWrist = pose.keypoints.filter(point => point.part == "rightWrist")
-      // const {y, x} = rightWrist.position
-      //console.log(rightWrist.position)
-      DrawHand(canvasRef);
+      // console.log(pose["keypoints"]);
+      let rightWrist = pose.keypoints.find(point => point.part === "rightWrist");
+      let {x, y} = rightWrist.position;
+      // console.log(rightWrist.position)
+      DrawHand(canvasRef, x, y);
     }
 
     
