@@ -26,7 +26,7 @@ function Newcamera() {
     const net = await posenet.load({
       architecture: 'MobileNetV1',
       outputStride: 16,
-      inputResolution: {width:720, height: 1020},
+      inputResolution: {width:480, height: 640},
       multiplier: 0.5 //set this to a lower scale => faster but less accurate model
     })
 
@@ -89,8 +89,8 @@ function Newcamera() {
           right: 0,
           textAlign: "center",
           zindex: 9, //an element with a higher zindex number is always in front of an element with a lower zindex number
-          width: 720,
-          height: 1020
+          width: 480,
+          height: 640
           }}
        />
       
@@ -104,8 +104,8 @@ function Newcamera() {
           right: 0,
           textAlign: "center",
           zindex: 9,
-          width: 720,
-          height: 1020
+          width: 480,
+          height: 640
           }}
        />
      
