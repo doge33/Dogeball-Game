@@ -26,7 +26,7 @@ function Newcamera() {
     const net = await posenet.load({
       architecture: 'MobileNetV1',
       outputStride: 16,
-      inputResolution: {width:480, height: 640},
+      inputResolution: {width:320, height: 240},
       multiplier: 0.5 //set this to a lower scale => faster but less accurate model
     })
 
@@ -53,13 +53,13 @@ function Newcamera() {
         flipHorizontal: true
       });
       //console.log(pose.keypoints);
-      drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
+      // drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
       
       
-      const rightWrist = pose.keypoints.filter(point => point.part == "rightWrist")
-      const {y, x} = rightWrist.position
+      // const rightWrist = pose.keypoints.filter(point => point.part == "rightWrist")
+      // const {y, x} = rightWrist.position
       //console.log(rightWrist.position)
-      drawHand(x, y)
+      drawHand(canvasRef, video, videoWidth, videoHeight, 20);
     }
 
     
@@ -74,6 +74,7 @@ function Newcamera() {
     drawKeypoints(pose["keypoints"], 0.5, ctx)
     drawSkeleton(pose["keypoints"], 0.5, ctx)
   }
+  
   runPosenet();
 
   return (

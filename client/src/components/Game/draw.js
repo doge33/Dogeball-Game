@@ -1,19 +1,20 @@
-      
-export default function drawHand(x, y) {
-      
-      const canvas = document.querySelector('.myCanvas');
-      const width = canvas.width = window.innerWidth;
-      const height = canvas.height = window.innerHeight;
-      const ctx = canvas.getContext('2d');
+import img from './hand.png'
 
-      let imgTag = new Image();
-      
+export default function drawHand(canvas, video, videoWidth, videoHeight, y) {
 
+      // const ctx = canvas.getContext('2d');
+      // const canvas = document.querySelector('.myCanvas');
+      const ctx = canvas.current.getContext("2d");    
+      canvas.current.width = videoWidth;
+      canvas.current.height = videoHeight;
+      let x = canvas.current.width;
+
+      const imgTag = new Image();
       imgTag.onload = animate;
-      imgTag.src = "hand.png";   // load image
+      imgTag.src = img;   // load image
 
       function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
+        ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);  // clear canvas
         ctx.drawImage(imgTag, 0, 0, 486, 597, x, y, 100, 120);                       // draw image at current position
         //ctx.drawImage(imgTag, x, y)
         x -= 4;
@@ -23,5 +24,5 @@ export default function drawHand(x, y) {
           x = canvas.width
           requestAnimationFrame(animate)
         }
-      }
+      };
     }
