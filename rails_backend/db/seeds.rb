@@ -8,6 +8,8 @@
 
 require('faker')
 
+puts "Seeding Data ..."
+
 10.times do
   User.create(username: Faker::Internet.username, email: Faker::Internet.email, password_digest: Faker::Internet.password)
 end
