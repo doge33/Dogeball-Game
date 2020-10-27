@@ -8,11 +8,11 @@
 
 require('faker')
 
-10.times do
+20.times do
   User.create(username: Faker::Internet.username, email: Faker::Internet.email, password_digest: Faker::Internet.password)
 end
 
-20.times do
+25.times do
   Match.create(score: Faker::Types.rb_integer, start_time: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :morning), end_time: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :afternoon), user_id: rand(1..10))
 end
 
