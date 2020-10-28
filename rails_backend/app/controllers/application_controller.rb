@@ -3,13 +3,13 @@ class ApplicationController < ActionController::API
   # skip_before_action :verify_authenticity_token
   # protect_from_forgery with: :exception
 
-  helper_method :login!, :logged_in!, :current_user, :authorized_user?, :logout, :set_user
+  helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout, :set_user
   
   def login!
     session[:user_id] = @user.id
   end
 
-  def logged_in!
+  def logged_in?
     !!session[:user_id]
   end
 
@@ -23,6 +23,9 @@ class ApplicationController < ActionController::API
 
   def logout!
     session.clear
+    # reset_session
+    # @session_id = nil
+    
   end
 
   def set_user

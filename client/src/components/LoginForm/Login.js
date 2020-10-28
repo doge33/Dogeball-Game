@@ -1,18 +1,89 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 import SocialButton from './styled/SocialButton'
-import BrandButton from './styled/BrandButton'
+import Button from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
 // import Button from '../Button'
 
 function Login(props) {
-  return (
 
+  const [state, setState] = useState({
+    email: '',
+    password: ''
+  });
+
+  const [user, setUser] = useState({
+    isLoggedIn: false,
+    user: {}
+  })
+
+  /** Function setting the state of controlled inputs
+   * @param {event} change object occurs when there is change in input element of form
+  */
+  const handleChange = event => {
+    const { name, value } = event.target
+    // Set the state of controlled inputs
+    setState({
+      ...state,
+      [name]: value
+    });
+  }
+
+  const handleSubmit = () => {
+    // POST request to the rails server to enter the data to the database
+    axios.all([
+      axios.post("/login", { email: state.email, password: state.password, }),
+      axios.get("/logged_in", { withCredentials: true })
+    ])
+      .then(resArr => {
+        if (resArr[1].data.logged_in) {
+          handleLogin(resArr[1].data)
+          // } else {
+          //   handleLogout()
+        }
+      })
+    // .catch(err => console.log('api error:', err))
+  }
+
+  const handleLogin = data => {
+    setUser({
+      ...user,
+      isLoggedIn: true,
+      user: data.user
+    });
+  }
+
+  const handleLogout = () => {
+    axios.post("/logout")
+      .then((res) => {
+        console.log(res)
+        setUser({
+          ...user,
+          isLoggedIn: false,
+          user: {}
+        })
+      })
+  }
+
+  // const loginStatus = () => {
+  //   axios.get("http://localhost:3001/logged_in", { withCredentials: true })
+  //     .then(res => {
+  //       if (res.data.logged_in) {
+  //         handleLogin(res)
+  //       } else {
+  //         handleLogout()
+  //       }
+  //     })
+  //     .catch(err => console.log('api error:', err))
+  // }
+
+  return (
     <SlidingForm>
       <h1>Sign in</h1>
-      <div>
+      {/* <div>
         <SocialButton>
           <FontAwesomeIcon icon={['fab', 'facebook-f']} />
         </SocialButton>
@@ -23,23 +94,28 @@ function Login(props) {
           <FontAwesomeIcon icon={['fab', 'google']} />
         </SocialButton>
       </div>
-      <p>or use your account</p>
+      <p>or use your account</p> */}
       <form>
         <input
           name="email"
           type="email"
           placeholder="Enter email"
+          value={state.email}
+          onChange={handleChange}
         />
         <input
           name="password"
           type="password"
           placeholder="Enter password"
+          value={state.value}
+          onChange={handleChange}
         />
       </form>
       <p>
         <a href="#">Forgot your password?</a>
       </p>
-      <BrandButton>Sign in</BrandButton>
+      <Button onClick={handleSubmit}>Sign in</Button>
+      <Button onClick={handleLogout}>Logout</Button>
     </SlidingForm>
   )
 }
