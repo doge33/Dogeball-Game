@@ -2,24 +2,17 @@ import React from "react";
 import UserHistory from "./UserHistory";
 import Leaderboard from "./Leaderboard";
 import Navbar from "../Navbar";
+import Button from "../../Button";
 
 function Lobby(props) {
 
-  //fixtures
-  const user = {
-    "id":5,
-    "username":"jerome.schuppe",
-    "email":"jim_lebsack@lesch.org",
-    "password_digest":"KrDi86CxJ",
-    "created_at":"2020-10-27T23:47:48.765Z",
-    "updated_at":"2020-10-27T23:47:48.765Z"
-  }
 
   return(
     <div>
-      <Navbar user={user}/>
-      <UserHistory user={user}/>
+      <Navbar user={props.user}/>
+      <UserHistory user={props.user}/>
       <Leaderboard />
+      <Button onClick={props.onPlay}>Play: Go to Pre-game mode</Button>
     </div>
   )
 }

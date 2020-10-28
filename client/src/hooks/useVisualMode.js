@@ -16,6 +16,7 @@ export default function useVisualMode(initialMode) {
       // Allows current mode to be replaced with new one
       if (replace) {
         newHistory = newHistory.slice(0, -1);
+        //newHistory = newHistory.slice(0, prev.length -1);
       }
       return newHistory = [...newHistory, newMode];
     });
