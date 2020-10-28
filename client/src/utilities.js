@@ -153,7 +153,8 @@ export function drawKeypointsAvatar(keypoints, minConfidence, ctx, scale = 1) {
       // renderImageToCanvas2(ctx, x, y)
     }
   }
-  console.log(avatarHitboxes);
+  
+  detectCollision(avatarHitboxes);
 }
 
 /**
@@ -266,8 +267,18 @@ function drawPoints(ctx, points, radius, color) {
 /**
  * Detects collision between rectangular hitboxes on the canvas
  */
-function detectCollision() {
+function detectCollision(array) {
 
+  const target = {x: 640 - (150 / 2), y: 158 - (150 / 2), width: 150, height: 150};
+
+  array.forEach((hitbox) => {
+    if (hitbox.x < target.x + target.width && 
+    hitbox.x + hitbox.width > target.x &&
+    hitbox.y < target.y + target.height &&
+    hitbox.y + hitbox.height > target.y) {
+      console.log("Collision detected")
+    }
+  })
 };
 
 
