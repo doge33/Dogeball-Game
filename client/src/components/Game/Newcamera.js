@@ -33,7 +33,7 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 200)
+    }, 50)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
@@ -41,8 +41,8 @@ function NewCamera() {
     if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState === 4) {
       //Get Video Properties
       const video = webcamRef.current.video
-      const videoWidth = webcamRef.current.video.videoWidth / 2;
-      const videoHeight = webcamRef.current.video.videoHeight / 2;
+      const videoWidth = window.innerWidth;//webcamRef.current.video.videoWidth / 2;
+      const videoHeight = window.innerHeight;//webcamRef.current.video.videoHeight / 2;
 
       // Set video width
       webcamRef.current.video.width = videoWidth;
@@ -86,8 +86,9 @@ function NewCamera() {
           position: "absolute",
           bottom: 0,
           right: 0,
-          zindex: 8 //an element with a higher zindex number is always in front of an element with a lower zindex number
-          }}
+          zindex: 8, //an element with a higher zindex number is always in front of an element with a lower zindex number
+          visibility: "hidden"
+        }}
        />
       
        <canvas 
