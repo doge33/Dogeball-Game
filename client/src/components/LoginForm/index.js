@@ -12,15 +12,17 @@ const Form = ({ initialState = STATE_LOG_IN }) => {
   const [mode, toggleMode] = useToggle(initialState);
 
   return (
-    <Container pose={mode === STATE_LOG_IN ? "signup" : "login"}>
+    <Container style={{
+      width: "700px", height: "550px", marginRight: "0"
+    }} pose={mode === STATE_LOG_IN ? "signup" : "login"}>
       <div className="container__form container__form--one">
-        <Login mode={mode} />
-      </div>
+        < Login mode={mode} />
+      </div >
       <div className="container__form container__form--two">
         <Signup mode={mode} />
       </div>
       <Overlay toggleMode={toggleMode} mode={mode} />
-    </Container>
+    </Container >
   );
 };
 
