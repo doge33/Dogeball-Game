@@ -3,6 +3,9 @@ import {drawKeypointsAvatar} from '../../utilities';
 
 export default function DrawAvatar(canvas, pose) {
 
+  // const imgTag = new Image();
+  // imgTag.src = img;   // load image
+  
   // Grab canvas!
   const ctx = canvas.current.getContext("2d");    
   canvas.current.width = window.innerWidth;
@@ -14,10 +17,8 @@ export default function DrawAvatar(canvas, pose) {
   // let rightWrist = pose.keypoints.find(point => point.part === "rightWrist");
   // let {x, y} = rightWrist.position;
   
-  // const imgTag = new Image();
 
   // // imgTag.onload = animate;
-  // imgTag.src = img;   // load image
   
   // ctx.drawImage(imgTag, x, y, 100, 120);
   
