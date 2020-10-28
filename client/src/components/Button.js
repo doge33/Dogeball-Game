@@ -1,11 +1,20 @@
-import React from 'react'
+import React from 'react';
+import classNames from "classnames";
+import "./Game/button.scss";
 
 function Button(props) {
+
+  const buttonClass = classNames({
+    "btn": true,
+    "btn-primary": true,
+    "btn-lg": true
+  })
+
   return (
-    <button className="btn"
+    <button className={buttonClass}
       onClick={props.onClick}
     >{props.children}</button>
   )
 }
 
-export default Button
+export default Button;

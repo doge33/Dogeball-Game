@@ -8,17 +8,18 @@ import theme from '../theme'
 import "../components/Home.scss";
 import Introduction from "../components/Introduction";
 import LoginForm from '../components/LoginForm'
-import Leaderboard from "../components/Leaderboard";
-import UserHistory from "../components/UserHistory";
+import UserHistory from "../components/Game/UserHistory";
+import Navbar from "../components/Game/Navbar";
 
 library.add(faFacebookF, faLinkedinIn, faGoogle)
 
 function Home() {
-
-  const userID = 5
+  //fixture
+  let user = {};
 
   return (
     <main classname="App">
+      <Navbar user={user}/>
       <section className="introduction">
         <Introduction />
       </section>
@@ -29,9 +30,7 @@ function Home() {
         </div>
       </ThemeProvider>
 
-      {/* for now these are displayed on the HOME page just for convenience...sigh */}
-      <Leaderboard />
-      <UserHistory user={userID} />
+      <UserHistory />
     </main>
   )
 }

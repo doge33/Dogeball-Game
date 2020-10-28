@@ -2,6 +2,7 @@ import React from "react";
 import className from "classnames";
 //import "../components/Game.scss";
 import NewCamera from "../components/Game/NewCamera"
+import Lobby from "../components/Game/Lobby";
 import useVisualMode from "../hooks/useVisualMode"
 
 
@@ -15,7 +16,8 @@ function Game() {
 
   //if mode === PREGAME
   return (<div>
-    <NewCamera />
+    <Lobby />
+  
   </div>
   )
 }
