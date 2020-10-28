@@ -1,16 +1,11 @@
 import React, { useEffect } from "react";
 import className from "classnames";
 //import "../components/Game.scss";
-<<<<<<< HEAD
-import NewCamera from "../components/Game/Newcamera"
-import useVisualMode from "../hooks/useVisualMode"
-=======
 import NewCamera from "../components/Game/NewCamera"
 import Lobby from "../components/Game/Lobby/index";
 import Pregame from "../components/Game/Pregame/index";
 import Ingame from "../components/Game/Ingame/index";
 import useVisualMode from "../hooks/useVisualMode";
->>>>>>> 0076eb7c74bf40c49bdd7a365a427906977046f7
 
 
 function Game() {
