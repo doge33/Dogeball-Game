@@ -129,15 +129,15 @@ export function drawKeypointsAvatar(keypoints, minConfidence, ctx, scale = 1) {
   for (let i = 0; i < keypoints.length; i++) {
     if (keypoints[i].part === 'rightWrist' || keypoints[i].part === 'leftWrist' || keypoints[i].part === 'nose') {
       const keypoint = keypoints[i];
-
+      
       if (keypoint.score < minConfidence) {
         continue;
       }
 
       const {y, x} = keypoint.position;
-      // drawPoint(ctx, y * scale, x * scale, 3, color);
-      //renderImageToCanvas instead? Can set up conditionals per body part to load different images
-      renderImageToCanvas2(ctx, x, y)
+      drawPoint(ctx, y * scale, x * scale, 10, color);
+      drawBoundingBox2(ctx, x, y, 50, 50);
+      // renderImageToCanvas2(ctx, x, y)
     }
   }
 }
@@ -155,6 +155,22 @@ export function drawBoundingBox(keypoints, ctx) {
       boundingBox.maxY - boundingBox.minY);
 
   ctx.strokeStyle = boundingBoxColor;
+  ctx.stroke();
+}
+
+export function drawBoundingBox2(ctx, x, y, w, h) {
+
+  // Box is drawn with x,y coordinates representing top left of the box. 
+  // The provided x,y coordinates should represent the center of the box.
+
+  // To calculate size of box:
+  const width = w;
+  const height = h;
+
+  ctx.rect(x - (width / 2), y - (height / 2), width, height);
+
+  ctx.strokeStyle = boundingBoxColor;
+  
   ctx.stroke();
 }
 
