@@ -12,7 +12,7 @@ export default function DrawAvatar(canvas, pose) {
   canvas.current.height = window.innerHeight;
 
   // Draw!
-  drawKeypointsAvatar(pose["keypoints"], 0.5, ctx);
+  drawKeypointsAvatar(pose["keypoints"], 0.6, ctx);
 
   // let rightWrist = pose.keypoints.find(point => point.part === "rightWrist");
   // let {x, y} = rightWrist.position;

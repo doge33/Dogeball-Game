@@ -126,6 +126,9 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
 }
 
 export function drawKeypointsAvatar(keypoints, minConfidence, ctx, scale = 1) {
+
+  const avatarHitboxes = [];
+
   for (let i = 0; i < keypoints.length; i++) {
     if (keypoints[i].part === 'rightWrist' || keypoints[i].part === 'leftWrist' || keypoints[i].part === 'nose') {
       const keypoint = keypoints[i];
@@ -138,14 +141,19 @@ export function drawKeypointsAvatar(keypoints, minConfidence, ctx, scale = 1) {
       
       if (keypoint.part === 'nose') {
         drawPoint(ctx, y * scale, x * scale, 20, color);
-        drawBoundingBox2(ctx, x, y, 100, 100);
+        const rect = {x: x - (100 / 2), y: y - (100 / 2), width: 100, height: 100};
+        drawBoundingBox2(ctx, rect);
+        avatarHitboxes.push(rect);
       } else {
         drawPoint(ctx, y * scale, x * scale, 10, color);
-        drawBoundingBox2(ctx, x, y, 50, 50);
+        const rect = {x: x - (50 / 2), y: y - (50 / 2), width: 50, height: 50};
+        drawBoundingBox2(ctx, rect);
+        avatarHitboxes.push(rect);
       }
       // renderImageToCanvas2(ctx, x, y)
     }
   }
+  console.log(avatarHitboxes);
 }
 
 /**
@@ -164,16 +172,14 @@ export function drawBoundingBox(keypoints, ctx) {
   ctx.stroke();
 }
 
-export function drawBoundingBox2(ctx, x, y, w, h) {
+export function drawBoundingBox2(ctx, rect) {
 
   // Box is drawn with x,y coordinates representing top left of the box. 
   // The provided x,y coordinates should represent the center of the box.
 
   // To calculate size of box:
-  const width = w;
-  const height = h;
 
-  ctx.rect(x - (width / 2), y - (height / 2), width, height);
+  ctx.rect(rect.x, rect.y, rect.width, rect.height);
 
   ctx.strokeStyle = boundingBoxColor;
   
@@ -256,6 +262,14 @@ function drawPoints(ctx, points, radius, color) {
     }
   }
 }
+
+/**
+ * Detects collision between rectangular hitboxes on the canvas
+ */
+function detectCollision() {
+
+};
+
 
 // /**
 //  * Draw offset vector values, one of the model outputs, on to the canvas
