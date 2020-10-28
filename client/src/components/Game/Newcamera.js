@@ -12,9 +12,8 @@ import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
-import { drawKeypoints, drawSkeleton } from "../../utilities";
-import DrawHand from "./DrawHand";
-
+import {drawKeypoints, drawSkeleton} from "../../utilities";
+import DrawAvatar from "./DrawAvatar";
 
 function NewCamera() {
   const webcamRef = useRef(null);
@@ -40,9 +39,9 @@ function NewCamera() {
   const detect = async (net) => {
     if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState === 4) {
       //Get Video Properties
-      const video = webcamRef.current.video
-      const videoWidth = webcamRef.current.video.videoWidth / 2;
-      const videoHeight = webcamRef.current.video.videoHeight / 2;
+      const video = webcamRef.current.video;
+      const videoWidth = window.innerWidth;
+      const videoHeight = window.innerHeight;
 
       // Set video width
       webcamRef.current.video.width = videoWidth;
@@ -50,44 +49,39 @@ function NewCamera() {
 
       //Make Detections
       const pose = await net.estimateSinglePose(video, {
-        flipHorizontal: true
+        flipHorizontal: false
       });
 
       // drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
-
-      // console.log(pose["keypoints"]);
-      let rightWrist = pose.keypoints.find(point => point.part === "rightWrist");
-      let { x, y } = rightWrist.position;
-      // console.log(rightWrist.position)
-      DrawHand(canvasRef, x, y);
+      DrawAvatar(canvasRef, pose);
     }
 
 
   }
   // Draw skeleton on canvas, utilizing the utility drawing functions from poseNet
-  const drawCanvas = (pose, video, videoWidth, videoHeight, canvas) => {
-    const ctx = canvas.current.getContext("2d"); // grab canvas
-    canvas.current.width = videoWidth; //match width and height as video
-    canvas.current.height = videoHeight;
+  // const drawCanvas = (pose, video, videoWidth, videoHeight, canvas) => {
+  //   const ctx = canvas.current.getContext("2d"); // grab canvas
+  //   canvas.current.width = videoWidth; //match width and height as video
+  //   canvas.current.height = videoHeight;
 
-    //draw on canvas!
-    drawKeypoints(pose["keypoints"], 0.5, ctx)
-    drawSkeleton(pose["keypoints"], 0.5, ctx)
-  }
-
+  //   //draw on canvas!
+  //   drawKeypoints(pose["keypoints"], 0.5, ctx)
+  //   drawSkeleton(pose["keypoints"], 0.5, ctx)
+  // }
+  
   runPosenet();
 
   return (
     <div className="App">
       <header className="App-header">
-        <Webcam
-          ref={webcamRef}
-          style={{
-            visibility: "hidden",
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            zindex: 8 //an element with a higher zindex number is always in front of an element with a lower zindex number
+       <Webcam
+        ref={webcamRef}
+        style= {{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          zindex: 8, //an element with a higher zindex number is always in front of an element with a lower zindex number
+          visibility: "hidden"
           }}
         />
 
