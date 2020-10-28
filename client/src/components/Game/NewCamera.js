@@ -32,7 +32,7 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 50)
+    }, 200)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
@@ -49,7 +49,7 @@ function NewCamera() {
 
       //Make Detections
       const pose = await net.estimateSinglePose(video, {
-        flipHorizontal: false
+        flipHorizontal: true
       });
 
       // drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);

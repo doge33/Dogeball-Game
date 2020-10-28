@@ -126,20 +126,35 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
 }
 
 export function drawKeypointsAvatar(keypoints, minConfidence, ctx, scale = 1) {
+
+  const avatarHitboxes = [];
+
   for (let i = 0; i < keypoints.length; i++) {
     if (keypoints[i].part === 'rightWrist' || keypoints[i].part === 'leftWrist' || keypoints[i].part === 'nose') {
       const keypoint = keypoints[i];
-
+      
       if (keypoint.score < minConfidence) {
         continue;
       }
 
       const {y, x} = keypoint.position;
-      // drawPoint(ctx, y * scale, x * scale, 3, color);
-      //renderImageToCanvas instead? Can set up conditionals per body part to load different images
-      renderImageToCanvas2(ctx, x, y)
+      
+      if (keypoint.part === 'nose') {
+        drawPoint(ctx, y * scale, x * scale, 20, color);
+        const rect = {x: x - (100 / 2), y: y - (100 / 2), width: 100, height: 100};
+        drawBoundingBox2(ctx, rect);
+        avatarHitboxes.push(rect);
+      } else {
+        drawPoint(ctx, y * scale, x * scale, 10, color);
+        const rect = {x: x - (50 / 2), y: y - (50 / 2), width: 50, height: 50};
+        drawBoundingBox2(ctx, rect);
+        avatarHitboxes.push(rect);
+      }
+      // renderImageToCanvas2(ctx, x, y)
     }
   }
+  
+  detectCollision(avatarHitboxes);
 }
 
 /**
@@ -155,6 +170,20 @@ export function drawBoundingBox(keypoints, ctx) {
       boundingBox.maxY - boundingBox.minY);
 
   ctx.strokeStyle = boundingBoxColor;
+  ctx.stroke();
+}
+
+export function drawBoundingBox2(ctx, rect) {
+
+  // Box is drawn with x,y coordinates representing top left of the box. 
+  // The provided x,y coordinates should represent the center of the box.
+
+  // To calculate size of box:
+
+  ctx.rect(rect.x, rect.y, rect.width, rect.height);
+
+  ctx.strokeStyle = boundingBoxColor;
+  
   ctx.stroke();
 }
 
@@ -234,6 +263,24 @@ function drawPoints(ctx, points, radius, color) {
     }
   }
 }
+
+/**
+ * Detects collision between rectangular hitboxes on the canvas
+ */
+function detectCollision(array) {
+
+  const target = {x: 640 - (150 / 2), y: 158 - (150 / 2), width: 150, height: 150};
+
+  array.forEach((hitbox) => {
+    if (hitbox.x < target.x + target.width && 
+    hitbox.x + hitbox.width > target.x &&
+    hitbox.y < target.y + target.height &&
+    hitbox.y + hitbox.height > target.y) {
+      console.log("Collision detected")
+    }
+  })
+};
+
 
 // /**
 //  * Draw offset vector values, one of the model outputs, on to the canvas
