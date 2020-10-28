@@ -16,6 +16,7 @@
  */
 import * as posenet from '@tensorflow-models/posenet';
 import * as tf from '@tensorflow/tfjs';
+import img from './components/Game/hand.png';
 
 const color = 'aqua';
 const boundingBoxColor = 'red';
@@ -134,8 +135,9 @@ export function drawKeypointsAvatar(keypoints, minConfidence, ctx, scale = 1) {
       }
 
       const {y, x} = keypoint.position;
-      drawPoint(ctx, y * scale, x * scale, 3, color);
+      // drawPoint(ctx, y * scale, x * scale, 3, color);
       //renderImageToCanvas instead? Can set up conditionals per body part to load different images
+      renderImageToCanvas2(ctx, x, y)
     }
   }
 }
@@ -187,6 +189,17 @@ export function renderImageToCanvas(image, size, canvas) {
   const ctx = canvas.getContext('2d');
 
   ctx.drawImage(image, 0, 0);
+}
+
+export function renderImageToCanvas2(ctx, x, y) {
+  // const ctx = canvas.current.getContext('2d');
+  // canvas.current.width = window.innerWidth;
+  // canvas.current.height = window.innerHeight;
+
+  const imgTag = new Image();
+  imgTag.src = img;   // load image
+
+  ctx.drawImage(imgTag, x, y, 100, 120);
 }
 
 /**
