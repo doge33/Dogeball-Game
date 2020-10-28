@@ -4,7 +4,7 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import SocialButton from './styled/SocialButton'
-import BrandButton from './styled/BrandButton'
+import Button from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
 
 
@@ -51,7 +51,7 @@ function Signup() {
   return (
     <SlidingForm signup>
       <h1>Create Account</h1>
-      <div>
+      {/* <div>
         <SocialButton>
           <FontAwesomeIcon icon={['fab', 'facebook-f']} />
         </SocialButton>
@@ -62,7 +62,7 @@ function Signup() {
           <FontAwesomeIcon icon={['fab', 'google']} />
         </SocialButton>
       </div>
-      <p>or register with your email</p>
+      <p>or register with your email</p> */}
       <form>
         <input
           name="username"
@@ -93,7 +93,7 @@ function Signup() {
           onChange={handleChange}
         />
       </form>
-      <BrandButton onClick={handleSubmit}>Sign up</BrandButton>
+      <Button onClick={handleSubmit}>Sign up</Button>
     </SlidingForm>
   );
 }
