@@ -8,7 +8,6 @@ import theme from '../theme'
 import "../components/Home.scss";
 import Introduction from "../components/Introduction";
 import LoginForm from '../components/LoginForm'
-import UserHistory from "../components/Game/UserHistory";
 import Navbar from "../components/Game/Navbar";
 
 library.add(faFacebookF, faLinkedinIn, faGoogle)
@@ -29,8 +28,6 @@ function Home() {
           <LoginForm />
         </div>
       </ThemeProvider>
-
-      <UserHistory />
     </main>
   )
 }

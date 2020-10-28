@@ -1,7 +1,7 @@
 import React from "react";
 import UserHistory from "./UserHistory";
 import Leaderboard from "./Leaderboard";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 
 function Lobby(props) {
 

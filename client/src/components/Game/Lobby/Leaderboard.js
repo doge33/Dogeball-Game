@@ -1,5 +1,5 @@
 import React from "react";
-import useApplicationData from '../../hooks/useApplicationData';
+import useApplicationData from '../../../hooks/useApplicationData';
 
 function Leaderboard() {
   const { state, dispatch } = useApplicationData();

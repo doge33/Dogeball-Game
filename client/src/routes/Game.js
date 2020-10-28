@@ -2,7 +2,7 @@ import React from "react";
 import className from "classnames";
 //import "../components/Game.scss";
 import NewCamera from "../components/Game/NewCamera"
-import Lobby from "../components/Game/Lobby";
+import Lobby from "../components/Game/Lobby/index";
 import useVisualMode from "../hooks/useVisualMode"
 
 
