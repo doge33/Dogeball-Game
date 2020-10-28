@@ -8,13 +8,17 @@
 
 require('faker')
 
+<<<<<<< HEAD
 puts "Seeding Data ..."
 
 10.times do
+=======
+20.times do
+>>>>>>> a8d461ab2e2bc94c84e6de0d1638f4903dce6c3c
   User.create(username: Faker::Internet.username, email: Faker::Internet.email, password_digest: Faker::Internet.password)
 end
 
-20.times do
+25.times do
   Match.create(score: Faker::Types.rb_integer, start_time: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :morning), end_time: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :afternoon), user_id: rand(1..10))
 end
 

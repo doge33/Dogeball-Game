@@ -124,6 +124,22 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   }
 }
 
+export function drawKeypointsAvatar(keypoints, minConfidence, ctx, scale = 1) {
+  for (let i = 0; i < keypoints.length; i++) {
+    if (keypoints[i].part === 'rightWrist' || keypoints[i].part === 'leftWrist' || keypoints[i].part === 'nose') {
+      const keypoint = keypoints[i];
+
+      if (keypoint.score < minConfidence) {
+        continue;
+      }
+
+      const {y, x} = keypoint.position;
+      drawPoint(ctx, y * scale, x * scale, 3, color);
+      //renderImageToCanvas instead? Can set up conditionals per body part to load different images
+    }
+  }
+}
+
 /**
  * Draw the bounding box of a pose. For example, for a whole person standing
  * in an image, the bounding box will begin at the nose and extend to one of
