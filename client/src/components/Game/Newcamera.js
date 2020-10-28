@@ -32,16 +32,16 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 1000)
+    }, 50)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
   const detect = async (net) => {
     if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState === 4) {
       //Get Video Properties
-      const video = webcamRef.current.video;
-      const videoWidth = window.innerWidth;
-      const videoHeight = window.innerHeight;
+      const video = webcamRef.current.video
+      const videoWidth = window.innerWidth;//webcamRef.current.video.videoWidth / 2;
+      const videoHeight = window.innerHeight;//webcamRef.current.video.videoHeight / 2;
 
       // Set video width
       webcamRef.current.video.width = videoWidth;
