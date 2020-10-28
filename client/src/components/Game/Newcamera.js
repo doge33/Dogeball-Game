@@ -33,7 +33,7 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 1000)
+    }, 200)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
