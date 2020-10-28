@@ -135,8 +135,14 @@ export function drawKeypointsAvatar(keypoints, minConfidence, ctx, scale = 1) {
       }
 
       const {y, x} = keypoint.position;
-      drawPoint(ctx, y * scale, x * scale, 10, color);
-      drawBoundingBox2(ctx, x, y, 50, 50);
+      
+      if (keypoint.part === 'nose') {
+        drawPoint(ctx, y * scale, x * scale, 20, color);
+        drawBoundingBox2(ctx, x, y, 100, 100);
+      } else {
+        drawPoint(ctx, y * scale, x * scale, 10, color);
+        drawBoundingBox2(ctx, x, y, 50, 50);
+      }
       // renderImageToCanvas2(ctx, x, y)
     }
   }
