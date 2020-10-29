@@ -15,33 +15,26 @@ const useApplicationData = () => {
   });
 
   useEffect(() => {
-    axios({
-      method: 'GET',
-      url: '/api/users',
-    })
-      .then(({
-        data
-      }) => {
-        // console.log("inside useApplicationData! ", data);
-        dispatch({
-          type: SET_USERS,
-          users: data
-        });
-      })
-      .catch((err) => console.log(err));
-
-    axios({
-      method: 'GET',
-      url: '/api/matches',
-    })
-      .then(({
-        data
-      }) => {
-        // console.log(data);
-        dispatch({
-          type: SET_MATCHES,
-          matches: data
-        });
+    // Promise.all([
+    //   axios({ method: 'GET', url: '/api/users', })
+    // ])
+    //   .then(({
+    //     data
+    //   }) => {
+    //     console.log("inside useApplicationData! ", data);
+    //     dispatch({
+    //       type: SET_USERS,
+    //       users: data
+    //     });
+    //   })
+    //   .catch((err) => console.log(err));
+    Promise.all([
+      axios({ method: 'GET', url: '/api/users' }),
+      axios({ method: 'GET', url: '/api/matches' })
+    ])
+      .then(all => {
+        dispatch({ type: SET_USERS, users: all[0].data });
+        dispatch({ type: SET_MATCHES, matches: all[1].data });
       })
       .catch((err) => console.log(err));
   }, []);

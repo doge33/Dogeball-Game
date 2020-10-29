@@ -44,7 +44,6 @@ function Signup() {
         password_confirmation: state.password_confirmation
       }
     })
-      .then(res => console.log(res, "check"))
       .catch(err => console.log(err))
   }
 

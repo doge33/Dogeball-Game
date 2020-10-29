@@ -30,7 +30,7 @@ function Home() {
 
   return (
     <main classname="App">
-      <Navbar user={user}/>
+      <Navbar user={user} />
       <section className="introduction">
         <Introduction />
       </section>

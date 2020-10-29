@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from 'axios';
+import UserContext from '../../Context/userContext'
+import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 import SocialButton from './styled/SocialButton'
 import Button from './styled/BrandButton'
 import SlidingForm from './styled/SlidingForm'
-// import Button from '../Button'
 
 function Login(props) {
 
+  const { user, setUser } = useContext(UserContext)
   const [state, setState] = useState({
     email: '',
     password: ''
   });
 
-  const [user, setUser] = useState({
-    isLoggedIn: false,
-    user: {}
-  })
+  /**
+   * use of History to redirect the page
+   */
+  const history = useHistory()
 
   /** Function setting the state of controlled inputs
    * @param {event} change object occurs when there is change in input element of form
@@ -32,21 +34,21 @@ function Login(props) {
     });
   }
 
+  /**
+   * Functions calls the axios to find the data from database
+   * Update the user state if found
+   */
   const handleSubmit = () => {
     // POST request to the rails server to enter the data to the database
-    axios.all([
-      axios.post("/login", { email: state.email, password: state.password, }),
-      axios.get("/logged_in", { withCredentials: true })
-    ])
-      .then(resArr => {
-        // if (resArr[1].data.logged_in) {
-          handleLogin(resArr[0].data)
-          // } else {
-          //   handleLogout()
+    axios.post("/login", { ...state }, { withCredentials: true })
+      .then(res => {
+        // check if the user is loggge in
+        if (res.data.logged_in) {
+          handleLogin(res.data)
+          history.push("/game")
         }
-      //}
-      )
-    // .catch(err => console.log('api error:', err))
+      })
+      .catch(err => console.log('api error:', err))
   }
 
   const handleLogin = data => {
@@ -58,9 +60,8 @@ function Login(props) {
   }
 
   const handleLogout = () => {
-    axios.post("/logout")
+    axios.post("/logout", {}, { withCredentials: true })
       .then((res) => {
-        //console.log(res)
         setUser({
           ...user,
           isLoggedIn: false,
@@ -69,17 +70,6 @@ function Login(props) {
       })
   }
 
-  // const loginStatus = () => {
-  //   axios.get("http://localhost:3001/logged_in", { withCredentials: true })
-  //     .then(res => {
-  //       if (res.data.logged_in) {
-  //         handleLogin(res)
-  //       } else {
-  //         handleLogout()
-  //       }
-  //     })
-  //     .catch(err => console.log('api error:', err))
-  // }
 
   return (
     <SlidingForm>
@@ -116,7 +106,6 @@ function Login(props) {
         <a href="#">Forgot your password?</a>
       </p>
       <Button onClick={handleSubmit}>Sign in</Button>
-      <Button onClick={handleLogout}>Logout</Button>
     </SlidingForm>
   )
 }

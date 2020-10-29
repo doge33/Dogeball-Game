@@ -22,9 +22,8 @@ class ApplicationController < ActionController::API
   end
 
   def logout!
-    session.clear
+    session[:user_id] = nil
     # reset_session
-     #@session_id = nil
   end
 
   def set_user
