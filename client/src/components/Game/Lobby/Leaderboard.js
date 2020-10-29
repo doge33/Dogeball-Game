@@ -9,7 +9,7 @@ import "../Game.scss";
 function Leaderboard() {
   const { state, dispatch } = useApplicationData();
 
-  const listScores = state.matches.map((match) => (<li style={{listStyle: "none"}}> Match: {match.id} Score: {match.score} Started: {match.start_time} Ended: {match.end_time} Player: {match.user_id} </li>));
+  const listScores = state.matches.map((match) => (<li style={{listStyle: "none"}}> Match: {match.id} Score: {match.score} Duration: {match.duration} Player: {match.user_id} </li>));
   //const listScores = state.matches.map((match) => (<li> Match: {match.id} Score: {match.score} duration:{match.end_time - match.start_time} Player: {match.user_id} </li>));
   const [open, setOpen] = useState(false);
 
