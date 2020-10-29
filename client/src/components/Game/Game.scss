@@ -12,8 +12,9 @@
     margin-top: 5em;
     display: grid;
     grid-template-areas: "leaderboard button"
-                        "leaderboard history";
-    grid-gap: 10em;
+                        "leaderboard history"
+                         "table history";
+    grid-gap: 5em;
  
 
     .button{
@@ -33,6 +34,10 @@
     //border: 1px solid blue;
     border-radius: 10%;
     grid-area: history;
+    }
+
+    .table {
+      grid-area: table;
     }
   }
 
