@@ -1,7 +1,7 @@
 import img from './hand.png';
-import {drawKeypointsAvatar} from '../../utilities';
+import {drawKeypointsAvatar, generateProjectile} from '../../utilities';
 
-export default function DrawAvatar(canvas, pose) {
+export default function DrawAvatar(canvas, pose, array) {
 
   // const imgTag = new Image();
   // imgTag.src = img;   // load image
@@ -13,6 +13,7 @@ export default function DrawAvatar(canvas, pose) {
 
   // Draw!
   drawKeypointsAvatar(pose["keypoints"], 0.6, ctx);
+  generateProjectile(canvas, array, 30, 'orange');
 
   // // imgTag.onload = animate;
   

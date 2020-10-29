@@ -284,30 +284,27 @@ function detectCollision(array) {
 /**
  * Generate projectiles on canvas
  */
-export function generateProjectile(canvas, r, color) {
+export function generateProjectile(canvas, array, r, color) {
   const ctx = canvas.current.getContext("2d");    
-  canvas.current.width = window.innerWidth;
-  canvas.current.height = window.innerHeight;
 
   const width = canvas.current.width;
   const height = canvas.current.height;
-  
-  for (let i = 0; i < 5; i++) {
-    // Generate random coordinates for projectile
-    const x = Math.random() * width;
-    const y = Math.random() * height;
-  
+  const hitboxWidth = r * 2.5;
+  const hitboxHeight = r * 2.5;
+
+  array.forEach((pair) => {
+    const x = pair[0] * width;
+    const y = pair[1] * height;
     // Calculate dimensions of hitbox
-    const hitboxWidth = r * 2.5;
-    const hitboxHeight = r * 2.5;
     const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight};
     
     // Render projectile
     drawPoint(ctx, y, x, r, color);
+
     // Render hitbox
     drawBoundingBox2(ctx, rect);
-  }
 
+  })
 };
 
 // /**

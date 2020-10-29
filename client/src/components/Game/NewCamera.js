@@ -12,12 +12,19 @@ import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
-import {generateProjectile} from "../../utilities";
 import DrawAvatar from "./DrawAvatar";
 
 function NewCamera() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const coordinateArray = [];
+  
+  for (let i = 0; i < 5; i++) {
+    const x = Math.random();
+    const y = Math.random();
+
+    coordinateArray.push([x, y]);
+  }
 
   //Load posenet
   const runPosenet = async () => {
@@ -52,13 +59,9 @@ function NewCamera() {
         flipHorizontal: true
       });
 
-      DrawAvatar(canvasRef, pose);
+      DrawAvatar(canvasRef, pose, coordinateArray);
     }
   }
-
-  useEffect(() => {
-    generateProjectile(canvasRef, 30, 'orange');
-  }, []);
 
   runPosenet();
   
@@ -78,6 +81,8 @@ function NewCamera() {
 
         <canvas
           ref={canvasRef}
+          width={window.innerWidth}
+          height={window.innerHeight}
           style={{
             position: "absolute",
             marginLeft: "auto",
