@@ -41,6 +41,7 @@ function Login(props) {
       // axios.get("/logged_in", { withCredentials: true })
     ])
       .then(resArr => {
+<<<<<<< HEAD
         if (resArr[0].data.logged_in) {
           handleLogin(resArr[0].data)
           // if (user.isLoggedIn) {
@@ -51,6 +52,16 @@ function Login(props) {
         //   //   handleLogout()
       })
       .catch(err => console.log('api error:', err))
+=======
+        // if (resArr[1].data.logged_in) {
+          handleLogin(resArr[0].data)
+          // } else {
+          //   handleLogout()
+        }
+      //}
+      )
+    // .catch(err => console.log('api error:', err))
+>>>>>>> d02ad4fb20f28ded30cdb146b5fe945480eb24ed
   }
 
   const handleLogin = data => {
@@ -64,7 +75,7 @@ function Login(props) {
   const handleLogout = () => {
     axios.post("/logout")
       .then((res) => {
-        console.log(res)
+        //console.log(res)
         setUser({
           ...user,
           isLoggedIn: false,
