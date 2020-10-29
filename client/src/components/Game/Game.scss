@@ -5,3 +5,40 @@
   flex-direction: column
 }
 
+
+
+.lobby {
+  main {
+    margin-top: 5em;
+    display: grid;
+    grid-template-areas: "leaderboard button"
+                        "leaderboard history";
+    grid-gap: 10em;
+ 
+
+    .button{
+      padding: 50px;
+      grid-area: button
+    }
+
+    .leaderboard-div {
+      //border: 1px solid blue;
+      border-radius: 10%;
+      grid-area: leaderboard;
+      
+
+    }
+
+    .history-div {
+    //border: 1px solid blue;
+    border-radius: 10%;
+    grid-area: history;
+    }
+  }
+
+  
+}
+
+#collapse-text {
+  margin-top: 2em;
+}
