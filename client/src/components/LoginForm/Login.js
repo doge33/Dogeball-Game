@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -20,6 +21,7 @@ function Login(props) {
     user: {}
   })
 
+  const history = useHistory()
   /** Function setting the state of controlled inputs
    * @param {event} change object occurs when there is change in input element of form
   */
@@ -35,17 +37,20 @@ function Login(props) {
   const handleSubmit = () => {
     // POST request to the rails server to enter the data to the database
     axios.all([
-      axios.post("/login", { email: state.email, password: state.password, }),
-      axios.get("/logged_in", { withCredentials: true })
+      axios.post("/login", { ...state }, { withCredentials: true }),
+      // axios.get("/logged_in", { withCredentials: true })
     ])
       .then(resArr => {
-        if (resArr[1].data.logged_in) {
-          handleLogin(resArr[1].data)
-          // } else {
-          //   handleLogout()
+        if (resArr[0].data.logged_in) {
+          handleLogin(resArr[0].data)
+          // if (user.isLoggedIn) {
+          history.push("/game")
+          // }
         }
+        //   // } else {
+        //   //   handleLogout()
       })
-    // .catch(err => console.log('api error:', err))
+      .catch(err => console.log('api error:', err))
   }
 
   const handleLogin = data => {

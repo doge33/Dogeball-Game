@@ -15,12 +15,12 @@ function Game() {
   const INGAME = "INGAME";
   //fixture
   const user = {
-    "id":5,
-    "username":"jerome.schuppe",
-    "email":"jim_lebsack@lesch.org",
-    "password_digest":"KrDi86CxJ",
-    "created_at":"2020-10-27T23:47:48.765Z",
-    "updated_at":"2020-10-27T23:47:48.765Z"
+    "id": 5,
+    "username": "jerome.schuppe",
+    "email": "jim_lebsack@lesch.org",
+    "password_digest": "KrDi86CxJ",
+    "created_at": "2020-10-27T23:47:48.765Z",
+    "updated_at": "2020-10-27T23:47:48.765Z"
   }
   // Navigating Modes
   const { mode, transition, back } = useVisualMode(LOBBY);
@@ -28,14 +28,14 @@ function Game() {
   //if mode === PREGAME
   return (
     //fixtures
- 
+
     <div>
-  
-      {mode === LOBBY && <Lobby user={user} onPlay={()=> transition(PREGAME)}/>}
-      {mode === PREGAME && <Pregame user={user} onClick={() => transition(INGAME)}/>}
-      {mode === INGAME && <Ingame  onClick={() => transition(LOBBY)}/>}
-  
-  
+
+      {mode === LOBBY && <Lobby user={user} onPlay={() => transition(PREGAME)} />}
+      {mode === PREGAME && <Pregame user={user} onClick={() => transition(INGAME)} />}
+      {mode === INGAME && <Ingame onClick={() => transition(LOBBY)} />}
+
+
 
     </div>
   )
