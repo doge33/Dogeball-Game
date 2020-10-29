@@ -1,59 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import UserContext from './Context/userContext'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import './App.scss';
 import Home from "./routes/Home";
 import Game from "./routes/Game";
 
 function App() {
 
-  const [state, setState] = useState({
+  const [user, setUser] = useState({
     isLoggedIn: false,
     user: {}
   })
 
-  // const handleLogin = data => {
-  //   setState({
-  //     isLoggedIn: true,
-  //     user: data.user
-  //   });
-  // }
-
-  // const handleLogout = () => {
-  //   setState({
-  //     isLoggedIn: false,
-  //     user: {}
-  //   });
-  // }
-
-  // const loginStatus = () => {
-  //   axios.get("http://localhost:3001/logged_in", { withCredentials: true })
-  //     .then(res => {
-  //       console.log("in login Status! res is ", res)
-  //       if (res.data.loged_in) {
-  //         handleLogin(res)
-  //       } else {
-  //         handleLogout()
-  //       }
-  //     })
-  //     .catch(err => console.log('api error:', err))
-  // }
-
-
-  // console.log("state.user is ...." , state.user)
-
   return (
     <div>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/game" component={Game} />
-        </Switch>
-      </Router>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/game" component={Game} />
+          </Switch>
+        </Router>
+      </UserContext.Provider>
     </div>
   )
 }
-
-
 
 export default App;
