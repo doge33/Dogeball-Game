@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Collapse} from "react-bootstrap";
 import Button from "../../Button";
+import Duration from "./Duration";
 import useApplicationData from "../../../hooks/useApplicationData";
 
 import "../Game.scss";
@@ -14,7 +15,15 @@ function UserHistory(props) {
   
   const userMatches = state.matches.filter((match) => user.id === match.user_id)
 
-  const userHistory = userMatches.map((match) => (<li style={{listStyle: "none"}}> Match: {match.id} Score: {match.score} Started: {match.start_time} Ended: {match.end_time} Player: {match.user_id} </li>));
+  const userHistory = userMatches.map((match) => {
+
+    const date = new Date(match.start_time)
+    const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()}. ${date.getUTCDate()}`
+    return(
+    <li style={{listStyle: "none"}}> 
+      Score: {match.score} Duration: <Duration  duration={match.duration} /> Played: {dateParsed} 
+    </li>)
+    });
 
   const [open, setOpen] = useState(false);
   

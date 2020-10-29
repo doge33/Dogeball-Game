@@ -22,7 +22,7 @@ const useApplicationData = () => {
       .then(({
         data
       }) => {
-        console.log("inside useApplicationData! ", data);
+        // console.log("inside useApplicationData! ", data);
         dispatch({
           type: SET_USERS,
           users: data
@@ -37,7 +37,7 @@ const useApplicationData = () => {
       .then(({
         data
       }) => {
-        console.log(data);
+        // console.log(data);
         dispatch({
           type: SET_MATCHES,
           matches: data

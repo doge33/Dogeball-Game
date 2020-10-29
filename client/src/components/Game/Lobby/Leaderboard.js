@@ -1,29 +1,31 @@
 import React, {useState} from "react";
 import useApplicationData from '../../../hooks/useApplicationData';
 import Button from "../../Button";
+import Duration from "./Duration";
+
 import {Collapse} from "react-bootstrap";
 import classNames from "classnames";
 
 import "../Game.scss";
-function Duration(props){
-  const minute = new Date(props.duration).getMinutes();
-  const seconds = new Date(props.duration).getSeconds();
 
-  return (
-    <span>
-      {minute}:{seconds}
-    </span>
-  )
-}
 
 
 function Leaderboard() {
   const { state, dispatch } = useApplicationData();
-
-
-  const listScores = state.matches.map((match) => (<li style={{listStyle: "none"}}> Match: {match.id} Score: {match.score} Duration: <Duration duration={match.duration} /> Player: {match.user_id} </li>));
-  //const listScores = state.matches.map((match) => (<li> Match: {match.id} Score: {match.score} duration:{match.end_time - match.start_time} Player: {match.user_id} </li>));
   const [open, setOpen] = useState(false);
+
+  const listScores = state.matches.map((match) => {
+    
+    const user = state.users.find(user => user.id === match.user_id)
+
+
+    return(
+    <li style={{listStyle: "none"}}> 
+      Score: {match.score} Duration: <Duration duration={match.duration} /> Player: {user.username} 
+    </li>
+    );
+  });
+  
 
   return (
     <div>
