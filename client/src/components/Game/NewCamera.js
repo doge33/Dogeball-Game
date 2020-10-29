@@ -7,12 +7,12 @@
 //7. Drawing utilities from tensorflow DONE
 //8. Draw functions
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
-import {drawKeypoints, drawSkeleton} from "../../utilities";
+import {generateProjectile} from "../../utilities";
 import DrawAvatar from "./DrawAvatar";
 
 function NewCamera() {
@@ -52,25 +52,16 @@ function NewCamera() {
         flipHorizontal: true
       });
 
-      // drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
       DrawAvatar(canvasRef, pose);
     }
-
-
   }
-  // Draw skeleton on canvas, utilizing the utility drawing functions from poseNet
-  // const drawCanvas = (pose, video, videoWidth, videoHeight, canvas) => {
-  //   const ctx = canvas.current.getContext("2d"); // grab canvas
-  //   canvas.current.width = videoWidth; //match width and height as video
-  //   canvas.current.height = videoHeight;
 
-  //   //draw on canvas!
-  //   drawKeypoints(pose["keypoints"], 0.5, ctx)
-  //   drawSkeleton(pose["keypoints"], 0.5, ctx)
-  // }
-  
+  useEffect(() => {
+    generateProjectile(canvasRef, 30, 'orange');
+  }, []);
+
   runPosenet();
-
+  
   return (
     <div className="App">
       <header className="App-header">

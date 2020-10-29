@@ -30,10 +30,10 @@ function Game() {
     //fixtures
 
     <div>
-
-      {mode === LOBBY && <Lobby user={user} onPlay={() => transition(PREGAME)} />}
+      <NewCamera />
+      {/* {mode === LOBBY && <Lobby user={user} onPlay={() => transition(PREGAME)} />}
       {mode === PREGAME && <Pregame user={user} onClick={() => transition(INGAME)} />}
-      {mode === INGAME && <Ingame onClick={() => transition(LOBBY)} />}
+      {mode === INGAME && <Ingame onClick={() => transition(LOBBY)} />} */}
 
 
 
