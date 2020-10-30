@@ -14,7 +14,7 @@ const Form = ({ initialState = STATE_LOG_IN }, props) => {
 
   return (
     <Container style={{
-      width: "700px", height: "550px", marginRight: "0"
+      width: "650px", height: "350px", marginRight: "0"
     }} pose={mode === STATE_LOG_IN ? "signup" : "login"}>
       <div className="container__form container__form--one">
         < Login onSubmit={props.onSubmit} mode={mode} />
