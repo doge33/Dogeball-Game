@@ -10,8 +10,13 @@ function Timer (props) {
   const [second, setSecond] = useState("00");
   const [minute, setMinute] = useState("00");
   const [hour, setHour] = useState("00"); //ignore hours for now because it's too long a duration for the game
-  const [isActive, setIsActive] = useState(false); //change when game starts counting
+  const [isActive, setIsActive] = useState(props.timerActive); //default to "false"; changes when game starts counting
   const [counter, setCounter] = useState(0);
+
+  useEffect(()=>{
+    let startTimer = setTimeout(()=> setIsActive(true), [3000])
+    return()=>clearTimeout(startTimer);
+  }, [])
 
   useEffect(()=>{
     let intervalId;
