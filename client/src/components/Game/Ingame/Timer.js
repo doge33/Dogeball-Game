@@ -3,7 +3,9 @@ import "./Timer.scss";
 import classNames from "classnames";
 
 //this is a stateful component
-function Timer () {
+function Timer (props) {
+
+  //props will be used to obtain "isActive" state
 
   const [second, setSecond] = useState("00");
   const [minute, setMinute] = useState("00");

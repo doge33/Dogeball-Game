@@ -44,7 +44,7 @@ function Game() {
 
       {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PREGAME)} />}
       {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME)} />}
-      {mode === INGAME && <Ingame onClick={() => transition(LOBBY)} />}
+      {mode === INGAME && <Ingame onQuit={() => transition(LOBBY)} />}
     </div>
   )
 }
