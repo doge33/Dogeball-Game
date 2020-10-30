@@ -13,7 +13,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
-import {calculateHitboxes} from '../../utilities';
+import {collisionDetection} from '../../utilities';
 
 function NewCamera() {
   const webcamRef = useRef(null);
@@ -26,6 +26,8 @@ function NewCamera() {
 
     projectileCoords.push([x, y]);
   }
+
+  // const [projectiles, setProjectiles] = useState(projectileCoords);
 
   //Load posenet
   const runPosenet = async () => {
@@ -60,7 +62,13 @@ function NewCamera() {
         flipHorizontal: true
       });
       
-      calculateHitboxes(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
+      const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
+      console.log(collision);
+      
+      if (collision) {
+        projectileCoords.splice(collision, 1);
+      }
+      
       DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
       
     }
@@ -81,7 +89,7 @@ function NewCamera() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            // visibility: "hidden"
+            visibility: "hidden"
           }}
         />
 

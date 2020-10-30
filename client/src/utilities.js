@@ -123,21 +123,28 @@ export function generateProjectile(ctx, projectileDimensions, projectileCoords, 
 // -----------------------------------------------------------------
 export function detectCollision(avatar, projectiles) {
 
+  let indexCollision;
+
   for (let i = 0; i < avatar.length; i++) {
     for (let y = 0; y < projectiles.length; y++) {
       if (avatar[i].x < projectiles[y].x + projectiles[y].width && 
         avatar[i].x + avatar[i].width > projectiles[y].x &&
         avatar[i].y < projectiles[y].y + projectiles[y].height &&
         avatar[i].y + avatar[i].height > projectiles[y].y) {
-          console.log("Collision detected")
+          console.log("Collision detected");
+          console.log(projectiles[y].projectileIndex);
+          indexCollision = projectiles[y].projectileIndex;
         }
     }
   }
+
+  return indexCollision
+
 }
 // -----------------------------------------------------------------
 // * Calculates hitboxes for all canvas objects
 // -----------------------------------------------------------------
-export function calculateHitboxes(pose, minConfidence, projectileCoords, videoWidth, videoHeight, r) {
+export function collisionDetection(pose, minConfidence, projectileCoords, videoWidth, videoHeight, r) {
 
   let keypoints = pose["keypoints"];
   let poseHitboxes = [];
@@ -165,15 +172,17 @@ export function calculateHitboxes(pose, minConfidence, projectileCoords, videoWi
     }
   }
 
-  projectileCoords.forEach((pair) => {
+  projectileCoords.forEach((pair, index) => {
     const x = pair[0] * videoWidth;
     const y = pair[1] * videoHeight;
     // Calculate dimensions of hitbox
-    const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight};
+    const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index};
     projectileHitboxes.push(rect);
   });
-  
-  detectCollision(poseHitboxes, projectileHitboxes);
+
+  if (detectCollision(poseHitboxes, projectileHitboxes)) {
+    return detectCollision(poseHitboxes, projectileHitboxes)
+  } 
 
 };
 // ===================================================================
