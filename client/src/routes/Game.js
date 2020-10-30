@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import UserContext from '../Context/userContext'
 import className from "classnames";
 //import "../components/Game.scss";
@@ -30,8 +30,16 @@ function Game() {
   // const { user } = useContext(UserContext)
   // Navigating Modes
   const { mode, transition, back } = useVisualMode(LOBBY);
+  const [gameActive, setGameActive] = useState(false);
   //console.log(user, "check")
 
+  //re-initialize all states for the game
+  function initializeGame(){
+    setGameActive(true)
+    transition(PREGAME, true)
+  }
+
+  
   //if mode === PREGAME
   return (
     //fixtures
@@ -44,8 +52,8 @@ function Game() {
       {mode === INGAME && <Ingame onClick={() => transition(LOBBY)} />} */}
 
       {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PREGAME)} />}
-      {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME)} />}
-      {mode === INGAME && <Ingame onQuit={() => transition(LOBBY)} />}
+      {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME, true)} />}
+      {mode === INGAME && <Ingame onQuit={back} onRestart={()=>initializeGame()}/>}
     </div>
   )
 }

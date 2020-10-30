@@ -11,6 +11,7 @@ function Countdown(props){
 
   //const [gameStart, setGameStart] = useState(true); // ==> start counting immediately when ingame component renders
   const [gameOver, setGameOver] = useState(false);
+  const [isActive, setIsActive] = useState(true);
   
 
   //modes
@@ -23,11 +24,11 @@ function Countdown(props){
   return(
     <div>
 
-      <h1>{mode === START && <Gamestart />}</h1>
+      <h1>{mode === START && <Gamestart isActive={isActive}/>}</h1>
 
       {/* <h1>{mode === OVER && <Gameover />}</h1> */}
       {/* for now just display Gameover without mode */}
-      <h1>{<Gameover onQuit={props.onQuit}/>}</h1> 
+      <h1>{<Gameover onQuit={props.onQuit} onRestart={props.onRestart}/>}</h1> 
 
     <div className="countdown2">
       {/* <div className="continue">

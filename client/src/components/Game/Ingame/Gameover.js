@@ -5,7 +5,7 @@ import Button from "../../Button";
 function Gameover(props){
 
   const [counter, setCounter] = useState(10);
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
   const [quit, setQuit] = useState(false);
 
   //when isActive is updated to true, useEffect will run ==> countdown start
