@@ -166,7 +166,7 @@ body{
     margin:2% 0;
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, stop(0%, #ff6500), color-stop(100%, #b30013));
     background-image: -webkit-linear-gradient(#ff6500,#b30013);
-    -webkit-background-clip: text;
+    //-webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #ff6500;
     position: relative;
