@@ -1,20 +1,23 @@
-import img from './hand.png';
 import {drawKeypointsAvatar, generateProjectile} from '../../utilities';
 
-export default function DrawAvatar(canvas, pose, array) {
-
-  // const imgTag = new Image();
-  // imgTag.src = img;   // load image
+export default function DrawAvatar(canvas, pose, projectileCoords, videoWidth, videoHeight) {
   
   // Grab canvas!
-  const ctx = canvas.current.getContext("2d");    
-  canvas.current.width = window.innerWidth;
-  canvas.current.height = window.innerHeight;
+  const ctx = canvas.current.getContext("2d");
+  canvas.current.width = videoWidth;
+  canvas.current.height = videoHeight;
+  let canvasWidth = videoWidth;
+  let canvasHeight = videoHeight; 
+
+  const projectileDimensions = {
+    width: canvasWidth,
+    height: canvasHeight
+  };
 
   // Draw!
-  drawKeypointsAvatar(pose["keypoints"], 0.6, ctx);
-  generateProjectile(canvas, array, 30, 'orange');
-
+  drawKeypointsAvatar(ctx, pose["keypoints"], 0.6);
+  generateProjectile(ctx, projectileDimensions, projectileCoords, 30, "orange");
+  
   // // imgTag.onload = animate;
   
   // ctx.drawImage(imgTag, x, y, 100, 120);

@@ -7,24 +7,27 @@
 //7. Drawing utilities from tensorflow DONE
 //8. Draw functions
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
+import {collisionDetection} from '../../utilities';
 
 function NewCamera() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const coordinateArray = [];
+  const projectileCoords = [];
   
   for (let i = 0; i < 5; i++) {
     const x = Math.random();
     const y = Math.random();
 
-    coordinateArray.push([x, y]);
+    projectileCoords.push([x, y]);
   }
+
+  // const [projectiles, setProjectiles] = useState(projectileCoords);
 
   //Load posenet
   const runPosenet = async () => {
@@ -47,21 +50,29 @@ function NewCamera() {
     if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState === 4) {
       //Get Video Properties
       const video = webcamRef.current.video
-      const videoWidth = window.innerWidth;//webcamRef.current.video.videoWidth / 2;
-      const videoHeight = window.innerHeight;//webcamRef.current.video.videoHeight / 2;
+      const videoWidth = window.innerWidth;
+      const videoHeight = window.innerHeight;
 
       // Set video width
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
+      video.width = videoWidth;
+      video.height = videoHeight;
 
       //Make Detections
       const pose = await net.estimateSinglePose(video, {
         flipHorizontal: true
       });
-
-      DrawAvatar(canvasRef, pose, coordinateArray);
+      
+      const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
+      console.log(collision);
+      
+      if (collision) {
+        projectileCoords.splice(collision, 1);
+      }
+      
+      DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
+      
     }
-  }
+  };
 
   runPosenet();
   
@@ -72,23 +83,25 @@ function NewCamera() {
         ref={webcamRef}
         style= {{
           position: "absolute",
-          bottom: 0,
-          right: 0,
-          zindex: 8, //an element with a higher zindex number is always in front of an element with a lower zindex number
-          visibility: "hidden"
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: 0,
+            right: 0,
+            textAlign: "center",
+            zindex: 9,
+            visibility: "hidden"
           }}
         />
 
         <canvas
           ref={canvasRef}
-          width={window.innerWidth}
-          height={window.innerHeight}
           style={{
             position: "absolute",
             marginLeft: "auto",
             marginRight: "auto",
             left: 0,
             right: 0,
+            textAlign: "center",
             zindex: 9
           }}
         />
