@@ -12,6 +12,7 @@ function UserHistory(props) {
 
   //const {user} = props;
   const {user} = props
+  console.log(user);
 
   const {state, displatch} = useApplicationData();
   

@@ -15,6 +15,8 @@ function Leaderboard() {
   const { state, dispatch } = useApplicationData();
   const [open, setOpen] = useState(false);
 
+  console.log(state.matches);
+
   function ranking (state) {
 
     let rankScores = [];
@@ -47,15 +49,15 @@ function Leaderboard() {
   return (
     <div>
       
-        <Button onClick={() => setOpen(!open)}
-        aria-controls="example-collapse-text"
-        aria-expanded={open}>
-          <h1> Leaderboard </h1>
-        </Button>
+      <Button onClick={() => setOpen(!open)}
+      aria-controls="example-collapse-text"
+      aria-expanded={open}>
+        <h1> Leaderboard </h1>
+      </Button>
 
-        <Collapse in={open}>
-        <div id="collapse-text"><Table1 className="table" listScores={listScores}/></div>
-        
+      <Collapse in={open}>
+      <div id="collapse-text"><Table1 className="table" listScores={listScores}/></div>
+      
       </Collapse>
 
       
