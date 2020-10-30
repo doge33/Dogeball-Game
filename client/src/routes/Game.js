@@ -11,6 +11,8 @@ import useVisualMode from "../hooks/useVisualMode";
 
 function Game() {
 
+  //const [quit, setQuit] = useState(false);
+
   //fixture
   const testUser = {
     "id":5,
@@ -24,7 +26,6 @@ function Game() {
   const LOBBY = "LOBBY";
   const PREGAME = "PREGAME";
   const INGAME = "INGAME";
-
 
   // const { user } = useContext(UserContext)
   // Navigating Modes
