@@ -121,11 +121,7 @@ export function generateProjectile(ctx, projectileDimensions, projectileCoords, 
 // -----------------------------------------------------------------
 // * Detects if there is a collision between provided hitbox objects
 // -----------------------------------------------------------------
-function detectCollision(projectiles, avatar, canvas) {
-
-  const ctx = canvas.current.getContext("2d");
-
-  // const target = {x: 640 - (150 / 2), y: 158 - (150 / 2), width: 150, height: 150};
+export function detectCollision(avatar, projectiles) {
 
   for (let i = 0; i < avatar.length; i++) {
     for (let y = 0; y < projectiles.length; y++) {
@@ -134,11 +130,52 @@ function detectCollision(projectiles, avatar, canvas) {
         avatar[i].y < projectiles[y].y + projectiles[y].height &&
         avatar[i].y + avatar[i].height > projectiles[y].y) {
           console.log("Collision detected")
-          ctx.clearRect(projectiles[y].x, projectiles[y].y, projectiles[y].width, projectiles[y].height);
         }
     }
   }
 }
+// -----------------------------------------------------------------
+// * Calculates hitboxes for all canvas objects
+// -----------------------------------------------------------------
+export function calculateHitboxes(pose, minConfidence, projectileCoords, videoWidth, videoHeight, r) {
+
+  let keypoints = pose["keypoints"];
+  let poseHitboxes = [];
+  let projectileHitboxes = [];
+  const hitboxWidth = r * 2.5;
+  const hitboxHeight = r * 2.5;
+
+  for (let i = 0; i < keypoints.length; i++) {
+    if (keypoints[i].part === 'rightWrist' || keypoints[i].part === 'leftWrist' || keypoints[i].part === 'nose') {
+      const keypoint = keypoints[i];
+      
+      if (keypoint.score < minConfidence) {
+        continue;
+      }
+
+      const {y, x} = keypoint.position;
+      
+      if (keypoint.part === 'nose') {
+        const rect = {x: x - (50 / 2), y: y - (50 / 2), width: 50, height: 50};
+        poseHitboxes.push(rect);
+      } else {
+        const rect = {x: x - (25 / 2), y: y - (25 / 2), width: 25, height: 25};
+        poseHitboxes.push(rect);
+      }
+    }
+  }
+
+  projectileCoords.forEach((pair) => {
+    const x = pair[0] * videoWidth;
+    const y = pair[1] * videoHeight;
+    // Calculate dimensions of hitbox
+    const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight};
+    projectileHitboxes.push(rect);
+  });
+  
+  detectCollision(poseHitboxes, projectileHitboxes);
+
+};
 // ===================================================================
 // ===================================================================
 

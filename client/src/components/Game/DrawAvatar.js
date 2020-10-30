@@ -1,10 +1,6 @@
-import img from './hand.png';
 import {drawKeypointsAvatar, generateProjectile} from '../../utilities';
 
 export default function DrawAvatar(canvas, pose, projectileCoords, videoWidth, videoHeight) {
-
-  // const imgTag = new Image();
-  // imgTag.src = img;   // load image
   
   // Grab canvas!
   const ctx = canvas.current.getContext("2d");
