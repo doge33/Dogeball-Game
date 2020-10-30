@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import classNames from "classnames";
+import Button from "../../Button";
 
 function Gameover(props){
 
   const [counter, setCounter] = useState(10);
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
+  const [quit, setQuit] = useState(false);
 
   //when isActive is updated to true, useEffect will run ==> countdown start
   useEffect(()=>{
@@ -17,6 +19,9 @@ function Gameover(props){
       } 
       if(counter === 0){
         setIsActive(false);
+        // handleQuit();
+        props.onQuit(); //triggered by countdown to 0 and not restart input
+        
       }
 
     }, 1000)
@@ -24,10 +29,12 @@ function Gameover(props){
     return()=> clearInterval(intervalId); //clean up interval every re-render(basically every second)
   }, [isActive, counter])
 
-
   return(
     <div>
       {isActive ? counter : ""}
+      <div><Button onClick={props.onRestart}>Restart Game?</Button></div>
+      {/* manually quit */}
+      <div><Button onClick={props.onQuit}>Quit?</Button></div>
     </div>
   )
 }
