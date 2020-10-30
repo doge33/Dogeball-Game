@@ -2,12 +2,14 @@ import React, {useState, useEffect} from "react";
 import classNames from "classnames";
 import Button from "../../Button";
 
+import "./Countdown.scss"
+
 function Countdown(props){
 
   const [isActive1, setIsActive1] = useState(true); // ==> start counting immediately when ingame component renders
   const [isActive2, setIsActive2] = useState(false); // ==> should activate countdown at game-over
   const [counter1, setCounter1] = useState(3);
-  const [counter2, setCounter2] = useState(10);
+  const [counter2, setCounter2] = useState(9);
 
   //this effect handles game start countown of 3 seconds
   useEffect(()=>{
@@ -49,7 +51,18 @@ function Countdown(props){
   return(
     <div>
       <h1>{counter1}</h1>
-      <h1>{counter2 }</h1>
+      {/* <h1>{counter2 }</h1> */}
+    <div className="countdown2">
+      <div className="continue">
+        <p data-text="Continue?">Continue? </p>
+        {/* <p>(data-text="9") 9 </p> */}
+        <p className='pull-right' data-text="Quit">Quit</p> 
+      </div>
+  
+      <div className="wrapper">
+        <div className="countdown"></div>
+      </div>
+    </div>
       <div><Button onClick={props.onRestart}>Restart button(click before game-over countdown finishes)</Button></div>
     </div>
 
