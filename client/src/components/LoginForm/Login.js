@@ -43,10 +43,10 @@ function Login(props) {
     axios.post("/login", { ...state }, { withCredentials: true })
       .then(res => {
         // check if the user is loggge in
-        if (res.data.logged_in) {
-          handleLogin(res.data)
-          history.push("/game")
-        }
+        // if (res.data.logged_in) {
+        handleLogin(res.data)
+        history.push("/game")
+        // }
       })
       .catch(err => console.log('api error:', err))
   }
