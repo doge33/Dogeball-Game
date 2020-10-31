@@ -144,6 +144,7 @@ export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoord
 export function detectCollision(avatar, projectiles) {
 
   let indexCollision;
+  let strike;
 
   for (let i = 0; i < avatar.length; i++) {
     for (let y = 0; y < projectiles.length; y++) {
@@ -153,18 +154,25 @@ export function detectCollision(avatar, projectiles) {
         avatar[i].y + avatar[i].height > projectiles[y].y) {
           // console.log("Collision detected");
           // console.log(projectiles[y].projectileIndex);
+          if (projectiles[y].projectileIndex === 2 || projectiles[y].projectileIndex === 6 || projectiles[y].isBad % 4 === 0) {
+            strike = 0;
+          } else {
+            strike = 1;
+          }
           indexCollision = projectiles[y].projectileIndex;
         }
     }
   }
 
-  return indexCollision
+  // return results
+  const results = [indexCollision, strike];
+  return results;
 
 }
 // -----------------------------------------------------------------
 // * Calculates hitboxes and runs them through collision detector
 // -----------------------------------------------------------------
-export function collisionDetection(pose, minConfidence, projectileCoords, videoWidth, videoHeight, r) {
+export function collisionDetection(pose, minConfidence, projectileCoords, videoWidth, videoHeight, r, score) {
   let keypoints = pose["keypoints"];
   let poseHitboxes = [];
   let projectileHitboxes = [];
@@ -211,7 +219,7 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
       }
   
       // Calculate dimensions of hitbox
-      const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index};
+      const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index, isBad: pair['isBad']};
       projectileHitboxes.push(rect);
     }
   });
