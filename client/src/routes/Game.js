@@ -4,8 +4,9 @@ import className from "classnames";
 //import "../components/Game.scss";
 import NewCamera from "../components/Game/NewCamera"
 import Lobby from "../components/Game/Lobby/index";
-import Pregame from "../components/Game/Pregame/index";
-import Ingame from "../components/Game/Ingame/index";
+import Play from "../components/Game/Play/index";
+import Pregame from "../components/Game/Play/Pregame/index";
+import Ingame from "../components/Game/Play/Ingame/index";
 import useVisualMode from "../hooks/useVisualMode";
 
 
@@ -24,8 +25,7 @@ function Game() {
   }
   // Modes
   const LOBBY = "LOBBY";
-  const PREGAME = "PREGAME";
-  const INGAME = "INGAME";
+  const PLAY = "PLAY";
 
   // const { user } = useContext(UserContext)
   // Navigating Modes
@@ -36,7 +36,7 @@ function Game() {
   //re-initialize all states for the game
   function initializeGame(){
     setGameActive(true)
-    transition(PREGAME, true)
+    transition(PLAY, true)
   }
 
   
@@ -45,15 +45,11 @@ function Game() {
     //fixtures
 
     <div>
-      {/* <NewCamera /> */}
 
-      {/* {mode === LOBBY && <Lobby user={user.user} onPlay={() => transition(PREGAME)} />}
-      {mode === PREGAME && <Pregame user={user.user} onClick={() => transition(INGAME)} />}
-      {mode === INGAME && <Ingame onClick={() => transition(LOBBY)} />} */}
-
-      {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PREGAME)} />}
-      {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME, true)} />}
-      {mode === INGAME && <Ingame onQuit={back} onRestart={()=>initializeGame()}/>}
+      {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PLAY, true)} />}
+      {mode === PLAY && <Play user={testUser} onQuit={()=>transition(LOBBY, true)}/>}
+      {/* {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME, true)} />}
+      {mode === INGAME && <Ingame onQuit={back} onRestart={()=>initializeGame()}/>} */}
     </div>
   )
 }

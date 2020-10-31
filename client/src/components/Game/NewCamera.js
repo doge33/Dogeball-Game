@@ -42,7 +42,7 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 200)
+    }, 100)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
@@ -62,7 +62,7 @@ function NewCamera() {
         flipHorizontal: true
       });
       
-      const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
+      const collision = collisionDetection(pose, 0.9, projectileCoords, videoWidth, videoHeight, 30);
       console.log(collision);
       
       if (collision) {
@@ -102,7 +102,7 @@ function NewCamera() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zindex: 9
+             zindex: -1
           }}
         />
 
