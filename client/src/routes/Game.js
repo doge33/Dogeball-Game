@@ -45,21 +45,10 @@ function Game() {
     //fixtures
 
     <div>
-<<<<<<< HEAD
 
       {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PLAY, true)} />}
       {mode === PLAY && <Play user={testUser} onQuit={()=>transition(LOBBY, true)}/>}
       {/* {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME, true)} />}
-=======
-      <NewCamera />
-
-      {/* {mode === LOBBY && <Lobby user={user.user} onPlay={() => transition(PREGAME)} />}
-      {mode === PREGAME && <Pregame user={user.user} onClick={() => transition(INGAME)} />}
-      {mode === INGAME && <Ingame onClick={() => transition(LOBBY)} />} */}
-
-      {/* {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PREGAME)} />}
-      {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME, true)} />}
->>>>>>> 9bf90824b34894ad3f4c7ef77a73fbe11ee3bc43
       {mode === INGAME && <Ingame onQuit={back} onRestart={()=>initializeGame()}/>} */}
     </div>
   )
