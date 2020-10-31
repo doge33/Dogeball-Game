@@ -7,27 +7,38 @@
 //7. Drawing utilities from tensorflow DONE
 //8. Draw functions
 
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
-import {collisionDetection} from '../../utilities';
+import {collisionDetection, projectileGenerator} from '../../utilities';
 
 function NewCamera() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const projectileCoords = [];
   
-  for (let i = 0; i < 5; i++) {
-    const x = Math.random();
-    const y = Math.random();
+  
+  for (let i = 0; i < 10; i++) {
+    let x = Math.random();
+    let y = Math.random();
+
+    if (x < .1) {
+      x += .1
+    } else if (x > .9) {
+      x -= .1
+    }
+
+    if (y < .1) {
+      y += .1
+    } else if (y > .9) {
+      y -= .1
+    }
 
     projectileCoords.push([x, y]);
   }
-
-  // const [projectiles, setProjectiles] = useState(projectileCoords);
 
   //Load posenet
   const runPosenet = async () => {
@@ -42,7 +53,7 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 200)
+    }, 100)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
@@ -63,10 +74,11 @@ function NewCamera() {
       });
       
       const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
-      console.log(collision);
+      // console.log(collision);
       
       if (collision) {
         projectileCoords.splice(collision, 1);
+        projectileGenerator(projectileCoords);
       }
       
       DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);

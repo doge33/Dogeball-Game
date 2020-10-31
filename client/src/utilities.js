@@ -119,7 +119,7 @@ export function generateProjectile(ctx, projectileDimensions, projectileCoords, 
   }) 
 };
 // -----------------------------------------------------------------
-// * Detects if there is a collision between provided hitbox objects
+// * Detects if there is a collision between provided hitbox renders
 // -----------------------------------------------------------------
 export function detectCollision(avatar, projectiles) {
 
@@ -131,8 +131,8 @@ export function detectCollision(avatar, projectiles) {
         avatar[i].x + avatar[i].width > projectiles[y].x &&
         avatar[i].y < projectiles[y].y + projectiles[y].height &&
         avatar[i].y + avatar[i].height > projectiles[y].y) {
-          console.log("Collision detected");
-          console.log(projectiles[y].projectileIndex);
+          // console.log("Collision detected");
+          // console.log(projectiles[y].projectileIndex);
           indexCollision = projectiles[y].projectileIndex;
         }
     }
@@ -142,16 +142,16 @@ export function detectCollision(avatar, projectiles) {
 
 }
 // -----------------------------------------------------------------
-// * Calculates hitboxes for all canvas objects
+// * Calculates hitboxes and runs them through collision detector
 // -----------------------------------------------------------------
 export function collisionDetection(pose, minConfidence, projectileCoords, videoWidth, videoHeight, r) {
-
   let keypoints = pose["keypoints"];
   let poseHitboxes = [];
   let projectileHitboxes = [];
   const hitboxWidth = r * 2.5;
   const hitboxHeight = r * 2.5;
 
+  // Avatar Hitboxes
   for (let i = 0; i < keypoints.length; i++) {
     if (keypoints[i].part === 'rightWrist' || keypoints[i].part === 'leftWrist' || keypoints[i].part === 'nose') {
       const keypoint = keypoints[i];
@@ -172,19 +172,36 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
     }
   }
 
+  // Projectile Hitboxes
   projectileCoords.forEach((pair, index) => {
-    const x = pair[0] * videoWidth;
-    const y = pair[1] * videoHeight;
+    const x = pair[0] * (videoWidth);
+    const y = pair[1] * (videoHeight);
     // Calculate dimensions of hitbox
     const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index};
     projectileHitboxes.push(rect);
   });
 
+  // Hitbox Comparison
   if (detectCollision(poseHitboxes, projectileHitboxes)) {
     return detectCollision(poseHitboxes, projectileHitboxes)
   } 
 
 };
+
+// -----------------------------------------------------------------
+// * Adds new projectile to array
+// -----------------------------------------------------------------
+export function projectileGenerator(array) {
+
+  const randomCoords = [];
+
+  const x = Math.random();
+  const y = Math.random();
+
+  array.push([x, y]);
+
+}
+
 // ===================================================================
 // ===================================================================
 
