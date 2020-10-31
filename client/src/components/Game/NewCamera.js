@@ -61,11 +61,15 @@ function NewCamera() {
         flipHorizontal: true
       });
       
+      // Look for a collision (returns index position of collided object)
       const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
       // console.log(collision);
       
+      // remove object from array of items to be rendered, if collison occurred
       if (collision) {
         projectileCoords.splice(collision, 1);
+
+        // add new set of coordinates to array of projectile coordinates
         projectileGenerator(projectileCoords);
       }
       

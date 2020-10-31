@@ -103,30 +103,32 @@ export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoord
   const hitboxWidth = r * 2.5;
   const hitboxHeight = r * 2.5;
 
-  projectileCoords.forEach((pair) => {
-    let x = pair[0] * videoWidth;
-    let y = pair[1] * videoHeight;
-
-    if (x < 100) {
-      x += 100;
-    } else if (x > (videoWidth * .90)) {
-      x -= (videoWidth * .1);
-    }
-
-    if (y < 100) {
-      y += 100;
-    } else if (y > (videoHeight * .90)) {
-      y -= (videoHeight * .1);
-    }
-
-    // Calculate dimensions of hitbox
-    const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight};
+  projectileCoords.forEach((pair, index) => {
+    if (index !== 0) {
+      let x = pair[0] * videoWidth;
+      let y = pair[1] * videoHeight;
   
-    // Render projectile
-    drawPoint(ctx, y, x, r, color);
-
-    // Render hitbox
-    drawBoundingBox2(ctx, rect);
+      if (x < 100) {
+        x += 100;
+      } else if (x > (videoWidth * .90)) {
+        x -= (videoWidth * .1);
+      }
+  
+      if (y < 100) {
+        y += 100;
+      } else if (y > (videoHeight * .90)) {
+        y -= (videoHeight * .1);
+      }
+  
+      // Calculate dimensions of hitbox
+      const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight};
+    
+      // Render projectile
+      drawPoint(ctx, y, x, r, color);
+  
+      // Render hitbox
+      drawBoundingBox2(ctx, rect);
+    }
   }) 
 };
 // -----------------------------------------------------------------
@@ -185,24 +187,26 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
 
   // Projectile Hitboxes
   projectileCoords.forEach((pair, index) => {
-    let x = pair[0] * (videoWidth);
-    let y = pair[1] * (videoHeight);
-
-    if (x < 100) {
-      x += 100;
-    } else if (x > (videoWidth * .90)) {
-      x -= (videoWidth * .1);
+    if (index !== 0) {
+      let x = pair[0] * (videoWidth);
+      let y = pair[1] * (videoHeight);
+  
+      if (x < 100) {
+        x += 100;
+      } else if (x > (videoWidth * .90)) {
+        x -= (videoWidth * .1);
+      }
+  
+      if (y < 100) {
+        y += 100;
+      } else if (y > (videoHeight * .90)) {
+        y -= (videoHeight * .1);
+      }
+  
+      // Calculate dimensions of hitbox
+      const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index};
+      projectileHitboxes.push(rect);
     }
-
-    if (y < 100) {
-      y += 100;
-    } else if (y > (videoHeight * .90)) {
-      y -= (videoHeight * .1);
-    }
-
-    // Calculate dimensions of hitbox
-    const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index};
-    projectileHitboxes.push(rect);
   });
 
   // Hitbox Comparison
