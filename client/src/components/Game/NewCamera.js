@@ -25,18 +25,6 @@ function NewCamera() {
     let x = Math.random();
     let y = Math.random();
 
-    if (x < .1) {
-      x += .1
-    } else if (x > .9) {
-      x -= .1
-    }
-
-    if (y < .1) {
-      y += .1
-    } else if (y > .9) {
-      y -= .1
-    }
-
     projectileCoords.push([x, y]);
   }
 

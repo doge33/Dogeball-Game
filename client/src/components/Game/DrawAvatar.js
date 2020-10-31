@@ -6,17 +6,10 @@ export default function DrawAvatar(canvas, pose, projectileCoords, videoWidth, v
   const ctx = canvas.current.getContext("2d");
   canvas.current.width = videoWidth;
   canvas.current.height = videoHeight;
-  let canvasWidth = videoWidth;
-  let canvasHeight = videoHeight; 
-
-  const projectileDimensions = {
-    width: canvasWidth,
-    height: canvasHeight
-  };
 
   // Draw!
   drawKeypointsAvatar(ctx, pose["keypoints"], 0.6);
-  generateProjectile(ctx, projectileDimensions, projectileCoords, 30, "orange");
+  generateProjectile(ctx, videoWidth, videoHeight, projectileCoords, 30, "orange");
   
   // // imgTag.onload = animate;
   

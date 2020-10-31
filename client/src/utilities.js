@@ -98,16 +98,27 @@ export function renderImageToCanvas2(ctx, x, y) {
 // ----------------------------------------------------
 // * Draw projectile on canvas
 // ----------------------------------------------------
-export function generateProjectile(ctx, projectileDimensions, projectileCoords, r, color) {   
+export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoords, r, color) {   
 
-  const width = projectileDimensions.width;
-  const height = projectileDimensions.height;
   const hitboxWidth = r * 2.5;
   const hitboxHeight = r * 2.5;
 
   projectileCoords.forEach((pair) => {
-    const x = pair[0] * width;
-    const y = pair[1] * height;
+    let x = pair[0] * videoWidth;
+    let y = pair[1] * videoHeight;
+
+    if (x < 100) {
+      x += 100;
+    } else if (x > (videoWidth * .90)) {
+      x -= (videoWidth * .1);
+    }
+
+    if (y < 100) {
+      y += 100;
+    } else if (y > (videoHeight * .90)) {
+      y -= (videoHeight * .1);
+    }
+
     // Calculate dimensions of hitbox
     const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight};
   
@@ -174,8 +185,21 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
 
   // Projectile Hitboxes
   projectileCoords.forEach((pair, index) => {
-    const x = pair[0] * (videoWidth);
-    const y = pair[1] * (videoHeight);
+    let x = pair[0] * (videoWidth);
+    let y = pair[1] * (videoHeight);
+
+    if (x < 100) {
+      x += 100;
+    } else if (x > (videoWidth * .90)) {
+      x -= (videoWidth * .1);
+    }
+
+    if (y < 100) {
+      y += 100;
+    } else if (y > (videoHeight * .90)) {
+      y -= (videoHeight * .1);
+    }
+
     // Calculate dimensions of hitbox
     const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index};
     projectileHitboxes.push(rect);
