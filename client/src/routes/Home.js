@@ -8,7 +8,8 @@ import theme from '../theme'
 import "../components/Home.scss";
 import Introduction from "../components/Introduction";
 import LoginForm from '../components/LoginForm'
-import Navbar from "../components/Game/Navbar";
+import Navbar from "../components/Navbar";
+import TeamCards from "../components/TeamCards"
 import UserHistory from "../components/Game/Lobby/UserHistory";
 
 library.add(faFacebookF, faLinkedinIn, faGoogle)
@@ -42,6 +43,7 @@ function Home() {
           </div>
         </ThemeProvider>
       </main>
+      <TeamCards />
     </Fragment>
   )
 }
