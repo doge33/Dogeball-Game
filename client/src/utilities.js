@@ -98,16 +98,18 @@ export function renderImageToCanvas2(ctx, x, y) {
 // ----------------------------------------------------
 // * Draw projectile on canvas
 // ----------------------------------------------------
-export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoords, r, color) {   
+export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoords, r, color, colorRandomizer) {   
 
   const hitboxWidth = r * 2.5;
   const hitboxHeight = r * 2.5;
+  const badColor = "red";
 
   projectileCoords.forEach((pair, index) => {
-    if (index !== 0) {
+    if (index !== 0) { // exclude item at index 0 from being rendered
       let x = pair[0] * videoWidth;
       let y = pair[1] * videoHeight;
-  
+      
+      // Constrain spawn area of projectile
       if (x < 100) {
         x += 100;
       } else if (x > (videoWidth * .90)) {
@@ -119,18 +121,23 @@ export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoord
       } else if (y > (videoHeight * .90)) {
         y -= (videoHeight * .1);
       }
-  
+      
+      // Render projectile
+      if (index === 2 || index === 6 || pair['isBad'] % 4 === 0) {
+        drawPoint(ctx, y, x, r, badColor);
+      } else {
+        drawPoint(ctx, y, x, r, color);
+      }
+    
+      
       // Calculate dimensions of hitbox
       const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight};
-    
-      // Render projectile
-      drawPoint(ctx, y, x, r, color);
-  
+      
       // Render hitbox
       drawBoundingBox2(ctx, rect);
     }
-  }) 
-};
+  }); 
+}
 // -----------------------------------------------------------------
 // * Detects if there is a collision between provided hitbox renders
 // -----------------------------------------------------------------
@@ -187,7 +194,7 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
 
   // Projectile Hitboxes
   projectileCoords.forEach((pair, index) => {
-    if (index !== 0) {
+    if (index !== 0) { // exclude item at index 0 from hitbox calculations
       let x = pair[0] * (videoWidth);
       let y = pair[1] * (videoHeight);
   
@@ -219,14 +226,12 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
 // -----------------------------------------------------------------
 // * Adds new projectile to array
 // -----------------------------------------------------------------
-export function projectileGenerator(array) {
-
-  const randomCoords = [];
+export function projectileGenerator(array, isBad) {
 
   const x = Math.random();
   const y = Math.random();
 
-  array.push([x, y]);
+  array.push([x, y, isBad]);
 
 }
 

@@ -19,13 +19,13 @@ function NewCamera() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const projectileCoords = [];
+  let isBad = 1;
   
   
-  for (let i = 0; i < 10; i++) {
-    let x = Math.random();
-    let y = Math.random();
-
-    projectileCoords.push([x, y]);
+  for (let i = 0; i < 8; i++) {
+    
+    projectileGenerator(projectileCoords, isBad);
+  
   }
 
   //Load posenet
@@ -70,7 +70,8 @@ function NewCamera() {
         projectileCoords.splice(collision, 1);
 
         // add new set of coordinates to array of projectile coordinates
-        projectileGenerator(projectileCoords);
+        projectileGenerator(projectileCoords, isBad);
+        isBad++;
       }
       
       DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
