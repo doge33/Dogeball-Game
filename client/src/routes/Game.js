@@ -46,8 +46,8 @@ function Game() {
 
     <div>
 
-      {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PLAY)} />}
-      {mode === PLAY && <Play user={testUser} onQuit={()=>transition(LOBBY)}/>}
+      {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PLAY, true)} />}
+      {mode === PLAY && <Play user={testUser} onQuit={()=>transition(LOBBY, true)}/>}
       {/* {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME, true)} />}
       {mode === INGAME && <Ingame onQuit={back} onRestart={()=>initializeGame()}/>} */}
     </div>

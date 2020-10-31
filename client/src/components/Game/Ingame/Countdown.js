@@ -9,9 +9,9 @@ import "./Countdown.scss"
 
 function Countdown(props){
 
-  //const [gameStart, setGameStart] = useState(true); // ==> start counting immediately when ingame component renders
-  const [gameOver, setGameOver] = useState(false);
-  const [isActive, setIsActive] = useState(true);
+  const [gameStart, setGameStart] = useState(true); // ==> start counting immediately when ingame component renders
+  const [gameOver, setGameOver] = useState(false); // ==> gameover countdown only when game's over.
+  // const [isActive, setIsActive] = useState(true);
   
 
   //modes
@@ -24,22 +24,14 @@ function Countdown(props){
   return(
     <div>
 
-      <h1>{mode === START && <Gamestart isActive={isActive}/>}</h1>
+      <h1>{mode === START && <Gamestart gameStart={gameStart}/>}</h1>
 
       {/* <h1>{mode === OVER && <Gameover />}</h1> */}
       {/* for now just display Gameover without mode */}
-      <h1>{<Gameover onQuit={props.onQuit} onRestart={props.onRestart}/>}</h1> 
+      <h1>{<Gameover onQuit={props.onQuit} onRestart={props.onRestart} gameOver={gameOver}/>}</h1> 
 
     <div className="countdown2">
-      {/* <div className="continue">
-        <p data-text="Continue?">Continue? </p>
-        <p>(data-text="9") 9 </p>
-        <p className='pull-right' data-text="Quit">Quit</p> 
-      </div>
-  
-      <div className="wrapper">
-        <div className="countdown"></div>
-      </div> */}
+     
       
     </div>
      

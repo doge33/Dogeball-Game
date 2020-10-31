@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import classNames from "classnames";
 
-function Gamestart(){
+function Gamestart(props){
 
   const [counter, setCounter] = useState(3);
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(props.gameStart);
   //at game-start, this countdown will be activated immediately
+
+  // const gameContext = React.createContext();
+  // const [gameActive, setGameActive] = useContext(gameContext)
  
   //this effect handles game start countown of 3 seconds
   useEffect(()=>{

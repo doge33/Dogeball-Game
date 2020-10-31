@@ -1,12 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import classNames from "classnames";
 import Button from "../../Button";
+import gameContext from "../../../Context/gameContext";
 
 function Gameover(props){
 
   const [counter, setCounter] = useState(10);
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(props.gameOver);
   const [quit, setQuit] = useState(false);
+  console.log("inside Gameover countdown; props.game over is", props.gameOver)
+
+  const {gameActive, setGameActive} = useContext(gameContext)
+ 
+  console.log(gameActive)
 
   //when isActive is updated to true, useEffect will run ==> countdown start
   useEffect(()=>{
@@ -14,7 +20,7 @@ function Gameover(props){
 
     intervalId = setInterval(() =>{
 
-      if(isActive && counter > 0){
+      if(!gameActive && isActive && counter > 0){
         setCounter(counter - 1)
       } 
       if(counter === 0){
@@ -32,9 +38,9 @@ function Gameover(props){
   return(
     <div>
       {isActive ? counter : ""}
-      <div><Button onClick={props.onRestart}>Restart Game?</Button></div>
+      <div><Button onClick={() => props.onRestart()}>Restart Game(should restart In-Game)?</Button></div>
       {/* manually quit */}
-      <div><Button onClick={props.onQuit}>Quit?</Button></div>
+      <div><Button onClick={props.onQuit}>Quit(back to Lobby or Pre-game)?</Button></div>
     </div>
   )
 }

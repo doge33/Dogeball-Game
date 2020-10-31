@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import gameContext from "../../../Context/gameContext";
 import "./Timer.scss";
 import classNames from "classnames";
 
@@ -7,59 +8,59 @@ function Timer (props) {
 
   //props will be used to obtain "isActive" state
 
-  const [second, setSecond] = useState("00");
-  const [minute, setMinute] = useState("00");
-  const [hour, setHour] = useState("00"); //ignore hours for now because it's too long a duration for the game
+  const [second, setSecond] = useState("60");
   const [isActive, setIsActive] = useState(props.timerActive); //default to "false"; changes when game starts counting
-  const [counter, setCounter] = useState(0);
+  //const [prevStatus, setPrevStatus] = useState(null);
+  const [counter, setCounter] = useState(60);
+  //console.log(props.timerActive);
+
+  const {gameActive, setGameActive} = useContext(gameContext)
+  console.log("inside Timer; gameActive is ", gameActive)
+ 
+
+  // if(props.timerActive !== prevStatus){
+  //   setIsActive(prevStatus!== null);
+  //   setPrevStatus(props.timerActive)
+  // }
+
+  // console.log(props.timerActive)//false
+  // console.log(isActive); //true
+  // console.log(prevStatus); //false
+
 
   useEffect(()=>{
-    let startTimer = setTimeout(()=> setIsActive(true), [3000])
+    let startTimer = setTimeout(()=> setGameActive(true), [3000])
     return()=>clearTimeout(startTimer);
   }, [])
 
   useEffect(()=>{
     let intervalId;
-
-    if(isActive) {
-      //once timer is active, change up the intervalId every second
+    if(gameActive && counter > 0) {
+      //make function expression so that clean up function can be used later.
       intervalId = setInterval(()=> {
-        const secondCounter = counter % 60; //seconds are always less than 60; this also covers when counter is greater than 60
-        const minuteCounter = Math.floor(counter/60);
-        const hourCounter = Math.floor(minuteCounter/60);
-
-        const computedSecond = String(secondCounter).length === 1 ? `0${secondCounter}`: secondCounter;
-        const computedMinute = String(minuteCounter).length === 1 ? `0${minuteCounter}`: minuteCounter;
-        const computedHour = String(hourCounter).length === 1 ? `0${hourCounter}` : hourCounter;
-
-        //update the states for second & minute
-        setSecond(computedSecond);
-        setMinute(computedMinute);
-        setHour(computedHour);
-
-        setCounter(counter => counter + 1)//updates the counter every second
+        setSecond(second => second -1);
+        setCounter(counter => counter - 1)//updates the counter every second
       }, 1000)
     }
 
+    if(counter === 0){
+      setGameActive(false);
+     }
+
     return() => clearInterval(intervalId); //clear interval when the effect stops running(1 sec after setInterval)
             //why counter ?
-  }, [isActive, counter]) //the dependency array ensures that the effect ONLY runs when either of them changes
+  }, [gameActive, counter]) //the dependency array ensures that the effect ONLY runs when either of them changes
 
   function stopTimer(){
-    setIsActive(false);
-    setCounter(0);
-    setSecond('00');
-    setMinute('00');
-    setHour('00');
+    setGameActive(false);
+    setCounter(60);
+    setSecond('60');
+
   }
   return(
     <div className="container">
 
       <div className="time">
-        <span className="hour">{hour}</span>
-        <span>:</span>
-        <span className="minute">{minute}</span>
-        <span>:</span>
         <span className="second">{second}</span>
       </div>
 
