@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import classNames from "classnames";
-import Button from "../Button";
+import Button from "./Button";
 
 
 function Navbar(props) {
@@ -21,16 +21,15 @@ function Navbar(props) {
     //   {logoutButton}
 
     // </nav>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" id="nav-bar">
+    <nav className="navbar navbar-expand-lg navbar-light">
       {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button> */}
-      {/* <div className="nav-container"> */}
       <h1>DogeBall</h1>
       <div >
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <a href="#">
               <div className="icon">
                 <i class="fa fa-file-text-o" aria-hidden="true"></i>
                 <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -39,7 +38,7 @@ function Navbar(props) {
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <a href="#">
               <div className="icon">
                 <i class="fa fa-users" aria-hidden="true"></i>
                 <i class="fa fa-users" aria-hidden="true"></i>
@@ -48,7 +47,7 @@ function Navbar(props) {
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <a href="#">
               <div className="icon">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -58,7 +57,6 @@ function Navbar(props) {
           </li>
         </ul>
       </div>
-      {/* </div> */}
     </nav >
 
   )
