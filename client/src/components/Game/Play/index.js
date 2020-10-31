@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import Pregame from "../Pregame/index";
-import Ingame from "../Ingame/index";
+import Pregame from "./Pregame/index";
+import Ingame from "./Ingame/index";
 import NewCamera from "../NewCamera";
 import className from "classnames";
 

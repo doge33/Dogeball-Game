@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
-import gameContext from "../../../Context/gameContext";
+import gameContext from "../../../../../Context/gameContext";
 import classNames from "classnames";
 
 function StartCountdown(props){

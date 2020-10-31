@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../Navbar";
-import Button from "../../Button";
-import NewCamera from "../NewCamera";
+import Navbar from "../../Navbar";
+import Button from "../../../Button";
+import NewCamera from "../../NewCamera";
 
 
 function Pregame(props) {
@@ -11,7 +11,6 @@ function Pregame(props) {
       {/* <Navbar user={props.user}/> */}
       <h1>Hello this is Pre-game mode</h1>
       <Button  onClick={() => props.onReady()}>Go to In-game mode</Button>
-      {/* <NewCamera /> */}
     </div>
 
   )

@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
-import gameContext from "../../../Context/gameContext";
+import gameContext from "../../../../../Context/gameContext";
 import Timer from "./Timer";
 
 function DuringGame(props){
@@ -11,7 +11,7 @@ function DuringGame(props){
     <div>
       <h1>DuringGame mode</h1>
 
-      <Timer gameActive={gameActive}/>
+      <Timer gameActive={gameActive} gameOver={props.gameOver}/> 
       <button onClick={props.gameOver}>Game-over: go to OverCountdown mode</button>
     </div>
     

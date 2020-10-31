@@ -1,49 +1,40 @@
 import React, {useState, useEffect, useContext} from "react";
-import gameContext from "../../../Context/gameContext";
+import gameContext from "../../../../../Context/gameContext";
 import "./Timer.scss";
 import classNames from "classnames";
 
 //this is a stateful component
 function Timer (props) {
 
-  //props will be used to obtain "isActive" state
-
-  const [second, setSecond] = useState("10");
-  const [counter, setCounter] = useState(10);
+  const [second, setSecond] = useState(10);
 
 
   const {gameActive, setGameActive} = useContext(gameContext)
   console.log("inside Timer; gameActive is ", gameActive)
   
 
-
   useEffect(()=>{
-    let startTimer = setTimeout(()=> setGameActive(!gameActive), [3000])
-    return()=>clearTimeout(startTimer);
+    setTimeout(()=> setGameActive(true), [3000])
   }, [gameActive])
 
   useEffect(()=>{
     let intervalId;
-    if(gameActive && counter > 0) {
+    if(gameActive && second > 0) {
       //make function expression so that clean up function can be used later.
       intervalId = setInterval(()=> {
         setSecond(second => second -1);
-        setCounter(counter => counter - 1)//updates the counter every second
       }, 1000)
     }
-
-    if(counter === 0){
-      setGameActive(false);
+    if(second === 0){
+      props.gameOver();
      }
 
     return() => clearInterval(intervalId); //clear interval when the effect stops running(1 sec after setInterval)
-            //why counter ?
-  }, [gameActive, counter]) //the dependency array ensures that the effect ONLY runs when either of them changes
+  }, [gameActive, second]) //the dependency array ensures that the effect ONLY runs when either of them changes
 
   function stopTimer(){
-    setGameActive(false);
-    setCounter(10);
-    setSecond('10');
+   
+    setSecond(10);
 
   }
   //console.log("gameActive is", gameActive)
@@ -55,7 +46,7 @@ function Timer (props) {
       </div>
 
       <div className="buttons">
-        {/* <button onClick={()=> setIsActive(!isActive)} className="start">{isActive? "Pause":"Start"}</button> */}
+        {/* this line will be taken out */}
         <button onClick={()=> setGameActive(!gameActive)} className="start">{gameActive? "Pause":"Start"}</button>
         <button onClick={stopTimer} className="reset">Reset</button>
       </div>

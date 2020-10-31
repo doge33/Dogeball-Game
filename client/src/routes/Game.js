@@ -5,8 +5,8 @@ import className from "classnames";
 import NewCamera from "../components/Game/NewCamera"
 import Lobby from "../components/Game/Lobby/index";
 import Play from "../components/Game/Play/index";
-import Pregame from "../components/Game/Pregame/index";
-import Ingame from "../components/Game/Ingame/index";
+import Pregame from "../components/Game/Play/Pregame/index";
+import Ingame from "../components/Game/Play/Ingame/index";
 import useVisualMode from "../hooks/useVisualMode";
 
 
