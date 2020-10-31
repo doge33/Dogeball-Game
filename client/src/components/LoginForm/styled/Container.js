@@ -12,7 +12,7 @@ export default styled(posed.div({}))`
   min-height: 480px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 2em auto;
+  // margin: 2em auto;
   align-items: center;
 
   .container__form {

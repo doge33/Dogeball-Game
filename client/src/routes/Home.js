@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import className from "classnames";
+import React, { Fragment, useState } from "react";
+// import className from "classnames";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFacebookF, faLinkedinIn, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { ThemeProvider } from 'styled-components'
@@ -8,7 +8,8 @@ import theme from '../theme'
 import "../components/Home.scss";
 import Introduction from "../components/Introduction";
 import LoginForm from '../components/LoginForm'
-import Navbar from "../components/Game/Navbar";
+import Navbar from "../components/Navbar";
+import TeamCards from "../components/TeamCards"
 import UserHistory from "../components/Game/Lobby/UserHistory";
 
 library.add(faFacebookF, faLinkedinIn, faGoogle)
@@ -29,20 +30,21 @@ function Home() {
   // }
 
   return (
-    <main classname="App">
+    <Fragment>
       <Navbar user={user} />
-      <section className="introduction">
-        <Introduction />
-      </section>
+      <main className="main-container">
+        <section className="introduction">
+          <Introduction />
+        </section>
 
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          <LoginForm />
-        </div>
-      </ThemeProvider>
-
-  <div>This is user</div>
-    </main>
+        <ThemeProvider theme={theme}>
+          <div className="form">
+            <LoginForm />
+          </div>
+        </ThemeProvider>
+      </main>
+      <TeamCards />
+    </Fragment>
   )
 }
 

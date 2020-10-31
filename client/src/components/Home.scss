@@ -1,29 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-.introduction {
-  text-align: center
-}
-
-
-// .forms {
-//   background: pink; //just to see where the forms are yo
-//    display: flex;
-//    flex-direction: row;
-//    align-items: stretch
-// }
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  background: #eee;
-  margin: 0;
-  padding: 0;
-}
 
 button {
   margin: 0;
   width: auto;
   overflow: visible;
-
   background: transparent;
 
   /* inherit font & color from ancestor */
