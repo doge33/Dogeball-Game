@@ -8,30 +8,19 @@ function Timer (props) {
 
   //props will be used to obtain "isActive" state
 
-  const [second, setSecond] = useState("60");
-  const [isActive, setIsActive] = useState(props.timerActive); //default to "false"; changes when game starts counting
-  //const [prevStatus, setPrevStatus] = useState(null);
-  const [counter, setCounter] = useState(60);
-  //console.log(props.timerActive);
+  const [second, setSecond] = useState("10");
+  const [counter, setCounter] = useState(10);
+
 
   const {gameActive, setGameActive} = useContext(gameContext)
   console.log("inside Timer; gameActive is ", gameActive)
- 
-
-  // if(props.timerActive !== prevStatus){
-  //   setIsActive(prevStatus!== null);
-  //   setPrevStatus(props.timerActive)
-  // }
-
-  // console.log(props.timerActive)//false
-  // console.log(isActive); //true
-  // console.log(prevStatus); //false
+  
 
 
   useEffect(()=>{
-    let startTimer = setTimeout(()=> setGameActive(true), [3000])
+    let startTimer = setTimeout(()=> setGameActive(!gameActive), [3000])
     return()=>clearTimeout(startTimer);
-  }, [])
+  }, [gameActive])
 
   useEffect(()=>{
     let intervalId;
@@ -53,10 +42,11 @@ function Timer (props) {
 
   function stopTimer(){
     setGameActive(false);
-    setCounter(60);
-    setSecond('60');
+    setCounter(10);
+    setSecond('10');
 
   }
+  //console.log("gameActive is", gameActive)
   return(
     <div className="container">
 
@@ -65,7 +55,8 @@ function Timer (props) {
       </div>
 
       <div className="buttons">
-        <button onClick={()=> setIsActive(!isActive)} className="start">{isActive? "Pause":"Start"}</button>
+        {/* <button onClick={()=> setIsActive(!isActive)} className="start">{isActive? "Pause":"Start"}</button> */}
+        <button onClick={()=> setGameActive(!gameActive)} className="start">{gameActive? "Pause":"Start"}</button>
         <button onClick={stopTimer} className="reset">Reset</button>
       </div>
 

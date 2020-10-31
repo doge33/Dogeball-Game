@@ -2,8 +2,8 @@ import React, {useState, useEffect} from "react";
 import classNames from "classnames";
 import Button from "../../Button";
 import useVisualMode from "../../../hooks/useVisualMode";
-import Gamestart from "./Gamestart";
-import Gameover from "./Gameover";
+import Gamestart from "./StartCountdown";
+import Gameover from "./OverCountdown";
 
 import "./Countdown.scss"
 

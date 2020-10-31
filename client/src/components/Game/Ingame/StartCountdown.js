@@ -1,38 +1,42 @@
 import React, {useEffect, useState, useContext} from "react";
+import gameContext from "../../../Context/gameContext";
 import classNames from "classnames";
 
-function Gamestart(props){
+function StartCountdown(props){
 
   const [counter, setCounter] = useState(3);
-  const [isActive, setIsActive] = useState(props.gameStart);
   //at game-start, this countdown will be activated immediately
 
-  // const gameContext = React.createContext();
-  // const [gameActive, setGameActive] = useContext(gameContext)
+
+  const {gameActive, setGameActive} = useContext(gameContext)
  
   //this effect handles game start countown of 3 seconds
   useEffect(()=>{
     let intervalId;
+    setGameActive(true);
 
     intervalId = setInterval(() =>{
 
-      if(isActive && counter > 0){
+      if(gameActive && counter > 0){
         setCounter(counter - 1)
       } 
       if(counter === 0){
-       setIsActive(false);
+       setGameActive(false);
+       props.startGame(); //transition to DURING game mode
       }
 
     }, 1000)
 
     return()=> clearInterval(intervalId); //clean up interval every re-render(basically every second)
-  }, [isActive, counter])
+  }, [gameActive, counter])
 
   return(
     <div>
-      {isActive ? counter : ""}
+      <h1>this is StartCountdown mode</h1>
+      <h1>{gameActive ? counter : ""}</h1>
+      
     </div>
   )
 }
 
-export default Gamestart;
+export default StartCountdown;

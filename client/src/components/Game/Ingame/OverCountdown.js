@@ -6,9 +6,8 @@ import gameContext from "../../../Context/gameContext";
 function Gameover(props){
 
   const [counter, setCounter] = useState(10);
-  const [isActive, setIsActive] = useState(props.gameOver);
   const [quit, setQuit] = useState(false);
-  console.log("inside Gameover countdown; props.game over is", props.gameOver)
+  console.log("inside Gameover countdown; props.gameOver is", props.gameOver)
 
   const {gameActive, setGameActive} = useContext(gameContext)
  
@@ -20,11 +19,11 @@ function Gameover(props){
 
     intervalId = setInterval(() =>{
 
-      if(!gameActive && isActive && counter > 0){
+      if(!gameActive && counter > 0){
         setCounter(counter - 1)
       } 
       if(counter === 0){
-        setIsActive(false);
+        setGameActive(false);
         // handleQuit();
         props.onQuit(); //triggered by countdown to 0 and not restart input
         
@@ -33,12 +32,14 @@ function Gameover(props){
     }, 1000)
 
     return()=> clearInterval(intervalId); //clean up interval every re-render(basically every second)
-  }, [isActive, counter])
+  }, [gameActive, counter])
 
   return(
     <div>
-      {isActive ? counter : ""}
-      <div><Button onClick={() => props.onRestart()}>Restart Game(should restart In-Game)?</Button></div>
+      <h1>this is OverCountdown mode</h1>
+      {gameActive ? counter : ""}
+      {/* <div><Button onClick={() =>setGameActive(!gameActive)}>Restart Game(should restart In-Game)?</Button></div> */}
+      <div><Button onClick={props.onRestart}>Restart Game(should restart In-Game)?</Button></div>
       {/* manually quit */}
       <div><Button onClick={props.onQuit}>Quit(back to Lobby or Pre-game)?</Button></div>
     </div>
