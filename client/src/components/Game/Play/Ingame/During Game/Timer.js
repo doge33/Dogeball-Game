@@ -7,14 +7,12 @@ import classNames from "classnames";
 function Timer (props) {
 
   const [second, setSecond] = useState(10);
-
-
   const {gameActive, setGameActive} = useContext(gameContext)
-  console.log("inside Timer; gameActive is ", gameActive)
+  // console.log("inside Timer; gameActive is ", gameActive)
   
 
   useEffect(()=>{
-    setTimeout(()=> setGameActive(true), [3000])
+    setTimeout(()=> setGameActive(true), [5000])
   }, [gameActive])
 
   useEffect(()=>{

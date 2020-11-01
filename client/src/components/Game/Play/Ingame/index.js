@@ -4,7 +4,9 @@ import StartCountdown from "./Start Countdown/StartCountdown";
 import OverCountdown from "./Over Countdown/OverCountdown";
 import DuringGame from "./During Game/DuringGame"
 import gameContext from "../../../../Context/gameContext";
+import NewCamera from "../../NewCamera";
 import useVisualMode from "../../../../hooks/useVisualMode";
+
 
 import "./Ingame.scss";
 
@@ -20,10 +22,9 @@ function Ingame(props) {
   const [gameActive, setGameActive] = useState(initialState.gameActive); 
   // gameActive state will be passed down to all the children to manipulate the timer and countdown activations.
 
-  const START = "START"
-  const OVER = "OVER"
-  const DURING = "DURING"
-  
+  const START = "START";
+  const OVER = "OVER";
+  const DURING = "DURING";
   
     function handleRestart(){
     //initialize all necessary states for restart.
@@ -39,14 +40,15 @@ function Ingame(props) {
 
   return (
    
-      <div className="in-game" style={{position:"absolute", zindex: 9}}> 
+      <div> 
 
       <gameContext.Provider value={{ gameActive, setGameActive }}>
-
-      {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>} 
-      {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)}/>}
-      {mode === OVER && <OverCountdown onRestart={handleRestart} onQuit={props.onQuit}/>}
- 
+        
+        <div  style={{position:"absolute", zindex: 9}}>
+          {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>} 
+          {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)}/>}
+          {mode === OVER && <OverCountdown onRestart={handleRestart} onQuit={props.onQuit}/>}
+        </div>
         </gameContext .Provider>
       </div>
     

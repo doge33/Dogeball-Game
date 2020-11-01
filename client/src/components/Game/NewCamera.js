@@ -7,7 +7,7 @@
 //7. Drawing utilities from tensorflow DONE
 //8. Draw functions
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
@@ -15,18 +15,18 @@ import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
 import {collisionDetection, projectileGenerator} from '../../utilities';
 
-function NewCamera() {
+function NewCamera(props) {
   const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
+  const canvasRef = useRef(props.canvas);
   const projectileCoords = [];
   let isBad = 1;
   let score = 0;
 
   //generate 8 good balls on canvas
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 8; i++) {
     
     projectileGenerator(projectileCoords, isBad);
-     console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
+    //  console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
   
   }
 
@@ -43,7 +43,7 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 20)
+    }, 100)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
@@ -78,7 +78,7 @@ function NewCamera() {
           score++;
         }
         
-        console.log(score);
+        console.log("after collision; Score:", score);
         
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
@@ -86,15 +86,17 @@ function NewCamera() {
         // add new set of coordinates to array of projectile coordinates
         projectileGenerator(projectileCoords, isBad);
         isBad++;
-        console.log("inside NewCamera line 89; isBad is ", isBad) //=> keeps incrementing? 
+        
       }
       //this draws both the keypoint avatars and all the projectile balls
       DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
       
     }
   };
-
+useEffect(()=>{
   runPosenet();
+},[canvasRef])
+  
   
   return (
     <div className="App">
@@ -108,8 +110,9 @@ function NewCamera() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zindex: 9,
-            visibility: "hidden"
+            zindex: -2,
+            visibility: "hidden",
+           
           }}
         />
 
