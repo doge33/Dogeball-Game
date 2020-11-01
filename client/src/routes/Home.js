@@ -32,7 +32,8 @@ function Home() {
   return (
     <Fragment>
       <Navbar user={user} />
-      <main className="main-container">
+      {/* <div className="scrolling-box"> */}
+      <main className="main-container" id="about">
         <section className="introduction">
           <Introduction />
         </section>
@@ -44,6 +45,7 @@ function Home() {
         </ThemeProvider>
       </main>
       <TeamCards />
+      {/* </div> */}
     </Fragment>
   )
 }

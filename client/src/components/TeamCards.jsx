@@ -2,7 +2,7 @@ import React from 'react';
 
 function TeamCard() {
   return (
-    <div className="card-container">
+    <div className="card-container" id="team">
       <div className="card">
         <div className="card-image"></div>
         <div className="card-text">
