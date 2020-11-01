@@ -21,7 +21,7 @@ import { collisionDetection, projectileGenerator, shiftCoordinates } from '../..
 function NewCamera(props) {
   const webcamRef = useRef(null);
   const canvasRef = useRef(props.canvas);
-  const {gameActive, setGameActive} = useContext(gameContext);
+  // const {gameActive, setGameActive} = useContext(gameContext);
   let {score, setScore} = useContext(scoreContext); //this for updating the score itself
   const {countScore, setCountScore} = useContext(gameContext); //this for when the start/stop score-counting
   console.log("in NewCamera line 27, countScore is:", countScore);
