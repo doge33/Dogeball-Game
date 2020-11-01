@@ -46,7 +46,7 @@ function Ingame(props) {
     // console.log("inside In-game, gameActive is", gameActive)
     useEffect(()=>{
       console.log("inside In-game, score is", score)
-      console.log("inside In-game, countScore is", score)
+      console.log("inside In-game, countScore is", countScore)
     }, [score])
     
 

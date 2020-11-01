@@ -106,7 +106,7 @@ function NewCamera(props) {
   useEffect(()=>{
     setTimeout(()=> {
       runPosenet();
-    }, [5000])
+    }, [500])
       
   },[canvasRef]);
 
