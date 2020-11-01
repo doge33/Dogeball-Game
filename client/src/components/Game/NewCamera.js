@@ -13,7 +13,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
-import { collisionDetection, projectileGenerator } from '../../utilities';
+import { collisionDetection, projectileGenerator, shiftCoordinates } from '../../utilities';
 
 function NewCamera() {
   const webcamRef = useRef(null);
@@ -61,6 +61,8 @@ function NewCamera() {
       const pose = await net.estimateSinglePose(video, {
         flipHorizontal: true
       });
+
+      shiftCoordinates(projectileCoords);
 
       // Look for a collision (returns index position of collided object)
       const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);

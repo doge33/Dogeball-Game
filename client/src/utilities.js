@@ -98,7 +98,7 @@ export function renderImageToCanvas2(ctx, x, y) {
 // ----------------------------------------------------
 // * Draw projectile on canvas
 // ----------------------------------------------------
-export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoords, r, color, colorRandomizer) {   
+export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoords, r, color) {   
 
   const hitboxWidth = r * 2.5;
   const hitboxHeight = r * 2.5;
@@ -109,26 +109,19 @@ export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoord
       let x = pair[0] * videoWidth;
       let y = pair[1] * videoHeight;
       
-      // Constrain spawn area of projectile
+      // Constrain spawn area of projectile 
       if (x < 100) {
         x += 100;
       } else if (x > (videoWidth * .90)) {
         x -= (videoWidth * .1);
       }
-  
-      if (y < 100) {
-        y += 100;
-      } else if (y > (videoHeight * .90)) {
-        y -= (videoHeight * .1);
-      }
       
-      // Render projectile
-      if (index === 2 || index === 6 || pair['isBad'] % 4 === 0) {
+      // Render projectile || pair[2] % 4 === 0
+      if (index === 2 || index === 6) {
         drawPoint(ctx, y, x, r, badColor);
       } else {
         drawPoint(ctx, y, x, r, color);
       }
-    
       
       // Calculate dimensions of hitbox
       const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight};
@@ -153,8 +146,8 @@ export function detectCollision(avatar, projectiles) {
         avatar[i].y < projectiles[y].y + projectiles[y].height &&
         avatar[i].y + avatar[i].height > projectiles[y].y) {
           // console.log("Collision detected");
-          // console.log(projectiles[y].projectileIndex);
-          if (projectiles[y].projectileIndex === 2 || projectiles[y].projectileIndex === 6 || projectiles[y].isBad % 4 === 0) {
+          // console.log(projectiles[y].projectileIndex); || projectiles[y].isBad % 4 === 0
+          if (projectiles[y].projectileIndex === 2 || projectiles[y].projectileIndex === 6) {
             strike = 0;
           } else {
             strike = 1;
@@ -164,7 +157,6 @@ export function detectCollision(avatar, projectiles) {
     }
   }
 
-  // return results
   const results = [indexCollision, strike];
   return results;
 
@@ -172,7 +164,7 @@ export function detectCollision(avatar, projectiles) {
 // -----------------------------------------------------------------
 // * Calculates hitboxes and runs them through collision detector
 // -----------------------------------------------------------------
-export function collisionDetection(pose, minConfidence, projectileCoords, videoWidth, videoHeight, r, score) {
+export function collisionDetection(pose, minConfidence, projectileCoords, videoWidth, videoHeight, r) {
   let keypoints = pose["keypoints"];
   let poseHitboxes = [];
   let projectileHitboxes = [];
@@ -206,20 +198,15 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
       let x = pair[0] * (videoWidth);
       let y = pair[1] * (videoHeight);
   
+      // Constrain spawn area of projectile 
       if (x < 100) {
         x += 100;
       } else if (x > (videoWidth * .90)) {
         x -= (videoWidth * .1);
       }
   
-      if (y < 100) {
-        y += 100;
-      } else if (y > (videoHeight * .90)) {
-        y -= (videoHeight * .1);
-      }
-  
       // Calculate dimensions of hitbox
-      const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index, isBad: pair['isBad']};
+      const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index, isBad: pair[2]};
       projectileHitboxes.push(rect);
     }
   });
@@ -242,7 +229,18 @@ export function projectileGenerator(array, isBad) {
   array.push([x, y, isBad]);
 
 }
-
+// -----------------------------------------------------------------
+// * Shifts projectile coordinates between re-renders
+// -----------------------------------------------------------------
+export function shiftCoordinates(array) {
+  array.forEach((pair) => {
+    pair[1] += .005;
+    
+    if (pair[1] > .97) {
+      pair[1] = .005 
+    } 
+  })
+}
 // ===================================================================
 // ===================================================================
 
