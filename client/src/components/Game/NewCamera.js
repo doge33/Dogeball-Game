@@ -15,7 +15,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
-import {collisionDetection, projectileGenerator} from '../../utilities';
+import { collisionDetection, projectileGenerator, shiftCoordinates } from '../../utilities';
 
 
 function NewCamera(props) {
@@ -27,6 +27,7 @@ function NewCamera(props) {
   console.log("in NewCamera line 27, countScore is:", countScore);
   
   const projectileCoords = [];
+
   let isBad = 1;
   // console.log("line26 NewCamera; props.score is", score)
   // let score = 0;
@@ -71,7 +72,9 @@ function NewCamera(props) {
       const pose = await net.estimateSinglePose(video, {
         flipHorizontal: true
       });
-      
+
+      shiftCoordinates(projectileCoords);
+
       // Look for a collision (returns index position of collided object)
       const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
       //result is a pair of numbers eg. [2, 0], [6,0] or [other numbers in 1~7, 1] or [undefined, undefined]; 
@@ -87,6 +90,8 @@ function NewCamera(props) {
           setScore(score++);
         }
 
+        console.log(score);
+
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
 
@@ -95,10 +100,8 @@ function NewCamera(props) {
         isBad++;
         
       }
-      // console.log("line 98 NewCamera after score update; current score is :", score)
-      //this draws both the keypoint avatars and all the projectile balls
       DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
-      
+
     }
   };
 
@@ -117,10 +120,10 @@ function NewCamera(props) {
   return (
     <div className="App">
       <header className="App-header">
-       <Webcam
-        ref={webcamRef}
-        style= {{
-          position: "absolute",
+        <Webcam
+          ref={webcamRef}
+          style={{
+            position: "absolute",
             marginLeft: "auto",
             marginRight: "auto",
             left: 0,
@@ -141,7 +144,7 @@ function NewCamera(props) {
             left: 0,
             right: 0,
             textAlign: "center",
-             zindex: -1
+            zindex: -1
           }}
         />
 
