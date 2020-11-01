@@ -22,9 +22,11 @@ function NewCamera() {
   let isBad = 1;
   let score = 0;
 
-  for (let i = 0; i < 8; i++) {
+  //generate 8 good balls on canvas
+  for (let i = 0; i < 20; i++) {
     
     projectileGenerator(projectileCoords, isBad);
+     console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
   
   }
 
@@ -41,7 +43,7 @@ function NewCamera() {
     //continuously run the posenet model to create detections
     setInterval(() => {
       detect(net)
-    }, 100)
+    }, 20)
   }
 
   //function to actually detect stuff. net is the loaded posenet model
@@ -56,16 +58,19 @@ function NewCamera() {
       video.width = videoWidth;
       video.height = videoHeight;
 
-      //Make Detections
+      //Make Detections of pose
       const pose = await net.estimateSinglePose(video, {
         flipHorizontal: true
       });
       
       // Look for a collision (returns index position of collided object)
       const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
-      
+      //result is a pair of numbers eg. [2, 0], [6,0] or [other numbers in 1~7, 1] or [undefined, undefined]; 
+      //first number is the index of projectile in the projectiles array
+      //second number is strike(1) or no strike[0]
+
       // Adjust score
-      if (collision[0]) {
+      if (collision[0]) { //remove the [undefined, undefined] pairs
         
         if (collision[1] === 0) {
           score--;
@@ -81,8 +86,9 @@ function NewCamera() {
         // add new set of coordinates to array of projectile coordinates
         projectileGenerator(projectileCoords, isBad);
         isBad++;
+        console.log("inside NewCamera line 89; isBad is ", isBad) //=> keeps incrementing? 
       }
-      
+      //this draws both the keypoint avatars and all the projectile balls
       DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
       
     }

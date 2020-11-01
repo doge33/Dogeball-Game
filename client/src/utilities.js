@@ -146,8 +146,10 @@ export function detectCollision(avatar, projectiles) {
   let indexCollision;
   let strike;
 
+  //avatar is the hitboxes array for keypoints; projectiles is the hitboxes array for the 7 balls; 
   for (let i = 0; i < avatar.length; i++) {
     for (let y = 0; y < projectiles.length; y++) {
+
       if (avatar[i].x < projectiles[y].x + projectiles[y].width && 
         avatar[i].x + avatar[i].width > projectiles[y].x &&
         avatar[i].y < projectiles[y].y + projectiles[y].height &&
@@ -155,17 +157,22 @@ export function detectCollision(avatar, projectiles) {
           // console.log("Collision detected");
           // console.log(projectiles[y].projectileIndex);
           if (projectiles[y].projectileIndex === 2 || projectiles[y].projectileIndex === 6 || projectiles[y].isBad % 4 === 0) {
+            // console.log("inside detectCollision; projectile[y].isBad is", projectiles[y].isBad) ==> undefined
+            //  console.log("inside detectCollision; projectiles[y].projectileIndex is", projectiles[y].projectileIndex) //==> 2 or 6 (index is a number in 1~7)
+
             strike = 0;
           } else {
             strike = 1;
           }
           indexCollision = projectiles[y].projectileIndex;
+          // console.log("indexCollision is", indexCollision)
         }
     }
   }
 
   // return results
   const results = [indexCollision, strike];
+  // console.log("results is ", results) // ==> [2,0] or [6,0] or [other numbers, 1] or mostly [undefined, undefined]
   return results;
 
 }
@@ -205,7 +212,10 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
     if (index !== 0) { // exclude item at index 0 from hitbox calculations
       let x = pair[0] * (videoWidth);
       let y = pair[1] * (videoHeight);
+      // console.log("inside projectileCoords.forEach: pair is---", pair)
+      // console.log("inside projectileCoords.forEach: index is---", index)
   
+      //make sure x is not too close to the sides of the edge of the window
       if (x < 100) {
         x += 100;
       } else if (x > (videoWidth * .90)) {
@@ -221,10 +231,12 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
       // Calculate dimensions of hitbox
       const rect = {x: x - (hitboxWidth / 2), y: y - (hitboxHeight / 2), width: hitboxWidth, height: hitboxHeight, projectileIndex: index, isBad: pair['isBad']};
       projectileHitboxes.push(rect);
+      // console.log("each rect's isBad: pair['isBad'] value is", rect.isBad) => undefined
     }
   });
 
   // Hitbox Comparison
+  //(detectCollision =>[undefined, undefined] or [2,0], [6,0], or [other numbers in 1~7, 1])
   if (detectCollision(poseHitboxes, projectileHitboxes)) {
     return detectCollision(poseHitboxes, projectileHitboxes)
   } 

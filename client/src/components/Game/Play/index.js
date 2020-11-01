@@ -16,14 +16,11 @@ function Play(props){
   return(
     <div>
       
-      {/* <NewCamera className="Newcamera" /> */}
+      <NewCamera className="Newcamera" />
+
       {mode === PREGAME && <Pregame onReady={()=>transition(INGAME)} />}
 
-      {mode === INGAME && 
-      <Ingame 
-      onQuit={props.onQuit} 
-      
-      />} 
+      {mode === INGAME && <Ingame onQuit={props.onQuit} />} 
       
     </div>
   )
