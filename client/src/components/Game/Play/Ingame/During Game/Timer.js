@@ -8,7 +8,7 @@ function Timer (props) {
 
   const [second, setSecond] = useState(10);
   const {gameActive, setGameActive} = useContext(gameContext)
-  // console.log("inside Timer; gameActive is ", gameActive)
+  console.log("inside Timer; gameActive is ", gameActive)
   
 
   useEffect(()=>{

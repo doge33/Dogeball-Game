@@ -7,7 +7,8 @@
 //7. Drawing utilities from tensorflow DONE
 //8. Draw functions
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useContext, useState } from 'react';
+import gameContext from "../../Context/gameContext";
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
@@ -15,11 +16,14 @@ import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
 import {collisionDetection, projectileGenerator} from '../../utilities';
 
+
 function NewCamera(props) {
   const webcamRef = useRef(null);
   const canvasRef = useRef(props.canvas);
+  // const {gameActive, setGameActive} = useContext(gameContext)
   const projectileCoords = [];
   let isBad = 1;
+  // console.log("line26 NewCamera; props.score is", score)
   let score = 0;
 
   //generate 8 good balls on canvas
@@ -79,7 +83,8 @@ function NewCamera(props) {
         }
         
         console.log("after collision; Score:", score);
-        
+        // setScore(score);
+        // console.log("after updating score in NewCamera; score is", score)
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
 
@@ -93,8 +98,16 @@ function NewCamera(props) {
       
     }
   };
+  // useEffect(()=>{
+  //   setTimeout(()=> setGameActive(true), [5000])
+  // }, [gameActive])
+
 useEffect(()=>{
-  runPosenet();
+
+  // if(gameActive){
+    runPosenet();
+  // }
+  
 },[canvasRef])
   
   

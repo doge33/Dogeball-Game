@@ -9,11 +9,6 @@ function DuringGame(props){
   const {gameActive, setGameActive} = useContext(gameContext);
   const [canvas, setCanvas] = useState(null);
 
-  useEffect(()=>{
-    return <NewCamera className="Newcamera" />
-  }, [canvas])
-
-  
   return(
     <div>
       <h1>DuringGame mode</h1>
