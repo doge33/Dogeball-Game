@@ -7,16 +7,26 @@ import Timer from "./Timer";
 function DuringGame(props){
 
   const {gameActive, setGameActive} = useContext(gameContext);
+  const {countScore, setCountScore} = useContext(gameContext);
   const {score, setScore} = useContext(scoreContext);
-  const [canvas, setCanvas] = useState(null);
+  useEffect(()=>{
+    setCountScore(true);
+  },[])
 
-  console.log("inside Duration; score is", score)
+  useEffect(()=>{
+console.log("in During game, score is:", score);
+  }, [score])
+  
+  // const {score, setScore} = useContext(scoreContext);
+  // const [canvas, setCanvas] = useState(null);
+
+  // console.log("inside Duration; score is", score)
 
   return(
     <div>
       <h1>DuringGame mode</h1>
-      <NewCamera className="Newcamera" canvas={canvas} /> 
-      <Timer gameActive={gameActive} gameOver={props.gameOver}/> 
+      {/* <NewCamera className="Newcamera" canvas={canvas} />  */}
+      <Timer gameActive={gameActive} gameOver={props.gameOver} /> 
       <button onClick={props.gameOver}>Game-over: go to OverCountdown mode</button>
     </div>
     

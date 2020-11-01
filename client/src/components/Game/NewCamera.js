@@ -22,7 +22,9 @@ function NewCamera(props) {
   const webcamRef = useRef(null);
   const canvasRef = useRef(props.canvas);
   const {gameActive, setGameActive} = useContext(gameContext);
-  let {score, setScore} = useContext(scoreContext);
+  let {score, setScore} = useContext(scoreContext); //this for updating the score itself
+  const {countScore, setCountScore} = useContext(gameContext); //this for when the start/stop score-counting
+  console.log("in NewCamera line 27, countScore is:", countScore);
   
   const projectileCoords = [];
   let isBad = 1;
@@ -77,7 +79,7 @@ function NewCamera(props) {
       //second number is strike(1) or no strike[0]
 
       // Adjust score
-      if (collision[0]) { //remove the [undefined, undefined] pairs
+      if (collision[0] ) { //remove the [undefined, undefined] pairs
         
         if (collision[1] === 0) {
           setScore(score--);
@@ -93,6 +95,7 @@ function NewCamera(props) {
         isBad++;
         
       }
+      // console.log("line 98 NewCamera after score update; current score is :", score)
       //this draws both the keypoint avatars and all the projectile balls
       DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
       
@@ -101,7 +104,10 @@ function NewCamera(props) {
 
 
   useEffect(()=>{
+    setTimeout(()=> {
       runPosenet();
+    }, [5000])
+      
   },[canvasRef]);
 
 

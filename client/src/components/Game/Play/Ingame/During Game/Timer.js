@@ -7,8 +7,11 @@ import classNames from "classnames";
 function Timer (props) {
 
   const [second, setSecond] = useState(25);
-  const {gameActive, setGameActive} = useContext(gameContext)
-  console.log("inside Timer; gameActive is ", gameActive)
+  const {gameActive, setGameActive} = useContext(gameContext);
+  const {countScore, setCountScore} = useContext(gameContext);
+  // console.log("inside Timer; gameActive is ", gameActive);
+  console.log("in Timer, countScore is:", countScore);
+
   
 
   useEffect(()=>{
@@ -24,6 +27,9 @@ function Timer (props) {
       }, 1000)
     }
     if(second === 0){
+      //why doens't this work?
+     setCountScore(false);//set countScore to false => stop counting score!
+     console.log("in Timer at second = 0, countScore is:", countScore);
       props.gameOver();
      }
 

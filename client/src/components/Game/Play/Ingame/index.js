@@ -5,6 +5,7 @@ import OverCountdown from "./Over Countdown/OverCountdown";
 import DuringGame from "./During Game/DuringGame"
 import gameContext from "../../../../Context/gameContext";
 import scoreContext from "../../../../Context/scoreContext";
+// import setScoreContext from "../../../../Context/setScoreContext";
 import NewCamera from "../../NewCamera";
 import useVisualMode from "../../../../hooks/useVisualMode";
 
@@ -21,10 +22,12 @@ function Ingame(props) {
 
   const [score, setScore] = useState(initialState.score);
   const [gameActive, setGameActive] = useState(initialState.gameActive); 
+  const [countScore, setCountScore] = useState(false);
   // gameActive state will be passed down to all the children to manipulate the timer and countdown activations.
 
   //test if newCamera can be rendered from here
-  // const [canvas, setCanvas] = useState(null);
+  const [canvas, setCanvas] = useState(null);
+
   const START = "START";
   const OVER = "OVER";
   const DURING = "DURING";
@@ -34,15 +37,16 @@ function Ingame(props) {
       setScore(initialState.score);
       setGameActive(initialState.gameActive);
       transition(START, true)
-      console.log("in handleRestart, current score after re-initialization is", score)
+      // console.log("in handleRestart, current score after re-initialization is", score)
  
     }
 
     const { mode, transition, back } = useVisualMode(START);
 
-    console.log("inside In-game, gameActive is", gameActive)
+    // console.log("inside In-game, gameActive is", gameActive)
     useEffect(()=>{
       console.log("inside In-game, score is", score)
+      console.log("inside In-game, countScore is", score)
     }, [score])
     
 
@@ -50,16 +54,17 @@ function Ingame(props) {
    
       <div> 
 
-      <gameContext.Provider value={{ gameActive, setGameActive }}>
+      <gameContext.Provider value={{ gameActive, setGameActive, countScore, setCountScore }}>
 
-      {/* <NewCamera className="Newcamera" canvas={canvas} />  */}
-        
+      <scoreContext.Provider value={{score, setScore}}>
+        <NewCamera className="Newcamera" canvas={canvas} /> 
+            {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)} />}
+      </scoreContext.Provider>        
         <div  style={{position:"absolute", zindex: 9}}>
           {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>}
 
-          <scoreContext.Provider value={{score, setScore}}>
-            {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)}/>}
-          </scoreContext.Provider>
+          
+          
 
           {mode === OVER && <OverCountdown onRestart={handleRestart} onQuit={props.onQuit}/>}
         </div>
