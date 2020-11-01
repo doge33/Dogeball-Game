@@ -1,13 +1,16 @@
 import React, {useContext, useEffect, useState} from "react";
-import { propTypes } from "react-bootstrap/esm/Image";
 import gameContext from "../../../../../Context/gameContext";
+import scoreContext from "../../../../../Context/scoreContext";
 import NewCamera from "../../../NewCamera";
 import Timer from "./Timer";
 
 function DuringGame(props){
 
   const {gameActive, setGameActive} = useContext(gameContext);
+  const {score, setScore} = useContext(scoreContext);
   const [canvas, setCanvas] = useState(null);
+
+  console.log("inside Duration; score is", score)
 
   return(
     <div>

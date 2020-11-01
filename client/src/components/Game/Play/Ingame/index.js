@@ -4,6 +4,7 @@ import StartCountdown from "./Start Countdown/StartCountdown";
 import OverCountdown from "./Over Countdown/OverCountdown";
 import DuringGame from "./During Game/DuringGame"
 import gameContext from "../../../../Context/gameContext";
+import scoreContext from "../../../../Context/scoreContext";
 import NewCamera from "../../NewCamera";
 import useVisualMode from "../../../../hooks/useVisualMode";
 
@@ -22,6 +23,8 @@ function Ingame(props) {
   const [gameActive, setGameActive] = useState(initialState.gameActive); 
   // gameActive state will be passed down to all the children to manipulate the timer and countdown activations.
 
+  //test if newCamera can be rendered from here
+  // const [canvas, setCanvas] = useState(null);
   const START = "START";
   const OVER = "OVER";
   const DURING = "DURING";
@@ -31,22 +34,33 @@ function Ingame(props) {
       setScore(initialState.score);
       setGameActive(initialState.gameActive);
       transition(START, true)
+      console.log("in handleRestart, current score after re-initialization is", score)
  
     }
 
     const { mode, transition, back } = useVisualMode(START);
 
-    console.log("inside Ingame, gameActive is", gameActive)
+    console.log("inside In-game, gameActive is", gameActive)
+    useEffect(()=>{
+      console.log("inside In-game, score is", score)
+    }, [score])
+    
 
   return (
    
       <div> 
 
       <gameContext.Provider value={{ gameActive, setGameActive }}>
+
+      {/* <NewCamera className="Newcamera" canvas={canvas} />  */}
         
         <div  style={{position:"absolute", zindex: 9}}>
-          {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>} 
-          {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)}/>}
+          {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>}
+
+          <scoreContext.Provider value={{score, setScore}}>
+            {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)}/>}
+          </scoreContext.Provider>
+
           {mode === OVER && <OverCountdown onRestart={handleRestart} onQuit={props.onQuit}/>}
         </div>
         </gameContext .Provider>

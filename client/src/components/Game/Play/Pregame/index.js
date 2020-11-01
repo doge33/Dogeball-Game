@@ -14,7 +14,7 @@ function Pregame(props) {
       <h1>Hello this is Pre-game mode</h1>
       <Button  onClick={() => props.onReady()}>Go to In-game mode</Button>
     </div>
-    <NewCamera className="Newcamera" />
+    {/* <NewCamera className="Newcamera" /> */}
     </div>
   )
 

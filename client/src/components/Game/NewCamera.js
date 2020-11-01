@@ -9,6 +9,7 @@
 
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import gameContext from "../../Context/gameContext";
+import scoreContext from "../../Context/scoreContext";
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
@@ -20,14 +21,16 @@ import {collisionDetection, projectileGenerator} from '../../utilities';
 function NewCamera(props) {
   const webcamRef = useRef(null);
   const canvasRef = useRef(props.canvas);
-  // const {gameActive, setGameActive} = useContext(gameContext)
+  const {gameActive, setGameActive} = useContext(gameContext);
+  let {score, setScore} = useContext(scoreContext);
+  
   const projectileCoords = [];
   let isBad = 1;
   // console.log("line26 NewCamera; props.score is", score)
-  let score = 0;
+  // let score = 0;
 
   //generate 8 good balls on canvas
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 45; i++) {
     
     projectileGenerator(projectileCoords, isBad);
     //  console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
@@ -77,14 +80,11 @@ function NewCamera(props) {
       if (collision[0]) { //remove the [undefined, undefined] pairs
         
         if (collision[1] === 0) {
-          score--;
+          setScore(score--);
         } else if (collision[1] === 1) {
-          score++;
+          setScore(score++);
         }
-        
-        console.log("after collision; Score:", score);
-        // setScore(score);
-        // console.log("after updating score in NewCamera; score is", score)
+
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
 
@@ -98,17 +98,14 @@ function NewCamera(props) {
       
     }
   };
-  // useEffect(()=>{
-  //   setTimeout(()=> setGameActive(true), [5000])
-  // }, [gameActive])
 
-useEffect(()=>{
 
-  // if(gameActive){
-    runPosenet();
-  // }
-  
-},[canvasRef])
+  useEffect(()=>{
+      runPosenet();
+  },[canvasRef]);
+
+
+
   
   
   return (
