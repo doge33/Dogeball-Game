@@ -1,13 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 @import "custom.scss";
 // @import "./components/Game/button.scss";
 
-html {
-  height: auto;
-  overflow-x: hidden;
-}
+// html {
+//   // height: auto;
+//   // overflow-x: hidden;
+// }
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -16,12 +15,27 @@ body {
   padding: 0;
 }
 
-nav {
-  background: #FCAF38;
-  ul {
+// div.scrolling-box {
+//   // overflow-y: scroll;
+//   scroll-behavior: smooth;
+// }
 
+nav {
+  background: url("./orange_bg.jpg");
+  height: 350px;
+  background-size: cover;
+
+  .nav-bar-container {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+
+  }
+  ul {
     border-radius: 10px;
-    // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    align-items: flex-start;
     
     :last-child {
       border-right: none;
@@ -50,7 +64,6 @@ nav {
           width: 100%;
           display: block;
           overflow: hidden;
-        
 
           span {
             display: block;
@@ -60,7 +73,6 @@ nav {
             line-height: 20px;
             transition: 0.5s;
       
-
             &:before {
               content: attr(data-text);
               position: absolute;
@@ -100,8 +112,13 @@ nav {
 main {
     display: flex;
     justify-content: space-between;
-    margin: 1rem;
+    margin: 0 2rem;
+    margin-top: -10rem;
     height: 85vh;
+}
+
+.introduction {
+  z-index: 1;
 }
 
 .form {
@@ -115,7 +132,9 @@ main {
   align-items: center;
   justify-content: space-evenly;
   overflow: hidden;
-  background: #674A40;
+  // background: #674A40;
+  background: url("./blue-circle-bg.jpg");
+  background-size: cover;
 
   .card {
     display: grid;
@@ -197,38 +216,3 @@ main {
     }
   }
 }
-
-// .App-logo {
-//   height: 40vmin;
-//   pointer-events: none;
-// }
-
-// @media (prefers-reduced-motion: no-preference) {
-//   .App-logo {
-//     animation: App-logo-spin infinite 20s linear;
-//   }
-// }
-
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
