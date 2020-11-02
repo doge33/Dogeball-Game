@@ -16,7 +16,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
-import { collisionDetection, projectileGenerator, shiftCoordinates } from '../../utilities';
+import { collisionDetection, projectileGenerator, shiftCoordinates, renderCanvas } from '../../utilities';
 
 
 function NewCamera(props) {
@@ -97,7 +97,8 @@ function NewCamera(props) {
         isBad++;
         
       }
-      DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
+
+      renderCanvas(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
 
     }
   };

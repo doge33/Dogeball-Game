@@ -1,15 +1,15 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import gameContext from "../../../../../Context/gameContext";
 import scoreContext from "../../../../../Context/scoreContext";
 import countScoreContext from "../../../../../Context/countScoreContext";
 import NewCamera from "../../../NewCamera";
 import Timer from "./Timer";
 
-function DuringGame(props){
+function DuringGame(props) {
 
-  const {score, setScore} = useContext(scoreContext);
+  const { score, setScore } = useContext(scoreContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("in During game, score is:", score);
   }, [score])
 
@@ -17,9 +17,9 @@ function DuringGame(props){
 
   return(
     <div>
-      <NewCamera className="Newcamera"  /> 
+      <NewCamera className="Newcamera" />
       <h1>DuringGame mode</h1>
-      <Timer gameOver={props.gameOver} /> 
+      <Timer gameOver={props.gameOver} />
       <button onClick={props.gameOver}>Game-over: go to OverCountdown mode</button>
     </div>
 
