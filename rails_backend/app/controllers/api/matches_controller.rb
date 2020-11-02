@@ -20,10 +20,8 @@ class Api::MatchesController < ApplicationController
   end
 
   private
+  
   def match_params
-    json = params.require(:match)
-    p "parsed json is #{JSON.parse(json)}"
-    # params.require(:match).permit(:score, :day_played, :user_id)
-    {:score=> JSON.parse(json).permit(:score), :day_played=>JSON.parse(json).permit(:day_played), :user_id=> JSON.parse(json).permit(:user_id)}
+    params.require(:match).permit(:score, :day_played, :user_id)
   end
 end

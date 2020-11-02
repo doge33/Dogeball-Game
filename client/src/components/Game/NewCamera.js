@@ -24,7 +24,6 @@ function NewCamera(props) {
   const canvasRef = useRef(props.canvas);
   let {score, setScore} = useContext(scoreContext); //this for updating the score itself
   const {gameActive, setGameActive} = useContext(gameContext); //this for when the start/stop score-counting
-  console.log("in NewCamera line 27, gameActive is:", gameActive);
   
   const projectileCoords = [];
   let isBad = 1;
@@ -86,9 +85,6 @@ function NewCamera(props) {
         } else if (collision[1] === 1) {
           setScore(score++);
         }
-
-        console.log("line 93 NewCamera: score is,", score);
-
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
 

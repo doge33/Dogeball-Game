@@ -1,24 +1,23 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {Collapse} from "react-bootstrap";
 import Button from "../../Button";
 import Table2 from "./Table2";
 import useApplicationData from "../../../hooks/useApplicationData";
+import userContext from "../../../Context/userContext";
 
 import "../Game.scss";
 
-function UserHistory(props) {
+function UserHistory() {
   const [open, setOpen] = useState(false);
+  const {state} = useApplicationData();
+  const {user} = useContext(userContext);
 
-  //const {user} = props;
-  const {user} = props
-console.log("inside User history, user is", user)
+  //console.log("inside User history, user is", user)
 
-  const {state, dispatch} = useApplicationData();
-  
-  const userMatches = state.matches.filter((match) => user.id === match.user_id)
+  //find matches that were played by logged-in user
+  const userMatches = state.matches.filter((match) => user.user.id === match.user_id)
 
   const userHistory = userMatches.map((match) => {
-
     const date = new Date(match.day_played)
     const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()}. ${date.getUTCDate()}`
     

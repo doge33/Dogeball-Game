@@ -14,10 +14,7 @@ function Leaderboard() {
   const { state, dispatch } = useApplicationData();
   const [open, setOpen] = useState(false);
 
-  console.log(state.matches);
-
   function ranking (state) {
-
     let rankScores = [];
     
     for (let m = 0; m < state.matches.length - 1; m++) {

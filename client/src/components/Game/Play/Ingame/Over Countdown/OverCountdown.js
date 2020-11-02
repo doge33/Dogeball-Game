@@ -2,14 +2,15 @@ import React, {useEffect, useState, useContext} from "react";
 import Button from "../../../../Button";
 import scoreContext from "../../../../../Context/scoreContext";
 import userContext from "../../../../../Context/userContext";
-import axios from "axios";
+import useApplicationData from '../../../../../hooks/useApplicationData';
 import classNames from "classnames";
 
 function OverCountdown(props){
 
   const [counter, setCounter] = useState(15);
+  const {sendMatchData} = useApplicationData();
   const {score, setScore} = useContext(scoreContext);
-  const {user, setUser} = useContext(userContext);
+  const {user} = useContext(userContext);
 
   useEffect(()=>{
     let intervalId;
@@ -22,30 +23,13 @@ function OverCountdown(props){
         props.onQuit(); //triggered by countdown to 0
       }
     }, 1000)
-
     return()=> clearInterval(intervalId); //clean up interval every re-render(basically every second)
   }, [ counter])
 
-    //make axios post call to send match data
-    //need: current user id, score, current day, 
-
-    let match;
-
-    useEffect(()=>{
-
-      axios.post("/api/matches", 
-        {
-          "match":{
-            "score": score,
-          "user_id": user.id,
-          "day_played": new Date()
-          }
-          
-        },
-      {withCredentials: true})
-      .catch(err => console.log("inside axios post", err.message))
-
-    },[])
+    //make axios post call to send match data + update local state
+    useEffect(()=> {
+      sendMatchData(score, user)
+      }, []);
 
   return(
     <div>
