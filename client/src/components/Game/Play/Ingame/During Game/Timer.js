@@ -7,7 +7,7 @@ import classNames from "classnames";
 //this is a stateful component
 function Timer (props) {
 
-  const [second, setSecond] = useState(25);
+  const [second, setSecond] = useState(60);
   const {gameActive, setGameActive} = useContext(gameContext);
   //const {countScore, setCountScore} = useContext(countScoreContext);
   // console.log("inside Timer; gameActive is ", gameActive);
