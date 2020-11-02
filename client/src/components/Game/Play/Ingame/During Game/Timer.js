@@ -1,24 +1,32 @@
 import React, {useState, useEffect, useContext} from "react";
 import gameContext from "../../../../../Context/gameContext";
+import countScoreContext from "../../../../../Context/countScoreContext";
 import "./Timer.scss";
 import classNames from "classnames";
 
 //this is a stateful component
 function Timer (props) {
 
-  const [second, setSecond] = useState(10);
+  const [second, setSecond] = useState(25);
+  const {gameActive, setGameActive} = useContext(gameContext);
+  //const {countScore, setCountScore} = useContext(countScoreContext);
+  // console.log("inside Timer; gameActive is ", gameActive);
+  //console.log("in Timer, countScore is:", countScore);
 
-
-  const {gameActive, setGameActive} = useContext(gameContext)
-  console.log("inside Timer; gameActive is ", gameActive)
   
 
-  useEffect(()=>{
-    setTimeout(()=> setGameActive(true), [3000])
-  }, [gameActive])
+  // useEffect(()=>{
+  //   setTimeout(()=> {
+  //     // setGameActive(true);
+  //     setCountScore(true);
+
+  //   }, [5000])
+  // }, [])
 
   useEffect(()=>{
     let intervalId;
+
+    //when gameActive becomes true after startCoundown, start this timer of 60 sec
     if(gameActive && second > 0) {
       //make function expression so that clean up function can be used later.
       intervalId = setInterval(()=> {
@@ -26,6 +34,8 @@ function Timer (props) {
       }, 1000)
     }
     if(second === 0){
+      //when 60s timer finishes, de-activate the game
+      setGameActive(false);
       props.gameOver();
      }
 
@@ -33,8 +43,10 @@ function Timer (props) {
   }, [gameActive, second]) //the dependency array ensures that the effect ONLY runs when either of them changes
 
   function stopTimer(){
-   
-    setSecond(10);
+   //setCountScore(false);//set countScore to false => stop counting score!
+     //console.log("in Timer at stopTimer, countScore is:", countScore);
+    setSecond(25);
+    //setCountScore(false);
 
   }
   //console.log("gameActive is", gameActive)

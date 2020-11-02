@@ -7,27 +7,34 @@
 //7. Drawing utilities from tensorflow DONE
 //8. Draw functions
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useContext, useState } from 'react';
+import gameContext from "../../Context/gameContext";
+import scoreContext from "../../Context/scoreContext";
+//import countScoreContext from "../../Context/countScoreContext";
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import DrawAvatar from "./DrawAvatar";
-import { collisionDetection, projectileGenerator } from '../../utilities';
+import { collisionDetection, projectileGenerator, shiftCoordinates, renderCanvas } from '../../utilities';
 
-function NewCamera() {
+
+function NewCamera(props) {
   const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
+  const canvasRef = useRef(props.canvas);
+  let {score, setScore} = useContext(scoreContext); //this for updating the score itself
+  const {gameActive, setGameActive} = useContext(gameContext); //this for when the start/stop score-counting
+  console.log("in NewCamera line 27, gameActive is:", gameActive);
+  
   const projectileCoords = [];
-
   let isBad = 1;
-  let score = 0;
 
-  for (let i = 0; i < 8; i++) {
-
-    projectileGenerator(projectileCoords, isBad);
+  //generate 8 good balls on canvas
+  for (let i = 0; i < 60; i++) {
     
-
+    projectileGenerator(projectileCoords, isBad);
+    //  console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
+  
   }
 
   //Load posenet
@@ -58,24 +65,29 @@ function NewCamera() {
       video.width = videoWidth;
       video.height = videoHeight;
 
-      //Make Detections
+      //Make Detections of pose
       const pose = await net.estimateSinglePose(video, {
         flipHorizontal: true
       });
 
+      shiftCoordinates(projectileCoords);
+
       // Look for a collision (returns index position of collided object)
       const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
+      //result is a pair of numbers eg. [2, 0], [6,0] or [other numbers in 1~7, 1] or [undefined, undefined]; 
+      //first number is the index of projectile in the projectiles array
+      //second number is strike(1) or no strike[0]
 
       // Adjust score
-      if (collision[0]) {
-
+      if (collision[0] && gameActive) { //remove the [undefined, undefined] pairs
+        
         if (collision[1] === 0) {
-          score--;
+          setScore(score--);
         } else if (collision[1] === 1) {
-          score++;
+          setScore(score++);
         }
 
-        console.log(score);
+        console.log("line 93 NewCamera: score is,", score);
 
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
@@ -83,15 +95,23 @@ function NewCamera() {
         // add new set of coordinates to array of projectile coordinates
         projectileGenerator(projectileCoords, isBad);
         isBad++;
+        
       }
 
-      DrawAvatar(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
+      renderCanvas(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
 
     }
   };
 
-  runPosenet();
 
+  useEffect(()=>{
+    if(canvasRef) {
+     runPosenet();
+    }
+      
+  },[canvasRef]);
+ 
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -104,8 +124,9 @@ function NewCamera() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zindex: 9,
-            visibility: "hidden"
+            zindex: -2,
+            visibility: "hidden",
+           
           }}
         />
 

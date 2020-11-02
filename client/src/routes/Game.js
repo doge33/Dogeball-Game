@@ -30,26 +30,16 @@ function Game() {
   // const { user } = useContext(UserContext)
   // Navigating Modes
   const { mode, transition, back } = useVisualMode(LOBBY);
-  const [gameActive, setGameActive] = useState(false);
   //console.log(user, "check")
 
-  //re-initialize all states for the game
-  function initializeGame(){
-    setGameActive(true)
-    transition(PLAY, true)
-  }
-
-  
   //if mode === PREGAME
   return (
     //fixtures
 
     <div>
-
-      {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PLAY, true)} />}
+       {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PLAY, true)} />}
       {mode === PLAY && <Play user={testUser} onQuit={()=>transition(LOBBY, true)}/>}
-      {/* {mode === PREGAME && <Pregame user={testUser} onClick={() => transition(INGAME, true)} />}
-      {mode === INGAME && <Ingame onQuit={back} onRestart={()=>initializeGame()}/>} */}
+      
     </div>
   )
 }

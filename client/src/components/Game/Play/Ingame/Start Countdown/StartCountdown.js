@@ -4,24 +4,19 @@ import classNames from "classnames";
 
 function StartCountdown(props){
 
-  const [counter, setCounter] = useState(3);
-  //at game-start, this countdown will be activated immediately
+  const [counter, setCounter] = useState(5);
+  const {gameActive, setGameActive} = useContext(gameContext)//=>activate game at the end of this
 
-
-  const {gameActive, setGameActive} = useContext(gameContext)
- 
-  //this effect handles game start countown of 3 seconds
+  //handles countdown logic
   useEffect(()=>{
     let intervalId;
-    setGameActive(true);
-
     intervalId = setInterval(() =>{
 
-      if(gameActive && counter > 0){
+      if(counter > 0){
         setCounter(counter - 1)
       } 
       if(counter === 0){
-       setGameActive(false);
+       setGameActive(true);
        props.startGame(); //transition to DURING game mode
       }
 
@@ -33,7 +28,7 @@ function StartCountdown(props){
   return(
     <div>
       <h1>this is StartCountdown mode</h1>
-      <h1>{gameActive ? counter : ""}</h1>
+      <h1>{counter}</h1>
       
     </div>
   )
