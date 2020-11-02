@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Collapse} from "react-bootstrap";
 import Button from "../../Button";
-import Duration from "./Duration";
 import Table2 from "./Table2";
 import useApplicationData from "../../../hooks/useApplicationData";
 
@@ -14,7 +13,7 @@ function UserHistory(props) {
   const {user} = props
 console.log("inside User history, user is", user)
 
-  const {state, displatch} = useApplicationData();
+  const {state, dispatch} = useApplicationData();
   
   const userMatches = state.matches.filter((match) => user.id === match.user_id)
 

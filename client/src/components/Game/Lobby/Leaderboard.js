@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import useApplicationData from '../../../hooks/useApplicationData';
 import Button from "../../Button";
-import Duration from "./Duration";
 import Table1 from "./Table1";
 
 import {Collapse} from "react-bootstrap";

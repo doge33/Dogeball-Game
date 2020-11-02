@@ -42,11 +42,10 @@ function Ingame(props) {
     }
 
     const { mode, transition, back } = useVisualMode(START);
-
-    // console.log("inside In-game, gameActive is", gameActive)
+    
     useEffect(()=>{
       console.log("inside In-game, score is", score)
-      //console.log("inside In-game, countScore is", countScore)
+
     }, [score])
     
 
@@ -58,19 +57,16 @@ function Ingame(props) {
 
       <scoreContext.Provider value={{score, setScore}}>
 
-     
-          {/* <NewCamera className="Newcamera" canvas={canvas} />  */}
         <div  style={{position:"absolute", zindex: 9}}>
-        {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)} />}
- 
         
           {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>}
+          {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)} />}
           {mode === OVER && <OverCountdown onRestart={handleRestart} onQuit={props.onQuit}/>}
         </div>
         
       </scoreContext.Provider>  
 
-    </gameContext .Provider>
+    </gameContext.Provider>
   </div>
     
   )
