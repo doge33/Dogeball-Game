@@ -34,6 +34,17 @@ const tryResNetButtonBackgroundCss = 'background:#e61d5f;';
 // =======================================================
 // Utility functions
 // =======================================================
+export function renderCanvas(canvas, pose, projectileCoords, videoWidth, videoHeight) {
+  // Grab canvas!
+  const ctx = canvas.current.getContext("2d");
+  canvas.current.width = videoWidth;
+  canvas.current.height = videoHeight;
+
+  // Draw!
+  drawKeypointsAvatar(ctx, pose["keypoints"], 0.6);
+  generateProjectile(ctx, videoWidth, videoHeight, projectileCoords, 30, "orange");
+}
+
 // ----------------------------------------------------
 // * Helper function - used to render a point on canvas
 // ----------------------------------------------------
