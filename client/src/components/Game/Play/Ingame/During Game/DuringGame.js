@@ -13,6 +13,8 @@ function DuringGame(props){
     console.log("in During game, score is:", score);
   }, [score])
 
+  //make axios post call
+
   return(
     <div>
       <NewCamera className="Newcamera"  /> 
