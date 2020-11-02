@@ -1,10 +1,5 @@
-import {
-  useEffect,
-  useReducer
-} from 'react';
-
+import {useEffect,useReducer} from 'react';
 import dataReducer, { SET_USERS, SET_MATCHES } from '../reducers/dataReducer';
-
 import axios from 'axios';
 
 const useApplicationData = () => {
@@ -15,19 +10,7 @@ const useApplicationData = () => {
   });
 
   useEffect(() => {
-    // Promise.all([
-    //   axios({ method: 'GET', url: '/api/users', })
-    // ])
-    //   .then(({
-    //     data
-    //   }) => {
-    //     console.log("inside useApplicationData! ", data);
-    //     dispatch({
-    //       type: SET_USERS,
-    //       users: data
-    //     });
-    //   })
-    //   .catch((err) => console.log(err));
+
     Promise.all([
       axios({ method: 'GET', url: '/api/users' }),
       axios({ method: 'GET', url: '/api/matches' })
@@ -39,9 +22,23 @@ const useApplicationData = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  function sendMatchData(score, user){
+    axios.post("/api/matches", {
+          match:{
+            score: score,
+            user_id: user.user.id,
+            day_played: new Date()
+            }
+        } 
+      )
+      .then(res => dispatch({ type: SET_MATCHES, matches: res.data.match }))
+      .catch(err => console.log("inside axios post", err.message))
+  }
+
   return {
     state,
     dispatch,
+    sendMatchData
   };
 };
 

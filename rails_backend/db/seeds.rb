@@ -61,16 +61,15 @@ end6 = Duration.new.rand_end_time
 # duration5 = Time.at(end5 - start5).utc.strftime("%H:%M:%S")
 # duration6 = Time.at(end6 - start6).utc.strftime("%H:%M:%S")
 
-#20.times do
-Match.create!(:score=> Faker::Types.rb_integer, :start_time => start1, :end_time => end1, :duration => Time.at(end1 - start1).utc.strftime("%H:%M:%S"), :user_id=> rand(1..10))
-Match.create!(:score=> Faker::Types.rb_integer, :start_time => start2, :end_time => end2, :duration => Time.at(end2 - start2).utc.strftime("%H:%M:%S"), :user_id=> rand(1..10))
-Match.create!(:score=> Faker::Types.rb_integer, :start_time => start3, :end_time => end3, :duration => Time.at(end3 - start3).utc.strftime("%H:%M:%S"), :user_id=> rand(1..10))
-Match.create!(:score=> Faker::Types.rb_integer, :start_time => start4, :end_time => end4, :duration => Time.at(end4 - start4).utc.strftime("%H:%M:%S"), :user_id=> rand(1..10))
-Match.create!(:score=> Faker::Types.rb_integer, :start_time => start5, :end_time => end5, :duration => Time.at(end5 - start5).utc.strftime("%H:%M:%S"), :user_id=> rand(1..10))
-Match.create!(:score=> Faker::Types.rb_integer, :start_time => start6, :end_time => end6, :duration => Time.at(end6 - start6).utc.strftime("%H:%M:%S"), :user_id=> rand(1..10))
-#end
+# :start_time => start1, :end_time => end1, :duration => Time.at(end1 - start1).utc.strftime("%H:%M:%S"),
+# :start_time => start2, :end_time => end2, :duration => Time.at(end2 - start2).utc.strftime("%H:%M:%S"),
+# :start_time => start3, :end_time => end3, :duration => Time.at(end3 - start3).utc.strftime("%H:%M:%S"),
+# :start_time => start4, :end_time => end4, :duration => Time.at(end4 - start4).utc.strftime("%H:%M:%S"),
+# :start_time => start5, :end_time => end5, :duration => Time.at(end5 - start5).utc.strftime("%H:%M:%S"),
+# :start_time => start6, :end_time => end6, :duration => Time.at(end6 - start6).utc.strftime("%H:%M:%S"),
 
-# 20.times do
-#   Match.create!(score: Faker::Types.rb_integer, start_time: Duration.new.rand_start_time, end_time: Duration.new.rand_end_time,user_id: rand(1..10))
-# end
+50.times do
+  Match.create!(:score=> Faker::Types.rb_integer, :day_played => Faker::Time.between_dates(from: Date.today - 10, to: Date.today, period: :morning),:user_id=> rand(1..10))
+  
+end
 

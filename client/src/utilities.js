@@ -25,6 +25,7 @@ import img2 from './components/Game/nyan_cat.png';
 const color = 'aqua';
 const boundingBoxColor = 'red';
 const lineWidth = 2;
+const minConfidence = .5;
 
 export const tryResNetButtonName = 'tryResNetButton';
 export const tryResNetButtonText = '[New] Try ResNet50';
@@ -41,7 +42,7 @@ export function renderCanvas(canvas, pose, projectileCoords, videoWidth, videoHe
   canvas.current.height = videoHeight;
 
   // Draw!
-  drawKeypointsAvatar(ctx, pose["keypoints"], 0.6);
+  drawKeypointsAvatar(ctx, pose["keypoints"]);
   generateProjectile(ctx, videoWidth, videoHeight, projectileCoords, 30, "orange");
 }
 
@@ -70,7 +71,7 @@ export function drawBoundingBox2(ctx, rect) {
 // ----------------------------------------------------
 // * Draw player avatar on canvas
 // ----------------------------------------------------
-export function drawKeypointsAvatar(ctx, keypoints, minConfidence, scale = 1) {
+export function drawKeypointsAvatar(ctx, keypoints, scale = 1) {
 
   for (let i = 0; i < keypoints.length; i++) {
     if (keypoints[i].part === 'rightWrist' || keypoints[i].part === 'leftWrist' || keypoints[i].part === 'nose') {
@@ -127,8 +128,8 @@ export function generateProjectile(ctx, videoWidth, videoHeight, projectileCoord
         x -= (videoWidth * .1);
       }
 
-      // Render projectile || pair[2] % 4 === 0
-      if (index === 2 || index === 6) {
+      // Render projectile
+      if (index === 1 || index === 4 || index === 7 || pair[2] % 6 === 0) {
         renderImageToCanvas2(ctx, x, y, true);
         const rect = { x: x, y: y, width: 75, height: 75 };
         drawBoundingBox2(ctx, rect);
@@ -157,8 +158,8 @@ export function detectCollision(avatar, projectiles) {
         avatar[i].y < projectiles[y].y + projectiles[y].height &&
         avatar[i].y + avatar[i].height > projectiles[y].y) {
         // console.log("Collision detected");
-        // console.log(projectiles[y].projectileIndex); || projectiles[y].isBad % 4 === 0
-        if (projectiles[y].projectileIndex === 2 || projectiles[y].projectileIndex === 6) {
+        // console.log(projectiles[y].projectileIndex);
+        if (projectiles[y].projectileIndex === 1 || projectiles[y].projectileIndex === 4 || projectiles[y].projectileIndex === 7 || projectiles[y].badProjectile % 6 === 0) {
           strike = 0;
         } else {
           strike = 1;
@@ -177,7 +178,7 @@ export function detectCollision(avatar, projectiles) {
 // -----------------------------------------------------------------
 // * Calculates hitboxes and runs them through collision detector
 // -----------------------------------------------------------------
-export function collisionDetection(pose, minConfidence, projectileCoords, videoWidth, videoHeight) {
+export function collisionDetection(pose, projectileCoords, videoWidth, videoHeight) {
   let keypoints = pose["keypoints"];
   let poseHitboxes = [];
   let projectileHitboxes = [];
@@ -217,11 +218,11 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
       }
 
       // Calculate dimensions of hitbox
-      if (index === 2 || index === 6) {
-        const rect = { x: x, y: y, width: 75, height: 75, projectileIndex: index, isBad: pair[2] };
+      if ((index === 1 || index === 4 || index === 7 || pair[2] % 6 === 0)) {
+        const rect = { x: x, y: y, width: 75, height: 75, projectileIndex: index, badProjectile: pair[2] };
         projectileHitboxes.push(rect);
       } else {
-        const rect = { x: x + 25, y: y + 35, width: 75, height: 75, projectileIndex: index, isBad: pair[2] };
+        const rect = { x: x + 25, y: y + 35, width: 75, height: 75, projectileIndex: index, badProjectile: pair[2] };
         projectileHitboxes.push(rect);
       }
     }

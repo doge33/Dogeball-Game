@@ -15,7 +15,6 @@ import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
-import DrawAvatar from "./DrawAvatar";
 import { collisionDetection, projectileGenerator, shiftCoordinates, renderCanvas } from '../../utilities';
 
 
@@ -24,15 +23,14 @@ function NewCamera(props) {
   const canvasRef = useRef(props.canvas);
   let {score, setScore} = useContext(scoreContext); //this for updating the score itself
   const {gameActive, setGameActive} = useContext(gameContext); //this for when the start/stop score-counting
-  console.log("in NewCamera line 27, gameActive is:", gameActive);
   
   const projectileCoords = [];
-  let isBad = 1;
+  let badProjectile = 1;
 
-  //generate 8 good balls on canvas
-  for (let i = 0; i < 60; i++) {
+  //generate projectiles on canvas
+  for (let i = 0; i < 9; i++) {
     
-    projectileGenerator(projectileCoords, isBad);
+    projectileGenerator(projectileCoords, badProjectile);
     //  console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
   
   }
@@ -44,7 +42,7 @@ function NewCamera(props) {
       architecture: 'MobileNetV1',
       outputStride: 16,
       inputResolution: { width: 320, height: 240 },
-      multiplier: 0.5 //set this to a lower scale => faster but less accurate model
+      multiplier: 0.75 //set this to a lower scale => faster but less accurate model
     })
 
     //continuously run the posenet model to create detections
@@ -73,7 +71,7 @@ function NewCamera(props) {
       shiftCoordinates(projectileCoords);
 
       // Look for a collision (returns index position of collided object)
-      const collision = collisionDetection(pose, 0.6, projectileCoords, videoWidth, videoHeight, 30);
+      const collision = collisionDetection(pose, projectileCoords, videoWidth, videoHeight);
       //result is a pair of numbers eg. [2, 0], [6,0] or [other numbers in 1~7, 1] or [undefined, undefined]; 
       //first number is the index of projectile in the projectiles array
       //second number is strike(1) or no strike[0]
@@ -82,19 +80,19 @@ function NewCamera(props) {
       if (collision[0] && gameActive) { //remove the [undefined, undefined] pairs
         
         if (collision[1] === 0) {
-          setScore(score--);
+          setScore(score -= 3);
         } else if (collision[1] === 1) {
           setScore(score++);
         }
 
-        console.log("line 93 NewCamera: score is,", score);
+        // console.log("line 93 NewCamera: score is,", score);
 
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
 
         // add new set of coordinates to array of projectile coordinates
-        projectileGenerator(projectileCoords, isBad);
-        isBad++;
+        projectileGenerator(projectileCoords, badProjectile);
+        badProjectile++;
         
       }
 
