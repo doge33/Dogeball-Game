@@ -20,6 +20,25 @@ body {
 //   scroll-behavior: smooth;
 // }
 
+.animate-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.animate-out {
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 nav {
   background: url("./orange_bg.jpg");
   height: 350px;

@@ -8,7 +8,7 @@ function Pregame(props) {
 
   return (
     <div>
-    <div>
+    <div className="animate-in">
       {/* <Navbar user={props.user}/> */}
       
       <h1>Hello this is Pre-game mode</h1>

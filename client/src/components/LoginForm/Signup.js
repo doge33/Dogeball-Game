@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -16,6 +17,11 @@ function Signup() {
     password: '',
     password_confirmation: ''
   })
+
+  /**
+ * use of History to redirect the page
+ */
+  const history = useHistory()
 
   /** Function setting the state of controlled inputs
    * @param {event} change object occurs when there is change in input element of form
@@ -35,15 +41,13 @@ function Signup() {
    */
   const handleSubmit = () => {
     // POST request to the rails server to enter the data to the database
-    axios.post("api/users", {
-      "user":
-      {
-        username: state.username,
-        email: state.email,
-        password: state.password,
-        password_confirmation: state.password_confirmation
-      }
-    })
+    axios.post("/api/users", {
+      "user": { ...state }
+    }, { withCredentials: true })
+      .then(res => {
+        console.log(res.data.status)
+        if (res.data.status === "created") { history.push("/game") }
+      })
       .catch(err => console.log(err))
   }
 
