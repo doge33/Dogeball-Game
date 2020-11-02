@@ -10,6 +10,7 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import gameContext from "../../Context/gameContext";
 import scoreContext from "../../Context/scoreContext";
+//import countScoreContext from "../../Context/countScoreContext";
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
@@ -21,19 +22,15 @@ import { collisionDetection, projectileGenerator, shiftCoordinates } from '../..
 function NewCamera(props) {
   const webcamRef = useRef(null);
   const canvasRef = useRef(props.canvas);
-  // const {gameActive, setGameActive} = useContext(gameContext);
   let {score, setScore} = useContext(scoreContext); //this for updating the score itself
-  const {countScore, setCountScore} = useContext(gameContext); //this for when the start/stop score-counting
-  console.log("in NewCamera line 27, countScore is:", countScore);
+  const {gameActive, setGameActive} = useContext(gameContext); //this for when the start/stop score-counting
+  console.log("in NewCamera line 27, gameActive is:", gameActive);
   
   const projectileCoords = [];
-
   let isBad = 1;
-  // console.log("line26 NewCamera; props.score is", score)
-  // let score = 0;
 
   //generate 8 good balls on canvas
-  for (let i = 0; i < 45; i++) {
+  for (let i = 0; i < 60; i++) {
     
     projectileGenerator(projectileCoords, isBad);
     //  console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
@@ -82,7 +79,7 @@ function NewCamera(props) {
       //second number is strike(1) or no strike[0]
 
       // Adjust score
-      if (collision[0] ) { //remove the [undefined, undefined] pairs
+      if (collision[0] && gameActive) { //remove the [undefined, undefined] pairs
         
         if (collision[1] === 0) {
           setScore(score--);
@@ -90,7 +87,7 @@ function NewCamera(props) {
           setScore(score++);
         }
 
-        console.log(score);
+        console.log("line 93 NewCamera: score is,", score);
 
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
@@ -107,15 +104,12 @@ function NewCamera(props) {
 
 
   useEffect(()=>{
-    setTimeout(()=> {
-      runPosenet();
-    }, [500])
+    if(canvasRef) {
+     runPosenet();
+    }
       
   },[canvasRef]);
-
-
-
-  
+ 
   
   return (
     <div className="App">
