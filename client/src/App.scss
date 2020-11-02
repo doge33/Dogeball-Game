@@ -133,11 +133,25 @@ main {
     justify-content: space-between;
     margin: 0 2rem;
     margin-top: -10rem;
-    height: 85vh;
+    height: 100vh;
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 }
 
 .introduction {
   z-index: 1;
+}
+
+.animation {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.kite {
+  position: absolute;
+  height: 100px;
+  top: 50%;
+  left: 0%;
 }
 
 .form {

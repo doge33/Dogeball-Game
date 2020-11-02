@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import theme from '../theme'
 
 import "../components/Home.scss";
+import kite from "../kite.png"
 import Introduction from "../components/Introduction";
 import LoginForm from '../components/LoginForm'
 import Navbar from "../components/Navbar";
@@ -25,6 +26,8 @@ function Home() {
       <Navbar user={user} />
       {/* <div className="scrolling-box"> */}
       <main className="main-container" id="about">
+
+
         <section className="introduction">
           <Introduction />
         </section>
@@ -35,8 +38,12 @@ function Home() {
           </div>
         </ThemeProvider>
       </main>
+
       <TeamCards />
       {/* </div> */}
+      <section className="animation">
+        <img className="kite" src={kite} alt="kite" />
+      </section>
     </Fragment>
   )
 }
