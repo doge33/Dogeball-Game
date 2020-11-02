@@ -12,7 +12,7 @@ function UserHistory(props) {
 
   //const {user} = props;
   const {user} = props
-
+console.log("inside User history, user is", user)
 
   const {state, displatch} = useApplicationData();
   
@@ -20,13 +20,12 @@ function UserHistory(props) {
 
   const userHistory = userMatches.map((match) => {
 
-    const date = new Date(match.start_time)
+    const date = new Date(match.day_played)
     const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()}. ${date.getUTCDate()}`
     
     return(
       <tr>
         <th>{match.score}</th>
-        <th><Duration duration={match.duration} /></th>
         <th>{dateParsed}  </th>
       </tr>
     

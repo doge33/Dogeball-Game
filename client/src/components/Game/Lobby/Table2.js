@@ -12,7 +12,6 @@ function Table2(props){
       <thead class="thead-dark">
         <tr>
           <th scope="col">Highest_Score</th>
-          <th scope="col">Duration</th>
           <th scope="col">Played on</th>
         </tr>
       </thead>

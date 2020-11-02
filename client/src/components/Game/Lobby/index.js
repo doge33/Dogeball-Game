@@ -16,7 +16,7 @@ function Lobby(props) {
         <div className="button-div"><Button className="button" onClick={props.onPlay}>Play: Go to Pre-game mode</Button></div>
 
         <div className="leaderboard-div"><Leaderboard className="leaderboard" /></div>
-        <div className="history-div"><UserHistory className="history" user={props.user} /></div>
+        <div className="history-div"><UserHistory user={props.user} className="history" user={props.user} /></div>
       </main>
     </div>
   )
