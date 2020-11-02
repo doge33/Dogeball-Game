@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Pregame from "./Pregame/index";
 import Ingame from "./Ingame/index";
-import NewCamera from "../NewCamera";
 import className from "classnames";
 
 import useVisualMode from "../../../hooks/useVisualMode";
@@ -16,14 +15,9 @@ function Play(props){
   return(
     <div>
       
-      {/* <NewCamera className="Newcamera" /> */}
       {mode === PREGAME && <Pregame onReady={()=>transition(INGAME)} />}
 
-      {mode === INGAME && 
-      <Ingame 
-      onQuit={props.onQuit} 
-      
-      />} 
+      {mode === INGAME && <Ingame onQuit={props.onQuit} />} 
       
     </div>
   )

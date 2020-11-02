@@ -148,8 +148,10 @@ export function detectCollision(avatar, projectiles) {
   let indexCollision;
   let strike;
 
+  //avatar is the hitboxes array for keypoints; projectiles is the hitboxes array for the 7 balls; 
   for (let i = 0; i < avatar.length; i++) {
     for (let y = 0; y < projectiles.length; y++) {
+
       if (avatar[i].x < projectiles[y].x + projectiles[y].width && 
         avatar[i].x + avatar[i].width > projectiles[y].x &&
         avatar[i].y < projectiles[y].y + projectiles[y].height &&
@@ -162,11 +164,13 @@ export function detectCollision(avatar, projectiles) {
             strike = 1;
           }
           indexCollision = projectiles[y].projectileIndex;
+          // console.log("indexCollision is", indexCollision)
         }
     }
   }
 
   const results = [indexCollision, strike];
+  // console.log("results is ", results) // ==> [2,0] or [6,0] or [other numbers, 1] or mostly [undefined, undefined]
   return results;
 
 }
@@ -224,6 +228,7 @@ export function collisionDetection(pose, minConfidence, projectileCoords, videoW
   });
 
   // Hitbox Comparison
+  //(detectCollision =>[undefined, undefined] or [2,0], [6,0], or [other numbers in 1~7, 1])
   if (detectCollision(poseHitboxes, projectileHitboxes)) {
     return detectCollision(poseHitboxes, projectileHitboxes)
   } 
