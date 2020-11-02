@@ -13,7 +13,7 @@ function Table1(props){
         <tr>
           <th scope="col">#Rank</th>
           <th scope="col">Highest_Score</th>
-          <th scope="col">Duration</th>
+          <th scope="col">Played_on</th>
           <th scope="col">Player</th>
         </tr>
       </thead>

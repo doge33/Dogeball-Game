@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 function StartCountdown(props){
 
-  const [counter, setCounter] = useState(5);
+  const [counter, setCounter] = useState(3);
   const {gameActive, setGameActive} = useContext(gameContext)//=>activate game at the end of this
 
   //handles countdown logic

@@ -23,7 +23,6 @@ function NewCamera(props) {
   const canvasRef = useRef(props.canvas);
   let {score, setScore} = useContext(scoreContext); //this for updating the score itself
   const {gameActive, setGameActive} = useContext(gameContext); //this for when the start/stop score-counting
-  console.log("in NewCamera line 27, gameActive is:", gameActive);
   
   const projectileCoords = [];
   let badProjectile = 1;

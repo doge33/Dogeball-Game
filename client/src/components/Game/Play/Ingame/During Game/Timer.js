@@ -4,24 +4,11 @@ import countScoreContext from "../../../../../Context/countScoreContext";
 import "./Timer.scss";
 import classNames from "classnames";
 
-//this is a stateful component
 function Timer (props) {
 
   const [second, setSecond] = useState(60);
   const {gameActive, setGameActive} = useContext(gameContext);
-  //const {countScore, setCountScore} = useContext(countScoreContext);
-  // console.log("inside Timer; gameActive is ", gameActive);
-  //console.log("in Timer, countScore is:", countScore);
-
-  
-
-  // useEffect(()=>{
-  //   setTimeout(()=> {
-  //     // setGameActive(true);
-  //     setCountScore(true);
-
-  //   }, [5000])
-  // }, [])
+ 
 
   useEffect(()=>{
     let intervalId;
