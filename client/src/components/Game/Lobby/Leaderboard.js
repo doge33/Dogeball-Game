@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import useApplicationData from '../../../hooks/useApplicationData';
 import Button from "../../Button";
 import Duration from "./Duration";
 import Table1 from "./Table1";
 
-import {Collapse} from "react-bootstrap";
+import { Collapse } from "react-bootstrap";
 import classNames from "classnames";
 
 import "../Game.scss";
@@ -17,54 +17,56 @@ function Leaderboard() {
 
   console.log(state.matches);
 
-  function ranking (state) {
+  function ranking(state) {
 
     let rankScores = [];
-    
+
     for (let m = 0; m < state.matches.length - 1; m++) {
-      
+
       const match = state.matches[m];
       const user = state.users.find(user => user.id === match.user_id)
 
-      
+
 
       const game = (
-      <tr>
-        <th scope="row">{m + 1}</th>
-        <th>{match.score}</th>
-        <th><Duration duration={match.duration} /></th>
-        <th>{user.username} </th>
-      </tr>
+        <tr>
+          <th scope="row">{m + 1}</th>
+          <th>{match.score}</th>
+          <th><Duration duration={match.duration} /></th>
+          <th>{user.username} </th>
+        </tr>
       )
 
       rankScores.push(game);
-      
+
     }
     return rankScores;
   };
 
   const listScores = ranking(state);
-  
+
 
   return (
     <div>
-      
-      <Button onClick={() => setOpen(!open)}
-      aria-controls="example-collapse-text"
-      aria-expanded={open}>
+
+      <Button
+        onClick={() => setOpen(!open)}
+        aria-controls="example-collapse-text"
+        aria-expanded={open}
+      >
         <h1> Leaderboard </h1>
       </Button>
 
       <Collapse in={open}>
-      <div id="collapse-text"><Table1 className="table" listScores={listScores}/></div>
-      
+        <div id="collapse-text"><Table1 className="table" listScores={listScores} /></div>
+
       </Collapse>
 
-      
+
 
     </div>
 
-    
+
   )
 }
 

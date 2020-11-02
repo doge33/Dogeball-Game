@@ -1,20 +1,20 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
 import gameContext from "../../../../../Context/gameContext";
 import Timer from "./Timer";
 
-function DuringGame(props){
+function DuringGame(props) {
 
-  const {gameActive, setGameActive} = useContext(gameContext);
+  const { gameActive, setGameActive } = useContext(gameContext);
 
-  return(
-    <div>
+  return (
+    <div className="animate-in">
       <h1>DuringGame mode</h1>
 
-      <Timer gameActive={gameActive} gameOver={props.gameOver}/> 
+      <Timer gameActive={gameActive} gameOver={props.gameOver} />
       <button onClick={props.gameOver}>Game-over: go to OverCountdown mode</button>
     </div>
-    
+
 
   )
 

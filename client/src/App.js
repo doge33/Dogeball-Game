@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UserContext from './Context/userContext'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import './App.scss';
 import Home from "./routes/Home";
 import Game from "./routes/Game";
+import axios from 'axios';
 
 function App() {
 
@@ -12,6 +13,11 @@ function App() {
     isLoggedIn: false,
     user: {}
   })
+
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_IPSTACK_API_URL)
+      .then(res => console.log(res, "check"))
+  }, [])
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
