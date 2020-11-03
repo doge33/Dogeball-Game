@@ -137,7 +137,7 @@ function NewCamera(props) {
             left: 0,
             right: 0,
             textAlign: "center",
-            zindex: -1
+            zindex: -1,
           }}
         />
 

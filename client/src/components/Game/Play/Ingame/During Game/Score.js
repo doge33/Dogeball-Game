@@ -1,6 +1,7 @@
 import React, {useContext, useEffect} from "react";
 import scoreContext from "../../../../../Context/scoreContext";
 import classNames from "classnames";
+import "./score.scss";
 
 function Score(){
 
@@ -8,8 +9,8 @@ function Score(){
 
 
   return (
-    <div classNames="score">
-      <h1>Score Board</h1>
+    <div id="score">
+      <h1>Score :</h1>
       <h1>{score}</h1>
     </div>
   )

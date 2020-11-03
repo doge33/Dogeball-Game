@@ -151,7 +151,9 @@ $number-9:  1,2,2,2,2,1,
 }
 // Plain Styles
 .street-fighter{
-  background-color:#1A1A1A;
+  // background-image: url(../../../universe2.webp);
+  // background-size: cover;
+  // background-color:#1A1A1A;
   //background: transparent;
   border: 1px solid black;
   height: 100vh !important;
@@ -228,6 +230,7 @@ $number-9:  1,2,2,2,2,1,
     animation: count 10s step-start infinite;
     box-shadow: countdown($number-9);
     margin-left:-40px;
+    
   }
   
 }

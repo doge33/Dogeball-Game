@@ -1,36 +1,7 @@
 .in-game{
-  display:grid;
-  grid-template-areas: "score timer"
-                      "game game"
-                      "game game"
-                      "game game"
-                      "game game"
-                      "game game";
-  grid-gap: 3em;
+  background-image: url(../../universe2.webp);
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
   
-  .timer{
-    grid-area: timer
-          }
-  .score{
-    border: 3px solid orange;
-    border-radius: 3em;
-    padding: 0.5em 2em;
-    margin: 1em;
-    grid-area: score
-  }
-  .game-area {
-    border: 3px solid orange;
-    border-radius: 3em;
-    padding: 0.5em 2em;
-    margin: 1em;
-    grid-area: game;
-
-    .countdowns{
-      border: 3px solid orange;
-      border-radius: 3em;
-      padding: 0.5em 2em;
-      margin: 1em;
-    }
-  }
-        
 }
