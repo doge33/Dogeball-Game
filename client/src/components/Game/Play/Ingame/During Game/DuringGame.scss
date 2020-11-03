@@ -4,18 +4,18 @@
 .during{
   // background-image: url(../../../universe2.webp);
   // background-size: cover;
-  //height: 20vh;
+  min-height: 100vh;
   width: 100vw;
-  position: absolute;
+  //position: absolute;
   // z-index: 4;
 .banner{
   height: 10vh;
+  width: 100vw;
   margin-left: 5vw;
   margin-right: 5vw;
   z-index: 5;
   display:grid;
-  grid-template-areas: "score logo timer";
-                      
+  grid-template-areas: "score logo timer";                  
                     
   
   #score{
@@ -33,6 +33,7 @@
     border-radius: 3em;
     padding-top: 0.5em;
     margin-top:1em;
+    margin-left: 1em;
     grid-area: score
   }
   #logo{
@@ -52,7 +53,7 @@
     padding: 0.5em 2em;
     margin: 1em;
     grid-area: logo;
-    
+    position: relative;
   }
   #timer{
     text-align: center;
@@ -69,6 +70,7 @@
     border-radius: 3em;
     //padding: 0.5em 2em;
     margin-top:1em;
+    margin-right: 2em;
     grid-area: timer
   }
 }

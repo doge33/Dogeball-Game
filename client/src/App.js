@@ -28,7 +28,7 @@ function App() {
   const [user, setUser] = useStateWithLocalStorage("userInLocalStorge")
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser }} >
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />

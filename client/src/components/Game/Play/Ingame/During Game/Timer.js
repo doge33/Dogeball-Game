@@ -23,7 +23,7 @@ function Timer (props) {
     if(second === 0){
       //when 60s timer finishes, de-activate the game
       setGameActive(false);
-      props.gameOver();
+      //props.gameOver();
      }
 
     return() => clearInterval(intervalId); //clear interval when the effect stops running(1 sec after setInterval)

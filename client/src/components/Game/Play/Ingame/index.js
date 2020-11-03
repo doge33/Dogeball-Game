@@ -41,7 +41,7 @@ function Ingame(props) {
 
         <scoreContext.Provider value={{score, setScore}}>
 
-          <div className="in-game">
+          <div className="in-game" >
             {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>}
             {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)} />}
             {mode === OVER && <OverCountdown onRestart={handleRestart} onQuit={props.onQuit}/>}
