@@ -19,7 +19,7 @@ function Leaderboard() {
       const user = state.users.find(user => user.id === match.user_id)
 
       const date = new Date(match.day_played)
-      const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()}. ${date.getUTCDate()}`
+      const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()+1}. ${date.getUTCDate()}`
       const game = (
         <tr>
           <th scope="row">{m + 1}</th>
