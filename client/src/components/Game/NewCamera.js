@@ -86,8 +86,6 @@ function NewCamera(props) {
           setScore(prev => prev + 1);
         }
 
-        console.log("In NewCamera: score is,", score);
-
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);
 

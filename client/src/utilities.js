@@ -183,7 +183,6 @@ export function collisionDetection(pose, projectileCoords, videoWidth, videoHeig
 
       const rect = { x: x - (50 / 2), y: y - (50 / 2), width: 50, height: 50 };
       poseHitboxes.push(rect);
-      
     }
   }
 
