@@ -44,13 +44,14 @@ const tryResNetButtonBackgroundCss = 'background:#e61d5f;';
 // * Draws avatar points and projectiles on canvas
 // ----------------------------------------------------
 export function renderCanvas(canvas, pose, projectileCoords, videoWidth, videoHeight) {
-
-  const ctx = canvas.current.getContext("2d");
-  canvas.current.width = videoWidth;
-  canvas.current.height = videoHeight;
-
-  drawKeypointsAvatar(ctx, pose["keypoints"]);
-  generateProjectile(ctx, videoWidth, videoHeight, projectileCoords);
+  if (canvas.current) {
+    const ctx = canvas.current.getContext("2d");
+    canvas.current.width = videoWidth;
+    canvas.current.height = videoHeight;
+  
+    drawKeypointsAvatar(ctx, pose["keypoints"]);
+    generateProjectile(ctx, videoWidth, videoHeight, projectileCoords);
+  }
 }
 // ----------------------------------------------------
 // * Helper function - used to render a point on canvas
