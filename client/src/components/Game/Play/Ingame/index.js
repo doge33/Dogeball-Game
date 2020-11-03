@@ -30,6 +30,7 @@ function Ingame(props) {
       transition(START, true)
     }
 
+    console.log("inside Ingame, curent score is", score);
     
 
   return (

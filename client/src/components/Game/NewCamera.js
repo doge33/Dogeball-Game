@@ -79,12 +79,12 @@ function NewCamera(props) {
       if (collision[0] && gameActive) { //remove the [undefined, undefined] pairs
         
         if (collision[1] === 0) {
-          setScore(score -= 3);
+          setScore(prev => prev - 3);
         } else if (collision[1] === 1) {
-          setScore(score++);
+          setScore(prev => prev + 1);
         }
 
-        // console.log("line 93 NewCamera: score is,", score);
+        console.log("In NewCamera: score is,", score);
 
         // remove object from array of items to be rendered, if collison occurred
         projectileCoords.splice(collision[0], 1);

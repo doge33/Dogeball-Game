@@ -5,7 +5,6 @@ import Score from "./Score";
 
 function DuringGame(props) {
 
-
   return(
     <div>
       <NewCamera className="Newcamera" />
