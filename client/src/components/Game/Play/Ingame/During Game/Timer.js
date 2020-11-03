@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 function Timer (props) {
 
-  const [second, setSecond] = useState(20);
+  const [second, setSecond] = useState(30);
   const {gameActive, setGameActive} = useContext(gameContext);
  
 
@@ -32,7 +32,7 @@ function Timer (props) {
   function stopTimer(){
    //setCountScore(false);//set countScore to false => stop counting score!
      //console.log("in Timer at stopTimer, countScore is:", countScore);
-    setSecond(20);
+    setSecond(30);
     //setCountScore(false);
 
   }
