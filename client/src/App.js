@@ -14,10 +14,10 @@ function App() {
     user: {}
   })
 
-  useEffect(() => {
-    axios.get(process.env.REACT_APP_IPSTACK_API_URL)
-      .then(res => console.log(res, "check"))
-  }, [])
+  // useEffect(() => {
+  //   axios.get(process.env.REACT_APP_IPSTACK_API_URL)
+  //     .then(res => console.log(res, "check"))
+  // }, [])
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

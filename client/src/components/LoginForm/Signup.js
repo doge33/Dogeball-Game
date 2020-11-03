@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import UserContext from '../../Context/userContext'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -17,6 +18,8 @@ function Signup() {
     password: '',
     password_confirmation: ''
   })
+
+  const { user, setUser } = useContext(UserContext)
 
   /**
  * use of History to redirect the page
@@ -45,10 +48,20 @@ function Signup() {
       "user": { ...state }
     }, { withCredentials: true })
       .then(res => {
-        console.log(res.data.status)
-        if (res.data.status === "created") { history.push("/game") }
+        if (res.data.status === "created") {
+          handleLogin(res.data)
+          history.push("/game")
+        }
       })
       .catch(err => console.log(err))
+  }
+
+  const handleLogin = data => {
+    setUser({
+      ...user,
+      isLoggedIn: true,
+      user: data.user
+    });
   }
 
   return (
