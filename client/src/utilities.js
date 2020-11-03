@@ -252,10 +252,12 @@ export function projectileGenerator(array, isBad) {
 // -----------------------------------------------------------------
 export function shiftCoordinates(array) {
   array.forEach((pair) => {
-    pair[1] += .005;
+    //pair[1] += .005;
+    pair[1] += .02;
 
     if (pair[1] > .97) {
-      pair[1] = .005
+      //pair[1] = .005
+      pair[1] = .02
     }
   })
 }

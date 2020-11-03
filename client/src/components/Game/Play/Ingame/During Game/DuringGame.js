@@ -8,7 +8,7 @@ function DuringGame(props) {
 
   return(
     <div>
-      <NewCamera className="Newcamera" />
+      {/* <NewCamera className="Newcamera" /> */}
       <h1>DuringGame mode</h1>
       <Score />
       <Timer gameOver={props.gameOver} /> 

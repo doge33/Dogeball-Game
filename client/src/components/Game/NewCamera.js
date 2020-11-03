@@ -22,7 +22,7 @@ function NewCamera(props) {
   const webcamRef = useRef(null);
   const canvasRef = useRef(props.canvas);
   let {score, setScore} = useContext(scoreContext); //this for updating the score itself
-  const {gameActive, setGameActive} = useContext(gameContext); //this for when the start/stop score-counting
+  const {gameActive, setGameActive} = useContext(gameContext); //this for when to start/stop score-counting
   
   const projectileCoords = [];
   let badProjectile = 1;
@@ -31,8 +31,7 @@ function NewCamera(props) {
   for (let i = 0; i < 9; i++) {
     
     projectileGenerator(projectileCoords, badProjectile);
-    //  console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
-  
+ 
   }
 
   //Load posenet
