@@ -45,7 +45,7 @@ function Game() {
     //fixtures
 
     <div>
-      <Navbar user={user.user} logout={handleLogout} />
+      {/* <Navbar user={user.user} logout={handleLogout} /> */}
       {mode === LOBBY && <Lobby user={user.user} onPlay={() => transition(PLAY, true)} />}
       {mode === PLAY && <Play user={user.user} onQuit={() => transition(LOBBY, true)} />}
 
