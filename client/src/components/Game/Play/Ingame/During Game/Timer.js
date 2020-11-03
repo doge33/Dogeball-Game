@@ -38,17 +38,18 @@ function Timer (props) {
   }
   //console.log("gameActive is", gameActive)
   return(
-    <div className="container">
+    <div className="container" id="timer">
 
       <div className="time">
-        <span className="second">{second}</span>
+        {/* <h1>Time :</h1> */}
+        <div className="second">{second}</div> 
       </div>
 
-      <div className="buttons">
+      {/* <div className="buttons">
         {/* this line will be taken out */}
-        <button onClick={()=> setGameActive(!gameActive)} className="start">{gameActive? "Pause":"Start"}</button>
+        {/* <button onClick={()=> setGameActive(!gameActive)} className="start">{gameActive? "Pause":"Start"}</button>
         <button onClick={stopTimer} className="reset">Reset</button>
-      </div>
+      </div> */} 
 
     </div>
   )

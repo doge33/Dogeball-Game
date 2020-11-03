@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+
+.during{
+  // background-image: url(../../../universe2.webp);
+  // background-size: cover;
+  //height: 20vh;
+  width: 100vw;
+  position: absolute;
+  // z-index: 4;
+.banner{
+  height: 10vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  z-index: 5;
+  display:grid;
+  grid-template-areas: "score logo timer";
+                      
+                    
+  
+  #score{
+    text-align: center;
+    font-size: 3em;
+    //line-height: 40px;
+    letter-spacing: 2px;
+    //color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: orange;
+    text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
+    font-family: 'Play', sans-serif;
+
+    border: 3px solid orange;
+    border-radius: 3em;
+    padding-top: 0.5em;
+    margin-top:1em;
+    grid-area: score
+  }
+  #logo{
+    text-align: center;
+    font-size: 3em;
+    font-style: italic;
+    //line-height: 40px;
+    letter-spacing: 2px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: orange;
+    text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
+
+    font-family: 'Orbitron', sans-serif;
+    //border: 3px solid orange;
+    border-radius: 3em;
+    padding: 0.5em 2em;
+    margin: 1em;
+    grid-area: logo;
+    
+  }
+  #timer{
+    text-align: center;
+    font-size: 5em;
+    //line-height: 40px;
+    letter-spacing: 2px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: orange;
+    text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
+    font-family: 'Orbitron', sans-serif;
+    // font-style: oblique;
+    //border: 3px solid orange;
+    border-radius: 3em;
+    //padding: 0.5em 2em;
+    margin-top:1em;
+    grid-area: timer
+  }
+}
+  
+
+  
+  
+}
