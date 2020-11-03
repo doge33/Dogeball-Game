@@ -11,7 +11,7 @@ function Lobby(props) {
 
   return (
     <div className="lobby animate-in">
-      <Navbar className="navbar" user={props.user} />
+      {/* <Navbar className="navbar" user={props.user} /> */}
       <main>
         <div className="button-div"><Button className="button" onClick={props.onPlay}>Play: Go to Pre-game mode</Button></div>
 
