@@ -24,24 +24,26 @@ function NewCamera(props) {
   let {score, setScore} = useContext(scoreContext); //this for updating the score itself
   const {gameActive, setGameActive} = useContext(gameContext); //this for when to start/stop score-counting
   
-  const projectileCoords = [];
-  let badProjectile = 1;
-
-  //generate projectiles on canvas
+  // Projectile Generation
+ // ----------------------------------------------------
+  let projectileCoords = [];
+  let badProjectile = 1; // Iterator used to influence creation of projectiles that should be avoided
+  
   for (let i = 0; i < 9; i++) {
-    
+    // Generates random number between 0 and .99 that is used to plot coordinates on canvas
     projectileGenerator(projectileCoords, badProjectile);
  
   }
-
-  //Load posenet
+// ----------------------------------------------------
+  
+  //Load posenet 
   const runPosenet = async () => {
     //wait till posenet is loaded
     const net = await posenet.load({
       architecture: 'MobileNetV1',
-      outputStride: 16,
-      inputResolution: { width: 320, height: 240 },
-      multiplier: 0.75 //set this to a lower scale => faster but less accurate model
+      outputStride: 16, // 8, 16, 32 --- smaller equals more accurate, but more taxing on performance
+      inputResolution: 257, // default 257, can be provided as an object as well, e.g. { width: 320, height: 240 }. Higher is more accurate, but more taxing on performance.
+      multiplier: .5 // 1.0, .75, .50 --- higher is more accurate, but more taxing on performance
     })
 
     //continuously run the posenet model to create detections
@@ -70,14 +72,14 @@ function NewCamera(props) {
       shiftCoordinates(projectileCoords);
 
       // Look for a collision (returns index position of collided object)
+      
       const collision = collisionDetection(pose, projectileCoords, videoWidth, videoHeight);
-      //result is a pair of numbers eg. [2, 0], [6,0] or [other numbers in 1~7, 1] or [undefined, undefined]; 
+      //result is a pair of numbers eg. [2, 0], [6,0] or [other numbers in 1~7, 1] or [undefined, undefined];
       //first number is the index of projectile in the projectiles array
       //second number is strike(1) or no strike[0]
 
       // Adjust score
-      if (collision[0] && gameActive) { //remove the [undefined, undefined] pairs
-        
+      if (collision[0] && gameActive) { // remove the [undefined, undefined] pairs
         if (collision[1] === 0) {
           setScore(prev => prev - 3);
         } else if (collision[1] === 1) {
@@ -94,7 +96,7 @@ function NewCamera(props) {
         badProjectile++;
         
       }
-
+      
       renderCanvas(canvasRef, pose, projectileCoords, videoWidth, videoHeight);
 
     }
@@ -104,8 +106,7 @@ function NewCamera(props) {
   useEffect(()=>{
     if(canvasRef) {
      runPosenet();
-    }
-      
+    }  
   },[canvasRef]);
  
   
