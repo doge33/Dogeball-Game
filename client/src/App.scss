@@ -40,92 +40,107 @@ body {
   to { opacity: 1; }
 }
 
-nav {
-  background: url("./orange_bg.jpg");
-  height: 350px;
-  background-size: cover;
+.navbar {
+  &__landing-page {
+    background: url("./orange_bg.jpg");
+    height: 350px;
+    background-size: cover;
 
-  .nav-bar-container {
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+    .nav-bar-container {
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
 
-  }
-  ul {
-    border-radius: 10px;
-    align-items: flex-start;
-    
-    :last-child {
-      border-right: none;
     }
-
-    li {
-      text-align: center;
-      display:block;
-      border-right: 1px solid rgba(0, 0, 0, 0.2);
-
-      a {
-        padding: 0 30px;
-        display: block;
-
-        &:hover .icon .fa {
-          transform: translateY(-100%);
-        }
-
-        &:hover .name span {
-          transform: translateY(20px);
-        }
-
-        .name {
-          position: relative;
-          height: 20px;
-          width: 100%;
-          display: block;
-          overflow: hidden;
-
-          span {
-            display: block;
-            position: relative;
-            color: #000;
-            font-size: 20px;
-            line-height: 20px;
-            transition: 0.5s;
+    ul {
+      border-radius: 10px;
+      align-items: flex-start;
       
-            &:before {
-              content: attr(data-text);
-              position: absolute;
-              top:-100%;
-              left: 0;
+      :last-child {
+        border-right: none;
+      }
+
+      li {
+        text-align: center;
+        display:block;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+
+        a {
+          padding: 0 30px;
+          display: block;
+
+          &:hover .icon .fa {
+            transform: translateY(-100%);
+          }
+
+          &:hover .name span {
+            transform: translateY(20px);
+          }
+
+          .name {
+            position: relative;
+            height: 20px;
+            width: 100%;
+            display: block;
+            overflow: hidden;
+
+            span {
+              display: block;
+              position: relative;
+              color: #000;
+              font-size: 20px;
+              line-height: 20px;
+              transition: 0.5s;
+        
+              &:before {
+                content: attr(data-text);
+                position: absolute;
+                top:-100%;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                color: #674A40;
+              }
+            }
+          }
+
+          .icon {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            overflow: hidden;
+            margin: 0 auto 10px;
+
+            .fa {
               width: 100%;
               height: 100%;
+              line-height: 40px;
+              font-size: 2rem;
+              transition: 0.5s;
+              color: #000
+            }
+            :last-child {
               color: #674A40;
             }
           }
         }
-
-        .icon {
-          width: 40px;
-          height: 40px;
-          text-align: center;
-          overflow: hidden;
-          margin: 0 auto 10px;
-
-          .fa {
-            width: 100%;
-            height: 100%;
-            line-height: 40px;
-            font-size: 2rem;
-            transition: 0.5s;
-            color: #000
-          }
-          :last-child {
-            color: #674A40;
-          }
-        }
       }
     }
+  }
+  
+  &__layout {
+    background: yellow;
+    height: 60px;
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+
+  }
+  
+  &--user {
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
   }
 }
 
@@ -135,25 +150,12 @@ main {
     margin: 0 2rem;
     margin-top: -10rem;
     height: 100vh;
-    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 }
 
 .introduction {
   z-index: 1;
 }
 
-.animation {
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
-}
-
-.kite {
-  position: absolute;
-  height: 100px;
-  top: 50%;
-  left: 0%;
-}
 
 .form {
   text-align: center;
