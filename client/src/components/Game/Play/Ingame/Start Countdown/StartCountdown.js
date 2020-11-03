@@ -3,6 +3,7 @@ import gameContext from "../../../../../Context/gameContext";
 import classNames from "classnames";
 // import "./StartCountdown.scss"
 
+//this part will be delted. Please ignore
 function StartCountdown(props){
 
   const [counter, setCounter] = useState(3);

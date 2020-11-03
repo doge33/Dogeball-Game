@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import "./Result.scss";
 import nyan from "../../../nyan_cat.png";
-import doge from "../../../doge_ball.png";
+import doge from "../../../dogehero.png";
 
 
 function Result(props){
@@ -10,8 +10,8 @@ function Result(props){
   const {score} = props;
   return(
     <div id="result">
-      <div className="consequence">{score < 10? "The Evil Nyan Cats Have Taken Over": "Doge Hero " }</div>
-      <div >{score < 10? <img id="cat" src={nyan}/>: <img src={doge}/> }</div>
+      <div className="consequence">{score < 10? "The Evil Nyan Cats Have Taken Over": "Doge Hero" }</div>
+      <div >{score < 10? <img id="cat" src={nyan}/>: <img id="dog" src={doge} style={{maxWidth: "250px", height:"auto"}}/> }</div>
       <div className="consequence-score">score: {score}</div>
     </div>
   )

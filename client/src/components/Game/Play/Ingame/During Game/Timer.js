@@ -9,6 +9,7 @@ function Timer (props) {
   const [second, setSecond] = useState(30);
   const {gameActive, setGameActive} = useContext(gameContext);
  
+  
 
   useEffect(()=>{
     let intervalId;
@@ -44,13 +45,6 @@ function Timer (props) {
         {/* <h1>Time :</h1> */}
         <div className="second">{second}</div> 
       </div>
-
-      {/* <div className="buttons">
-        {/* this line will be taken out */}
-        {/* <button onClick={()=> setGameActive(!gameActive)} className="start">{gameActive? "Pause":"Start"}</button>
-        <button onClick={stopTimer} className="reset">Reset</button>
-      </div> */} 
-
     </div>
   )
 }
