@@ -41,9 +41,9 @@ function NewCamera(props) {
     //wait till posenet is loaded
     const net = await posenet.load({
       architecture: 'MobileNetV1',
-      outputStride: 16, // 8, 16, 32 --- smaller equals more accurate, but more taxing on performance
-      inputResolution: 257, // default 257, can be provided as an object as well, e.g. { width: 320, height: 240 }. Higher is more accurate, but more taxing on performance.
-      multiplier: .5 // 1.0, .75, .50 --- higher is more accurate, but more taxing on performance
+      outputStride: 16, // 8, 16, 32 --- smaller equals more accurate, but more taxing on performance => 16 is fine
+      inputResolution:  { width: 320, height: 240 }, // default 257, can be provided as an object as well, e.g. { width: 320, height: 240 }. Higher is more accurate, but more taxing on performance.
+      multiplier: 1 // 1.0, .75, .50 --- higher is more accurate, but more taxing on performance 
     })
 
     //continuously run the posenet model to create detections

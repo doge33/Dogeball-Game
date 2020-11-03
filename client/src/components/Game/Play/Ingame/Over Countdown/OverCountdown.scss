@@ -202,10 +202,16 @@ $number-9:  1,2,2,2,2,1,
       z-index: 5;
     }
     &.pull-right{
-      //position:absolute;
+      position:absolute;
       top:0;
       right:10%;
     }
+    &.pull-left{
+      position:absolute;
+      top:0;
+      left:10%;
+    }
+
   }
 }
 
