@@ -15,7 +15,7 @@ import TeamCards from "../components/TeamCards"
 library.add(faFacebookF, faLinkedinIn, faGoogle)
 
 function Home() {
-  const [user, setUs] = useState({
+  const [user, setUser] = useState({
     isLoggedIn: false,
     user: {}
   })
@@ -32,7 +32,7 @@ function Home() {
 
         <ThemeProvider theme={theme}>
           <div className="form">
-            <LoginForm />
+            <LoginForm user={user} />
           </div>
         </ThemeProvider>
       </main>
