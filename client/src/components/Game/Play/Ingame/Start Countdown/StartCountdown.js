@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from "react";
 import gameContext from "../../../../../Context/gameContext";
 import classNames from "classnames";
-import "./StartCountdown.scss"
+// import "./StartCountdown.scss"
 
 function StartCountdown(props){
 
@@ -29,7 +29,7 @@ function StartCountdown(props){
   return(
     <div className="start-countdown">
       <div className="ready"><p id="ready" data-text="READY?"></p></div>
-      <div className="wrapper-start"><div className="countdown">{counter}</div></div>
+      <div className="wrapper-start"><div className="countdown"><h1>this sh*t will be replaced by a small animation, hopefully...{counter}</h1></div></div>
       
     </div>
   )

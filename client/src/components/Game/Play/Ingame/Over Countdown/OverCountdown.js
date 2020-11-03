@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
-import Button from "../../../../Button";
+import Result from "./Result";
 import scoreContext from "../../../../../Context/scoreContext";
 import userContext from "../../../../../Context/userContext";
 import useApplicationData from '../../../../../hooks/useApplicationData';
@@ -34,6 +34,8 @@ function OverCountdown(props){
 
   return(
     <div className="street-fighter">
+
+        <div className="result"><Result score={score}/></div>
       
         {/* <h1>this is OverCountdown mode</h1>
         <h1>FinalScore: {score}</h1> */}
