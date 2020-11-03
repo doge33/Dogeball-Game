@@ -59,18 +59,6 @@ function Login(props) {
     });
   }
 
-  const handleLogout = () => {
-    axios.post("/logout", {}, { withCredentials: true })
-      .then((res) => {
-        setUser({
-          ...user,
-          isLoggedIn: false,
-          user: {}
-        })
-      })
-  }
-
-
   return (
     <SlidingForm>
       <h1>Sign in</h1>

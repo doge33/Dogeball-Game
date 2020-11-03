@@ -8,38 +8,47 @@ import Play from "../components/Game/Play/index";
 import Pregame from "../components/Game/Play/Pregame/index";
 import Ingame from "../components/Game/Play/Ingame/index";
 import useVisualMode from "../hooks/useVisualMode";
+import Navbar from "../components/Navbar";
+import axios from 'axios';
+import { useHistory } from 'react-router-dom'
 
 
 function Game() {
 
-  //const [quit, setQuit] = useState(false);
 
-  //fixture
-  const testUser = {
-    "id":5,
-    "username":"jerome.schuppe",
-    "email":"jim_lebsack@lesch.org",
-    "password_digest":"KrDi86CxJ",
-    "created_at":"2020-10-27T23:47:48.765Z",
-    "updated_at":"2020-10-27T23:47:48.765Z"
-  }
-  // Modes
   const LOBBY = "LOBBY";
   const PLAY = "PLAY";
 
-  // const { user } = useContext(UserContext)
+  const history = useHistory()
+
+
+  const { user, setUser } = useContext(UserContext)
+
   // Navigating Modes
   const { mode, transition, back } = useVisualMode(LOBBY);
   //console.log(user, "check")
+
+  const handleLogout = () => {
+    axios.post("/logout", {}, { withCredentials: true })
+      .then((res) => {
+        setUser({
+          ...user,
+          isLoggedIn: false,
+          user: {}
+        })
+        history.push('/')
+      })
+  }
 
   //if mode === PREGAME
   return (
     //fixtures
 
     <div>
-       {mode === LOBBY && <Lobby user={testUser} onPlay={() => transition(PLAY, true)} />}
-      {mode === PLAY && <Play user={testUser} onQuit={()=>transition(LOBBY, true)}/>}
-      
+      <Navbar user={user.user} logout={handleLogout} />
+      {mode === LOBBY && <Lobby user={user.user} onPlay={() => transition(PLAY, true)} />}
+      {mode === PLAY && <Play user={user.user} onQuit={() => transition(LOBBY, true)} />}
+
     </div>
   )
 }
