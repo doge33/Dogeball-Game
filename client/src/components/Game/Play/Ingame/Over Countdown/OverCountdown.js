@@ -21,7 +21,7 @@ function OverCountdown(props){
         setCounter(counter - 1)
       } 
       if(counter === 0){
-        //props.onQuit(); //triggered by countdown to 0
+        props.onQuit(); //triggered by countdown to 0
       }
     }, 1000)
     return()=> clearInterval(intervalId); //clean up interval every re-render(basically every second)
