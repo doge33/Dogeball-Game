@@ -1,0 +1,182 @@
+/* 
+   Street Fighter countdown style
+   Aitor Porro
+   @lastpotion
+
+  Based on a Joan Leon(@nucliweb) pen: 
+  https://codepen.io/nucliweb/pen/doJXwM
+*/
+
+/************
+* Imports 
+*************/
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300);
+
+@import url(https://fonts.googleapis.com/css?family=Oswald|VT323);
+
+/************
+* Variables 
+*************/
+
+/* Colors */
+$white1 :  #FFFFFF;
+$red1   :  #D72B37;
+$gray1  :  #8A8A8A;
+
+$columns1 : 6;
+// States
+$on1:  #ffff47;
+$off1: #772222;
+
+$state1: (
+  1: $off1,
+  2: $on1
+);
+// Numbers maps 
+$number-00:  1,2,2,2,2,1,
+            2,2,1,1,2,2,
+            2,2,1,1,2,2,
+            2,2,1,1,2,2,
+            2,2,1,1,2,2,
+            2,2,1,1,2,2,
+            2,2,1,1,2,2,
+            1,2,2,2,2,1;
+
+$number-11:  1,1,2,2,1,1,
+            1,2,2,2,1,1,
+            1,1,2,2,1,1,
+            1,1,2,2,1,1,
+            1,1,2,2,1,1,
+            1,1,2,2,1,1,
+            1,1,2,2,1,1,
+            1,2,2,2,2,1;
+
+$number-22:  1,2,2,2,2,1,
+            2,2,1,1,2,2,
+            2,2,1,1,2,2,
+            1,1,1,1,2,2,
+            1,2,2,2,2,1,
+            2,2,1,1,1,1,
+            2,2,1,1,1,1,
+            2,2,2,2,2,2;
+
+$number-33:  1,2,2,2,2,1,
+            2,2,1,1,2,2,
+            1,1,1,1,2,2,
+            1,1,2,2,2,1,
+            1,1,1,1,2,2,
+            2,2,1,1,2,2,
+            2,2,1,1,2,2,
+            1,2,2,2,2,1;
+
+
+//Grid animator
+@function countdown1($num, $lights-count: $columns1){
+  $lights: ();
+  $c : 1;
+  $r : 0;
+
+  @for $i from 1 through length($num){
+    @if( nth($num,$i) > 0 ) {
+      $lights: append($lights, ($c * 40px) ($r * 40px) 2px map-get($state1,nth($num,$i)), 'comma');
+    }
+    @if($i % $columns1 == 0) {
+      $r: $r+1;
+      $c: 0;
+    }
+    $c: $c + 1;
+  }
+  @return $lights;
+}
+
+#root{
+  height:100vh;
+}
+// Plain Styles
+.start-countdown{
+  background-color:#1A1A1A;
+  border: 1px solid black;
+  height: 100vh !important;
+  // margin: auto 20% auto 20%;
+
+  //overflow:hidden;
+}
+
+
+.ready{
+  width:100%;
+  height: 100%vh;
+  display:inline-block;
+  font-family: 'VT323';
+  font-size:3.5em;
+  text-transform: uppercase;
+  margin-left:5%;
+  
+  p{
+    
+    margin:2% 0;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, stop(0%, #ff6500), color-stop(100%, #ee0b21e8));
+    background-image: -webkit-linear-gradient(#ff6500,#ee0b21e8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ff6500;
+    position: relative;
+    display:inline-block;
+    transition: 1s ease;
+
+    #ready{
+      margin: auto 30% auto 30%
+    }
+    &:hover{
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      transition: 0.5s ease;
+    }
+    
+
+    &:after {
+      background: none;
+      content: attr(data-text);
+      left: 0;
+      //position: absolute;
+      text-shadow: 3px 3px 2px rgba(0, 37, 140, 1);
+      top: 0;
+      z-index: 5;
+    }
+    &.pull-right{
+      //position:absolute;
+      top:0;
+      right:10%;
+    }
+  }
+}
+
+.wrapper-start{
+  display:flex;
+  width:200px;
+  height:320px;
+  margin:5% auto 0 auto;
+  color:#fff;
+  .countdown{
+    width:40px;
+    height: 40px;
+    border-radius:40px;
+    animation: count 3s step-start infinite;
+    box-shadow: countdown($number-33);
+    margin-left:-40px;
+  }
+  
+}
+
+@keyframes count1 {
+ 
+  25%  { box-shadow: countdown1($number-33); }
+  50%  { box-shadow: countdown1($number-22); }
+  75%  { box-shadow: countdown1($number-11); }
+  100%  { box-shadow: countdown1($number-00); }
+}
+
+
+
