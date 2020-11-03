@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useContext} from "react";
 import gameContext from "../../../../../Context/gameContext";
 import classNames from "classnames";
+// import "./StartCountdown.scss"
 
 function StartCountdown(props){
 
@@ -26,9 +27,9 @@ function StartCountdown(props){
   }, [gameActive, counter])
 
   return(
-    <div>
-      <h1>this is StartCountdown mode</h1>
-      <h1>{counter}</h1>
+    <div className="start-countdown">
+      <div className="ready"><p id="ready" data-text="READY?"></p></div>
+      <div className="wrapper-start"><div className="countdown"><h1>this sh*t will be replaced by a small animation, hopefully...{counter}</h1></div></div>
       
     </div>
   )

@@ -145,43 +145,64 @@ $number-9:  1,2,2,2,2,1,
   }
   @return $lights;
 }
+
+#root{
+  height:100vh;
+}
 // Plain Styles
-body{
-  //background-color:#1A1A1A;
-  width:100%;
-  height: 100%;
-  overflow:hidden;
+.street-fighter{
+  background-color:#1A1A1A;
+  //background: transparent;
+  border: 1px solid black;
+  height: 100vh !important;
+  // margin: auto 20% auto 20%;
+
+  //overflow:hidden;
 }
 
 
 .continue{
   width:100%;
-  height: 150px;
+  height: 100%vh;
   display:inline-block;
   font-family: 'VT323';
   font-size:3.5em;
   text-transform: uppercase;
   margin-left:5%;
+  
   p{
+    
     margin:2% 0;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, stop(0%, #ff6500), color-stop(100%, #b30013));
-    background-image: -webkit-linear-gradient(#ff6500,#b30013);
-    //-webkit-background-clip: text;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, stop(0%, #ff6500), color-stop(100%, #ee0b21e8));
+    background-image: -webkit-linear-gradient(#ff6500,#ee0b21e8);
+    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #ff6500;
     position: relative;
     display:inline-block;
+    transition: 1s ease;
+
+    
+    &:hover{
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      transition: 0.5s ease;
+    }
+    
+
     &:after {
       background: none;
       content: attr(data-text);
       left: 0;
-      position: absolute;
+      //position: absolute;
       text-shadow: 3px 3px 2px rgba(0, 37, 140, 1);
       top: 0;
-      z-index: -1;
+      z-index: 5;
     }
     &.pull-right{
-      position:absolute;
+      //position:absolute;
       top:0;
       right:10%;
     }

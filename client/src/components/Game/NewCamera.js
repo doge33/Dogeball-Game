@@ -22,7 +22,7 @@ function NewCamera(props) {
   const webcamRef = useRef(null);
   const canvasRef = useRef(props.canvas);
   let {score, setScore} = useContext(scoreContext); //this for updating the score itself
-  const {gameActive, setGameActive} = useContext(gameContext); //this for when the start/stop score-counting
+  const {gameActive, setGameActive} = useContext(gameContext); //this for when to start/stop score-counting
   
   // Projectile Generation
  // ----------------------------------------------------
@@ -32,7 +32,7 @@ function NewCamera(props) {
   for (let i = 0; i < 9; i++) {
     // Generates random number between 0 and .99 that is used to plot coordinates on canvas
     projectileGenerator(projectileCoords, badProjectile);
-    //  console.log("line29 NewCamera: projectileCoords  & i is", i, projectileCoords)
+ 
   }
 // ----------------------------------------------------
   
