@@ -48,7 +48,7 @@
   opacity: 0;
   -o-animation: cssAnimation 5s;
   position: absolute;
-  animation-delay: 2s;
+  animation-delay: 1s;
   animation: nyancat 8s linear 2s infinite ;
 }
 @keyframes nyancat {
@@ -56,3 +56,22 @@
   100%  {opacity:1;left:100vw; top:30vh;}
 
 }  
+
+#dog{
+
+  opacity: 0;
+  -o-animation: cssAnimation 3s;
+  position: absolute;
+  //animation-delay: 2s;
+  animation: dog 2s linear;
+  animation-fill-mode: forwards;
+  z-index: 0;
+  
+}
+@keyframes dog {
+  0%   {left:60vw; top:0vh;}
+  50%  {opacity: 1;left:60vw; top:15vh;}
+  75%  {left:60vw; top:10vh;}
+  100%  {opacity: 0.5;left:60vw; top:15vh;}
+
+}

@@ -6,9 +6,10 @@ import classNames from "classnames";
 
 function Timer (props) {
 
-  const [second, setSecond] = useState(20);
+  const [second, setSecond] = useState(30);
   const {gameActive, setGameActive} = useContext(gameContext);
  
+  
 
   useEffect(()=>{
     let intervalId;
@@ -32,7 +33,7 @@ function Timer (props) {
   function stopTimer(){
    //setCountScore(false);//set countScore to false => stop counting score!
      //console.log("in Timer at stopTimer, countScore is:", countScore);
-    setSecond(20);
+    setSecond(30);
     //setCountScore(false);
 
   }
@@ -44,13 +45,6 @@ function Timer (props) {
         {/* <h1>Time :</h1> */}
         <div className="second">{second}</div> 
       </div>
-
-      {/* <div className="buttons">
-        {/* this line will be taken out */}
-        {/* <button onClick={()=> setGameActive(!gameActive)} className="start">{gameActive? "Pause":"Start"}</button>
-        <button onClick={stopTimer} className="reset">Reset</button>
-      </div> */} 
-
     </div>
   )
 }

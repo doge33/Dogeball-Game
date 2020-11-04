@@ -12,6 +12,7 @@ import "./Ingame.scss";
 
 const initialState = {
     score: 0,
+    gameActive: true
   }
 function Ingame(props) {
 
@@ -22,12 +23,13 @@ function Ingame(props) {
   const START = "START";
   const OVER = "OVER";
   const DURING = "DURING";
-  const { mode, transition, back } = useVisualMode(START);
+  const { mode, transition, back } = useVisualMode(DURING);
   
     function handleRestart(){
     //initialize all necessary states for restart.
       setScore(initialState.score);
-      transition(START, true)
+      setGameActive(initialState.gameActive)
+      transition(DURING, true)
     }
 
     console.log("inside Ingame, curent score is", score);
@@ -41,8 +43,8 @@ function Ingame(props) {
 
         <scoreContext.Provider value={{score, setScore}}>
 
-          <div className="in-game">
-            {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>}
+          <div className="in-game" >
+            {/* {mode === START && <StartCountdown startGame={() => transition(DURING, true)}/>} */}
             {mode === DURING && <DuringGame gameOver={()=>transition(OVER, true)} />}
             {mode === OVER && <OverCountdown onRestart={handleRestart} onQuit={props.onQuit}/>}
           </div>

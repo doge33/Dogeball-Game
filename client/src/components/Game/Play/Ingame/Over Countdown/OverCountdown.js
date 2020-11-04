@@ -21,7 +21,7 @@ function OverCountdown(props){
         setCounter(counter - 1)
       } 
       if(counter === 0){
-        //props.onQuit(); //triggered by countdown to 0
+        props.onQuit(); //triggered by countdown to 0
       }
     }, 1000)
     return()=> clearInterval(intervalId); //clean up interval every re-render(basically every second)
@@ -36,13 +36,8 @@ function OverCountdown(props){
     <div className="street-fighter">
 
         <div className="result"><Result score={score}/></div>
-      
-        {/* <h1>this is OverCountdown mode</h1>
-        <h1>FinalScore: {score}</h1> */}
-        {/* <h1>{score < 10? "The Evil Nyan Cats Have Taken Over" : "Doge Hero" }</h1> */}
+  
         <div className="continue">
-          {/* <Button  onClick={props.onRestart} data-text="RESTART?">Restart?</Button>
-          <Button onClick={props.onQuit} className='pull-right' data-text="QUIT"></Button> */}
           <p onClick={props.onRestart} className="pull-left" data-text="RESTART?"></p>
           <p onClick={props.onQuit} className="pull-right" data-text="QUIT"></p>
         </div>
