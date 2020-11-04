@@ -6,7 +6,7 @@ function Button(props) {
 
   const buttonClass = classNames({
     "btn": true,
-    "btn-primary": true,
+    //"btn-outline-info": true,
     "btn-lg": true
   })
 
