@@ -7,10 +7,10 @@ function Introduction() {
     <div>
       <h1> WELCOME TO DOGEBALL! </h1>
       <div className="rules">
-        <p>1. Please allow access to your webcam.</p>
-        <p>2. Adjust your webcam & click Play</p>
-        <p>3. Put up your hand before the camera and see their avatars on screen. Using your avatar, smash the START button when ready</p>
-        <p>4. Try to catch as many Dogeballs as you can, and avoid touching it with your body</p>
+        <p>1. Please allow access to your webcam</p>
+        <p>2. When starting a match, make sure you're in a well-lit area and at least a couple of feet back from your camera</p>
+        <p>3. Position your head and wrists within view of your camera, and confirm that the corresponding avatar points are rendered on screen.</p>
+        <p>4. The avatar points should move along with your head and wrists. Try to catch as many Dogeballs as you can while avoiding the dastardly Nyan Cats! </p>
         <p>5. Have fun!!!</p>
       </div>
     </div>

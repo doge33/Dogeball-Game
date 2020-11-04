@@ -17,8 +17,8 @@
 // =======================================================
 // Global constants for utilities
 // =======================================================
-import img from './components/Game/doge_ball.png';
-import img2 from './components/Game/nyan_cat.png';
+import img from './assets/doge_ball.png';
+import img2 from './assets/nyan_cat.png';
 
 const boundingBoxColor = 'red';
 const minConfidence = .50;
