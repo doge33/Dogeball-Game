@@ -1,5 +1,3 @@
-@import "~bootstrap/scss/bootstrap";
-@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@300;800&display=swap');
 // $base-color: white;
 // $base-background-color: #171717;
@@ -14,5 +12,22 @@
 
 .pre-game{
   background-image:url(./universe2.webp);
-  height: 100vh;
+  background-size: cover;
+  position: absolute;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: scroll;
+
+  .instructions{
+
+
+      margin-top: 3em;
+      //background: rgba(222, 184, 135, 0.623);
+      text-align: center;
+    
+    
+      font-family:"Turret road";
+      color:  #FCAf38;
+      font-weight: 600
+  }
 }

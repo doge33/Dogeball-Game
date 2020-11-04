@@ -11,6 +11,7 @@ import React, { useEffect, useRef, useContext, useState } from 'react';
 import './Game.scss';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
+import tutorialContext from "../../Context/tutorialContext"
 import Webcam from "react-webcam";
 import { collisionDetection, projectileGenerator, shiftCoordinates, renderCanvas } from '../../utilities';
 
@@ -18,7 +19,8 @@ import { collisionDetection, projectileGenerator, shiftCoordinates, renderCanvas
 function Tutorial(props) {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  
+  //let {tutorialOpen} = props;
+  const {tutorialActive} = useContext(tutorialContext);
   
   // Projectile Generation
  // ----------------------------------------------------
@@ -93,7 +95,9 @@ function Tutorial(props) {
     }  
   },[]);
  
-  
+  if(!tutorialActive) {
+    return null;
+  } else {
   return (
     <div className="App">
       <header className="App-header">
@@ -129,5 +133,5 @@ function Tutorial(props) {
     </div>
   );
 }
-
+}
 export default Tutorial;

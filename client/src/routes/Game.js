@@ -25,7 +25,7 @@ function Game() {
   const { user, setUser } = useContext(UserContext)
 
   // Navigating Modes
-  const { mode, transition, back } = useVisualMode(LOBBY);
+  const { mode, transition, back } = useVisualMode(PLAY);
   //console.log(user, "check")
 
   const handleLogout = () => {

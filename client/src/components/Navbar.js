@@ -7,7 +7,7 @@ import History from "./Game/Lobby/UserHistory"
 
 function Navbar(props) {
 
-  const username = props.user.username ? props.user.username : ""
+  const username = props.user.user.username ? props.user.user.username : ""
   const navClass = classNames("navbar-expand-lg navbar-light", {
     "navbar__layout": username,
     "navbar__landing-page": username === "",
