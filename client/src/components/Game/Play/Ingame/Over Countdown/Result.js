@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import "./Result.scss";
-import nyan from "../../../nyan_cat.png";
-import doge from "../../../dogehero.png";
+import nyan from "../../../../../assets/nyan_cat.png";
+import doge from "../../../../../assets/dogehero.png";
 
 
 function Result(props){
