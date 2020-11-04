@@ -1,5 +1,5 @@
 import React from 'react';
-import MK from './michael_photo.jpg'
+import MK from '../assets/michael_photo.jpg'
 
 function TeamCard() {
   return (
