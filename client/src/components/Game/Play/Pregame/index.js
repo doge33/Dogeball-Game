@@ -49,8 +49,8 @@ function Pregame(props) {
       
       <div className="instructions" style={{marginTop:"10rem"}}>
       {/* style={{color:"#91C7B1"}} */}
-        <h1 style={{marginBottom:"5rem"}}>CLICK START TO PLAY WHEN YOU ARE READY</h1>
-        <Button id="ready-btn" onClick={() => props.onReady()}>I'm ready!</Button>
+        <h1 style={{marginBottom:"5rem"}}>CLICK THE READY BUTTON TO BEGIN PLAYING</h1>
+        <Button id="ready-btn" onClick={() => props.onReady()}>Ready</Button>
       <div className="tutorial" style={{marginTop:"5rem"}}>
         <Button id="tutorial-btn" onClick={() => expandTutorial()}>Tutorial</Button>
       <Tutorial />
