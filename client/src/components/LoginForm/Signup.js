@@ -20,6 +20,11 @@ function Signup() {
   })
 
   const { user, setUser } = useContext(UserContext)
+  const isInvalid =
+    state.password !== state.confirm_password ||
+    state.password === "" ||
+    state.email === "" ||
+    state.username === "";
 
   /**
  * use of History to redirect the page
@@ -35,6 +40,15 @@ function Signup() {
     setState({
       ...state,
       [event.target.name]: value
+    });
+  }
+
+
+  const handleLogin = data => {
+    setUser({
+      ...user,
+      isLoggedIn: true,
+      user: data.user
     });
   }
 
@@ -54,14 +68,6 @@ function Signup() {
         }
       })
       .catch(err => console.log(err))
-  }
-
-  const handleLogin = data => {
-    setUser({
-      ...user,
-      isLoggedIn: true,
-      user: data.user
-    });
   }
 
   return (
@@ -109,7 +115,7 @@ function Signup() {
           onChange={handleChange}
         />
       </form>
-      <Button onClick={handleSubmit}>Sign up</Button>
+      <Button disabled={isInvalid} onClick={handleSubmit}>Sign up</Button>
     </SlidingForm>
   );
 }

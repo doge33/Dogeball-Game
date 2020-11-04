@@ -34,10 +34,19 @@ function Login(props) {
     });
   }
 
+  const handleLogin = data => {
+    setUser({
+      ...user,
+      isLoggedIn: true,
+      user: data.user
+    });
+  }
+
+
   /**
-   * Functions calls the axios to find the data from database
-   * Update the user state if found
-   */
+ * Functions calls the axios to find the data from database
+ * Update the user state if found
+ */
   const handleSubmit = () => {
     // POST request to the rails server to enter the data to the database
     axios.post("/login", { ...state }, { withCredentials: true })
@@ -49,14 +58,8 @@ function Login(props) {
         // }
       })
       .catch(err => console.log('api error:', err))
-  }
 
-  const handleLogin = data => {
-    setUser({
-      ...user,
-      isLoggedIn: true,
-      user: data.user
-    });
+
   }
 
   return (
