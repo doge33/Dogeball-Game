@@ -24,7 +24,7 @@ function TeamCard() {
         </div>
       </div>
 
-      <div className="card card__MK">
+      <div className="card card__MK-bg">
         <div className="card-image">
           <div>
             <img src={MK} alt="MK" />
@@ -35,7 +35,7 @@ function TeamCard() {
           {/* <h2>Post One</h2> */}
           <p><div className="2">Former financial analyst turned developer. Avid gamer who also loves a good book. And long walks on the beach.</div></p>
         </div>
-        <div className="card-contact card-contact__MK">
+        <div className="card-contact card-contact__MK-social">
           <div className="contact contact-1">
             <a href="https://github.com/mrklep90" target="_blank"><i class="fa fa-github"></i></a>
           </div>

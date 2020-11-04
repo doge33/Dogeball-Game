@@ -291,7 +291,7 @@ main {
     transition: 0.5s ease;
     cursor: pointer;
 
-    &__MK {
+    &__MK-bg {
       background: rgb(153, 190, 233);
     }
 
@@ -346,7 +346,7 @@ main {
       border-bottom-right-radius: 15px;
       background: $card-one-social;
 
-      &__MK {
+      &__MK-social {
         background: #4D94FF;
       }
 
