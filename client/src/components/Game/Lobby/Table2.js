@@ -11,7 +11,7 @@ function Table2(props){
       <table class="table table-hover table-dark" >
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Highest_Score</th>
+          <th scope="col">Score</th>
           <th scope="col">Played on</th>
         </tr>
       </thead>

@@ -59,8 +59,8 @@ function Tutorial(props) {
       const videoHeight = window.innerHeight;
 
       // Set video width
-      video.width = videoWidth * 0.8;
-      video.height = videoHeight * 0.8;
+      video.width = videoWidth;
+      video.height = videoHeight;
 
       //Make Detections of pose
       const pose = await net.estimateSinglePose(video, {
