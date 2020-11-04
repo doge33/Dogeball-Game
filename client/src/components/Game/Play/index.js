@@ -15,9 +15,9 @@ function Play(props){
   return(
     <div>
       
-      {mode === PREGAME && <Pregame onReady={()=>transition(INGAME)} />}
+      {mode === PREGAME && <Pregame onReady={()=>transition(INGAME, true)} />}
 
-      {mode === INGAME && <Ingame onQuit={props.onQuit} />} 
+      {mode === INGAME && <Ingame onQuit={()=>transition(PREGAME, true)} />} 
       
     </div>
   )
