@@ -33,11 +33,13 @@ function Home() {
             <Introduction />
           </section>
 
-          <ThemeProvider theme={theme}>
-            <div className="form">
-              <LoginForm user={user} />
-            </div>
-          </ThemeProvider>
+          <section>
+            <ThemeProvider theme={theme}>
+              <div className="form">
+                <LoginForm user={user} />
+              </div>
+            </ThemeProvider>
+          </section>
         </main>
 
         <TeamCards />
