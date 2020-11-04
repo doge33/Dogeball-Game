@@ -72,7 +72,7 @@ function Signup() {
 
   return (
     <SlidingForm signup>
-      <h1>Create Account</h1>
+      <h1 className="form-titles">Create Account</h1>
       {/* <div>
         <SocialButton>
           <FontAwesomeIcon icon={['fab', 'facebook-f']} />

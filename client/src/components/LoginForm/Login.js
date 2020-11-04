@@ -64,7 +64,7 @@ function Login(props) {
 
   return (
     <SlidingForm>
-      <h1>Sign in</h1>
+      <h1 className="form-titles">Sign in</h1>
       {/* <div>
         <SocialButton>
           <FontAwesomeIcon icon={['fab', 'facebook-f']} />

@@ -2,22 +2,32 @@ import React from "react";
 import Navbar from "../../../Navbar";
 import Button from "../../../Button";
 import Tutorial from "../../Tutorial";
-import "../../Tutorial.scss";
+//import "../../Tutorial.scss"; //=> conflict with App.scss
 
 
 function Pregame(props) {
 
   //insert tutorial here
   return (
-    <div className="pre-game">
-    <div className="animate-in">
+    
+    <div className="animate-in pre-game">
+    {/* <Navbar  />  */}
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+          
+      </div> 
       
-      <h1>Hello this is Pre-game mode</h1>
-      <Button  onClick={() => props.onReady()}>Go to In-game mode</Button>
+      <div className="instructions">
+        <h1>Try to catch dogeballs and avoid the nyan-cats using your face & hands!</h1>
+      <Button id="ready-btn" onClick={() => props.onReady()}>I'm ready!</Button>
+      </div>
+      
       <Tutorial />
     </div>
     
-    </div>
+
   )
 
 }

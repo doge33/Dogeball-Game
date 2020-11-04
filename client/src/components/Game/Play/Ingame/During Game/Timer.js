@@ -31,10 +31,8 @@ function Timer (props) {
   }, [gameActive, second]) //the dependency array ensures that the effect ONLY runs when either of them changes
 
   function stopTimer(){
-   //setCountScore(false);//set countScore to false => stop counting score!
-     //console.log("in Timer at stopTimer, countScore is:", countScore);
+   
     setSecond(30);
-    //setCountScore(false);
 
   }
   //console.log("gameActive is", gameActive)
@@ -42,7 +40,6 @@ function Timer (props) {
     <div className="container" id="timer">
 
       <div className="time">
-        {/* <h1>Time :</h1> */}
         <div className="second">{second}</div> 
       </div>
     </div>
