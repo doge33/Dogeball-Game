@@ -22,23 +22,26 @@ function Home() {
 
   return (
     <Fragment>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <Navbar user={user} />
 
-      <Navbar user={user} />
+        <main className="main-container animate-in" id="about">
+          <section className="introduction">
+            <Introduction />
+          </section>
 
-      <main className="main-container animate-in" id="about">
-        <section className="introduction">
-          <Introduction />
-        </section>
+          <ThemeProvider theme={theme}>
+            <div className="form">
+              <LoginForm user={user} />
+            </div>
+          </ThemeProvider>
+        </main>
 
-        <ThemeProvider theme={theme}>
-          <div className="form">
-            <LoginForm user={user} />
-          </div>
-        </ThemeProvider>
-      </main>
-
-      <TeamCards />
-
+        <TeamCards />
+      </div>
     </Fragment>
   )
 }
