@@ -12,7 +12,7 @@ function Leaderboard() {
 
   function ranking(state) {
     let rankScores = [];
-
+    console.log(state.users)
     for (let m = 0; m < state.matches.length - 1; m++) {
 
       const match = state.matches[m];
@@ -49,7 +49,7 @@ function Leaderboard() {
       </Button>
 
       <Collapse in={open}>
-        <div id="collapse-text"><Table1 className="table" listScores={listScores} /></div>
+        <div id="collapse-text"><Table1 className="table table-dark" listScores={listScores} /></div>
       </Collapse>
 
     </div>

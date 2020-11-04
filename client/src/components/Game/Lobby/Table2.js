@@ -8,7 +8,7 @@ function Table2(props){
  
   return(
 
-      <table class="table table-hover">
+      <table class="table table-hover table-dark" >
       <thead class="thead-dark">
         <tr>
           <th scope="col">Highest_Score</th>
