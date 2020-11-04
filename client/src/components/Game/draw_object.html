@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Canvas</title>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
+
+<head>
+  <meta charset="utf-8">
+  <title>Canvas</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas class="myCanvas">
+    <p>Add suitable fallback here.</p>
+  </canvas>
+
+  <script>
+
+    const canvas = document.querySelector('.myCanvas');
+    const width = canvas.width = window.innerWidth;
+    const height = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    let imgTag = new Image();
+    let x = canvas.width;
+    let y = 20;
+
+    imgTag.onload = animate;
+    imgTag.src = "hand.png";   // load image
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
+      ctx.drawImage(imgTag, 0, 0, 486, 597, x, y, 100, 120);                       // draw image at current position
+      //ctx.drawImage(imgTag, x, y)
+      x -= 4;
+      if (x > 0) {
+        requestAnimationFrame(animate)        // loop
+      } else {
+        x = canvas.width
+        requestAnimationFrame(animate)
       }
-    </style>
-  </head>
-  <body>
-    <canvas class="myCanvas">
-      <p>Add suitable fallback here.</p>
-    </canvas>
-
-    <script>
-
-      const canvas = document.querySelector('.myCanvas');
-      const width = canvas.width = window.innerWidth;
-      const height = canvas.height = window.innerHeight;
-      const ctx = canvas.getContext('2d');
-
-      let imgTag = new Image();
-      let x = canvas.width;
-      let y = 20;
-
-      imgTag.onload = animate;
-      imgTag.src = "hand.png";   // load image
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);  // clear canvas
-        ctx.drawImage(imgTag, 0, 0, 486, 597, x, y, 100, 120);                       // draw image at current position
-        //ctx.drawImage(imgTag, x, y)
-        x -= 4;
-        if (x > 0) {
-          requestAnimationFrame(animate)        // loop
-        } else {
-          x = canvas.width
-          requestAnimationFrame(animate)
-        }
-      }
-      
+    }
 
 
 
@@ -51,14 +52,15 @@
 
 
 
-      // let image2 = new Image(); //create a new htmlImageElement object using the image constructor
-      // image2.src = "hand.png";
 
-      // //make sure wait till image has been loaded first
-      // image2.onload = function(){
-      // //ctx.drawImage(image, 50, 50); //image, X, Y of topLeftCorner of image
-      // ctx.drawImage(image2, 0, 0, 486, 597, 550, 200, 100, 120);
-      // }
-    </script>
-  </body>
+    // let image2 = new Image(); //create a new htmlImageElement object using the image constructor
+    // image2.src = "hand.png";
+
+    // //make sure wait till image has been loaded first
+    // image2.onload = function(){
+    // //ctx.drawImage(image, 50, 50); //image, X, Y of topLeftCorner of image
+    // ctx.drawImage(image2, 0, 0, 486, 597, 550, 200, 100, 120);
+  </script>
+</body>
+
 </html>

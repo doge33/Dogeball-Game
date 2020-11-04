@@ -213,7 +213,7 @@ export function collisionDetection(pose, projectileCoords, videoWidth, videoHeig
   // Hitbox Comparison
   //(detectCollision =>[undefined, undefined] or [2,0], [6,0], or [other numbers in 1~7, 1])
   return detectCollision(poseHitboxes, projectileHitboxes)
-  
+
 };
 
 // -----------------------------------------------------------------
