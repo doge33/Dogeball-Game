@@ -8,7 +8,7 @@ function TeamCard() {
         <div className="card-text">
           <span className="name">AA</span>
           <h2>Post One</h2>
-          <p><div className="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quam pariatur enim,</div></p>
+          <p><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quam pariatur enim,</div></p>
         </div>
         <div className="card-contact">
           <div className="contact contact-1">

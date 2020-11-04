@@ -6,8 +6,14 @@
 // @import "./components/Game/button.scss";
 
 $base-color: white;
+
 $base-background-color: #171717;
+$background-lines: rgba(255, 255, 255, 0);
+$falling-drop-color: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+
+// Nav icons and Intro - same color
 $nav-hover-color: #FCAf38;
+
 $color-blue: #50A3A4;
 $form-color: linear-gradient(to right,#FF4B2B,#FF416C);
 
@@ -62,7 +68,7 @@ body {
       height: 100%;
       top: 0;
       left: 50%;
-      background: rgba(255, 255, 255, 0.1);
+      background: $background-lines;
       // overflow: hidden;
       &::after {
         content: '';
@@ -72,7 +78,7 @@ body {
         width: 100%;
         top: -50%;
         left: 0;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+        background: $falling-drop-color;
         animation: run 7s 0s infinite;
         animation-fill-mode: forwards;
         animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
@@ -249,7 +255,6 @@ main {
 }
 
 .introduction {
-  z-index: 1;
   color: $nav-hover-color
 }
 
