@@ -50,15 +50,6 @@ function Navbar(props) {
                     <div className="name"><span data-text="Team">Team</span></div>
                   </a>
                 </li>
-                <li className="nav-item active">
-                  <a href="#contact">
-                    <div className="icon">
-                      <i class="fa fa-envelope" aria-hidden="true"></i>
-                      <i class="fa fa-envelope" aria-hidden="true"></i>
-                    </div>
-                    <div className="name"><span data-text="Contact">Contact</span></div>
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
