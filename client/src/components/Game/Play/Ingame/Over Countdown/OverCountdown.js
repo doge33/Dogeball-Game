@@ -44,7 +44,7 @@ function OverCountdown(props){
 
         {/* manually quit */}
         <div className="wrapper">
-          <div className="countdown">{counter }</div>
+          <div className="countdown"></div>
         </div>
 
     </div>
