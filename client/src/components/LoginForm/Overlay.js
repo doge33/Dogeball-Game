@@ -5,14 +5,14 @@ import { STATE_LOG_IN } from './useToggle'
 const WelcomeOverlay = () => (
   <InnerLogin className="inner">
     <h1>Welcome Back!</h1>
-    <p>To keep connected with us please login with your personal info</p>
+    <p>Login to the side to resume catching Doges</p>
   </InnerLogin>
 )
 
 const NewOverlay = () => (
   <InnerSignup className="inner">
-    <h1>Hello, Friend!</h1>
-    <p>Enter your details below to start your journey with us</p>
+    <h1>Hey There!</h1>
+    <p>Enter your details to the side to start your Doge catching adventure</p>
   </InnerSignup>
 )
 
