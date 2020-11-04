@@ -12,13 +12,12 @@ function UserHistory() {
   const {state} = useApplicationData();
   const {user} = useContext(userContext);
 
-  //console.log("inside User history, user is", user)
-
   //find matches that were played by logged-in user
   const userMatches = state.matches.filter((match) => user.user.id === match.user_id)
-  
 
-  const userHistory = userMatches.map((match) => {
+  const sortedHistory = userMatches.sort((a,b) => new Date(b.day_played) - new Date(a.day_played))
+
+  const userHistory = sortedHistory.map((match) => {
     const date = new Date(match.day_played)
     const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()+1}. ${date.getUTCDate()}`
     
