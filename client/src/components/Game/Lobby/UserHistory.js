@@ -19,7 +19,7 @@ function UserHistory() {
 
   const userHistory = userMatches.map((match) => {
     const date = new Date(match.day_played)
-    const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()}. ${date.getUTCDate()}`
+    const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()+1}. ${date.getUTCDate()}`
     
     return(
       <tr>

@@ -42,6 +42,17 @@ export function renderCanvas(canvas, pose, projectileCoords, videoWidth, videoHe
     generateProjectile(ctx, videoWidth, videoHeight, projectileCoords);
   }
 }
+
+export function renderCanvas2(canvas, pose, projectileCoords, videoWidth, videoHeight) {
+  if (canvas.current) {
+    const ctx = canvas.current.getContext("2d");
+    canvas.current.width = videoWidth;
+    canvas.current.height = videoHeight;
+  
+    drawKeypointsAvatar(ctx, pose["keypoints"]);
+    generateProjectile(ctx, videoWidth, videoHeight, projectileCoords);
+  }
+}
 // ----------------------------------------------------
 // * Helper function - used to render a point on canvas
 // ----------------------------------------------------
