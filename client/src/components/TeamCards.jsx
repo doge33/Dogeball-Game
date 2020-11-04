@@ -1,22 +1,28 @@
 import React from 'react';
 import MK from '../assets/michael_photo.jpg'
+import AA from '../assets/adnan_ash.jpg'
+import SL from '../assets/sandy.png'
 
 function TeamCard() {
   return (
     <div className="card-container" id="team">
-      <div className="card">
-        <div className="card-image"></div>
+      <div className="card card__AA-bg">
+        <div className="card-image">
+          <div>
+            <img src={AA} alt="AA" />
+          </div>
+        </div>
         <div className="card-text">
           <span className="name">AA</span>
-          {/* <h2>Post One</h2> */}
+          {/* <h2>Adnan Ashfaq</h2> */}
           <p><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quam pariatur enim,</div></p>
         </div>
-        <div className="card-contact">
+        <div className="card-contact card-contact__AA-social">
           <div className="contact contact-1">
-            <a href="" target="_blank"><i class="fa fa-github"></i></a>
+            <a href="https://github.com/dreamb0yDani" target="_blank"><i class="fa fa-github"></i></a>
           </div>
           <div className="contact contact-2 border-sides">
-            <a href="" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/adnanashfaq/" target="_blank"><i class="fa fa-linkedin"></i></a>
           </div>
           <div className="contact contact-3">
             <a href="" target="_blank"><i class="fa fa-github"></i></a>
@@ -48,19 +54,23 @@ function TeamCard() {
         </div>
       </div>
 
-      <div className="card">
-        <div className="card-image"></div>
+      <div className="card card__SL-bg">
+        <div className="card-image">
+          <div>
+            <img src={SL} alt="SL" />
+          </div>
+        </div>
         <div className="card-text">
           <span className="name">SL</span>
           {/* <h2>Post One</h2> */}
           <p><div className="2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quam pariatur enim,</div></p>
         </div>
-        <div className="card-contact" style={{ background: "#FCAF38" }}>
+        <div className="card-contact card-contact__SL-social">
           <div className="contact contact-1">
-            <a href="" target="_blank"><i class="fa fa-github"></i></a>
+            <a href="https://github.com/doge33" target="_blank"><i class="fa fa-github"></i></a>
           </div>
           <div className="contact contact-2 border-sides">
-            <a href="" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/sandy-long-3657b335/" target="_blank"><i class="fa fa-linkedin"></i></a>
           </div>
           <div className="contact contact-3">
             <a href="" target="_blank"><i class="fa fa-github"></i></a>
