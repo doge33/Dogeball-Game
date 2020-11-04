@@ -16,11 +16,13 @@ function UserHistory() {
 
   //find matches that were played by logged-in user
   const userMatches = state.matches.filter((match) => user.user.id === match.user_id)
+  
 
   const userHistory = userMatches.map((match) => {
     const date = new Date(match.day_played)
     const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()+1}. ${date.getUTCDate()}`
     
+
     return(
       <tr>
         <th>{match.score}</th>
