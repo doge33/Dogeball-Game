@@ -1,20 +1,22 @@
 import React from "react";
 import Navbar from "../../../Navbar";
 import Button from "../../../Button";
-import NewCamera from "../../NewCamera";
+import Tutorial from "../../Tutorial";
+import "../../Tutorial.scss";
 
 
 function Pregame(props) {
 
+  //insert tutorial here
   return (
-    <div>
+    <div className="pre-game">
     <div className="animate-in">
-      {/* <Navbar user={props.user}/> */}
       
       <h1>Hello this is Pre-game mode</h1>
       <Button  onClick={() => props.onReady()}>Go to In-game mode</Button>
+      <Tutorial />
     </div>
-    {/* <NewCamera className="Newcamera" /> */}
+    
     </div>
   )
 
