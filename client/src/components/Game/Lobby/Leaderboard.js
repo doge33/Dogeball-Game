@@ -22,10 +22,10 @@ function Leaderboard() {
       const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()+1}. ${date.getUTCDate()}`
       const game = (
         <tr>
-          <th scope="row">{m + 1}</th>
-          <th>{match.score}</th>
-          <th>{dateParsed}</th>
-          <th>{user.username} </th>
+          <th style={{fontFamily: "Orbitron", color:"white"}} scope="row">{m + 1}</th>
+          <th style={{fontFamily: "Orbitron", color:"white"}}>{match.score}</th>
+          <th style={{fontFamily: "Orbitron", color:"white"}}>{dateParsed}</th>
+          <th style={{fontFamily: "Orbitron", color:"white"}}>{user.username} </th>
         </tr>
       )
 

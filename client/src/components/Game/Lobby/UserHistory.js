@@ -25,8 +25,8 @@ function UserHistory() {
 
     return(
       <tr>
-        <th>{match.score}</th>
-        <th>{dateParsed}  </th>
+        <th style={{fontFamily: "Orbitron", color:"white"}}>{match.score}</th>
+        <th style={{fontFamily: "Orbitron", color:"white"}}>{dateParsed}  </th>
       </tr>
     
     );

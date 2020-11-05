@@ -9,8 +9,8 @@ function Table2(props){
  
   return(
 
-      <table class="table table-hover" >
-      <thead class="thead-dark">
+      <table class="table table-hover table-striped" >
+      <thead class="thead">
         <tr>
           <th scope="col">Score</th>
           <th scope="col">Played on</th>

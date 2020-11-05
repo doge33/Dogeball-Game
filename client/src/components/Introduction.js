@@ -7,7 +7,7 @@ function Introduction() {
     <div>
       <h1> WELCOME TO DOGEBALL! </h1>
       <div className="rules">
-        <p>
+        <p style={{fontSize: "21px"}}>
           1. Please allow access to your webcam<br />
           2. When starting a match, make sure you're in a well-lit area and at least a couple of feet back from your camera<br />
           3. Position your head and wrists within view of your camera, and confirm that the corresponding avatar points are rendered on screen.<br />
