@@ -47,7 +47,7 @@ function Leaderboard() {
       >
         <h1> Leaderboard </h1>
       </Button>
-
+      
       <Collapse in={open}>
         <div id="collapse-text"><Table1 className="table table-dark" listScores={listScores} /></div>
       </Collapse>
