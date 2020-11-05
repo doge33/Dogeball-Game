@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 import Button from "./Button";
 import Leaderboard from "./Game/Lobby/Leaderboard"
@@ -8,7 +8,7 @@ import userContext from "../Context/userContext"
 
 function Navbar(props) {
 
-  const {user} = useContext(userContext)
+  const { user } = useContext(userContext)
   console.log(props.user)
   const username = props.user.username ? props.user.username : ""
   const navClass = classNames("navbar-expand-lg navbar-light", {
@@ -24,7 +24,7 @@ function Navbar(props) {
       {
         username ?
           <div className="navbar--user">
-            <h1>Welcome {username}</h1>
+            <h1>{username}</h1>
             <Leaderboard />
             <History />
             <div>
@@ -56,7 +56,7 @@ function Navbar(props) {
                 </li>
               </ul>
             </div>
-            
+
           </div>
       }
     </nav >

@@ -21,7 +21,7 @@ function Signup() {
 
   const { user, setUser } = useContext(UserContext)
   const isInvalid =
-    state.password !== state.confirm_password ||
+    state.password !== state.password_confirmation ||
     state.password === "" ||
     state.email === "" ||
     state.username === "";

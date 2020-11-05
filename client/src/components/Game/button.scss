@@ -2,8 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
 
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
 .btn{
   border-radius: 20px;
+  
   &--guest {
   visibility: hidden
   };
@@ -11,4 +17,11 @@
   border: 1px solid orange;
   font-family: Orbitron;
   color: white;
+}
+
+.collapse {
+  overflow-y: scroll;
+  max-height: 400px;
+  // z-index: 999;
+  overflow:hidden;
 }
