@@ -254,7 +254,7 @@ body {
 main {
     display: flex;
     justify-content: space-between;
-    margin: 8rem 2rem;
+    margin: 6rem 2rem;
     // margin-top: -10rem;
     
     font-weight: 500;
@@ -269,7 +269,7 @@ main {
   margin-right: 5em;
   z-index: 1;
   color: $nav-hover-color;
-  font-size: 1.5em;
+  font-size: 1.0em;
   font-family: $Turret-Road-font;
   text-align: center;
 }
@@ -294,7 +294,7 @@ main {
   justify-content: space-evenly;
   overflow: hidden;
   background-size: cover;
-  margin-top: 35vh;
+  margin-top: 15vh;
 
   .card {
     display: grid;
