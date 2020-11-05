@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@300;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 @import "custom.scss";
 //@import "./components/Game/Play/Ingame/Over Countdown/street-fighter-style-Countdown.scss";
 // @import "./components/Game/button.scss";
@@ -245,8 +246,9 @@ body {
     width: 100vw;
     justify-content: space-between;
 
-    h1 {
-      color: white
+    h2 {
+      color: white;
+      font-family: Orbitron;
     }
   }
 }

@@ -94,7 +94,7 @@ function Login(props) {
         />
       </form>
       <p>
-        <a href="#">Forgot your password?</a>
+        
       </p>
       <Button onClick={handleSubmit}>Sign in</Button>
     </SlidingForm>

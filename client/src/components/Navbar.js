@@ -24,7 +24,7 @@ function Navbar(props) {
       {
         username ?
           <div className="navbar--user">
-            <h1>{username}</h1>
+            <h2>hi, {username}!</h2>
             <Leaderboard />
             <History />
             <div>

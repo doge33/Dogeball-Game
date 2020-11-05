@@ -99,7 +99,7 @@ function Tutorial(props) {
     return null;
   } else {
   return (
-    <div className="App">
+    <div className="App" >
       <header className="App-header">
         <Webcam
           ref={webcamRef}
