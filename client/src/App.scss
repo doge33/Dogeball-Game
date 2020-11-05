@@ -74,7 +74,7 @@ body {
         content: '';
         display: block;
         position: absolute;
-        height: 15vh;
+        height: 35vh;
         width: 100%;
         top: -50%;
         left: 0;
@@ -254,7 +254,7 @@ body {
 main {
     display: flex;
     justify-content: space-between;
-    margin: 8rem 2rem;
+    margin: 4rem 2rem;
     // margin-top: -10rem;
     
     font-weight: 500;
@@ -294,7 +294,7 @@ main {
   justify-content: space-evenly;
   overflow: hidden;
   background-size: cover;
-  margin-top: 35vh;
+  margin-top: 25vh;
 
   .card {
     display: grid;
@@ -366,7 +366,7 @@ main {
     .card-contact {
       grid-area: contact;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       grid-template-rows: 1fr;
       border-bottom-left-radius: 15px;
       border-bottom-right-radius: 15px;

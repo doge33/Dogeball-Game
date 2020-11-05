@@ -15,7 +15,7 @@ function TeamCard() {
         <div className="card-text">
           <span className="name">AA</span>
           {/* <h2>Adnan Ashfaq</h2> */}
-          <p><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quam pariatur enim,</div></p>
+          <p><div>Like to learn and build things on my own. Hardcode gamer, love to code and heavy anime watcher. Volunteer work on spare time.</div></p>
         </div>
         <div className="card-contact card-contact__AA-social">
           <div className="contact contact-1">
@@ -23,9 +23,6 @@ function TeamCard() {
           </div>
           <div className="contact contact-2 border-sides">
             <a href="https://www.linkedin.com/in/adnanashfaq/" target="_blank"><i class="fa fa-linkedin"></i></a>
-          </div>
-          <div className="contact contact-3">
-            <a href="" target="_blank"><i class="fa fa-github"></i></a>
           </div>
         </div>
       </div>
@@ -48,9 +45,6 @@ function TeamCard() {
           <div className="contact contact-2 border-sides">
             <a href="https://www.linkedin.com/in/michaelk9290/" target="_blank"><i class="fa fa-linkedin"></i></a>
           </div>
-          <div className="contact contact-3">
-            <a href="" target="_blank"><i class="fa fa-github"></i></a>
-          </div>
         </div>
       </div>
 
@@ -63,7 +57,7 @@ function TeamCard() {
         <div className="card-text">
           <span className="name">SL</span>
           {/* <h2>Post One</h2> */}
-          <p><div className="2">New gamer passionate about anything involving creativity and technology - cinema, gaming, web development...also enjoy building Ikea furnitures :)</div></p>
+          <p><div className="2">New gamer passionate about anything involving creativity and technology - cinema, gaming, web development...also enjoy building Ikea furnitures :</div></p>
         </div>
         <div className="card-contact card-contact__SL-social">
           <div className="contact contact-1">
@@ -71,9 +65,6 @@ function TeamCard() {
           </div>
           <div className="contact contact-2 border-sides">
             <a href="https://www.linkedin.com/in/sandy-long-3657b335/" target="_blank"><i class="fa fa-linkedin"></i></a>
-          </div>
-          <div className="contact contact-3">
-            <a href="" target="_blank"><i class="fa fa-github"></i></a>
           </div>
         </div>
       </div>
