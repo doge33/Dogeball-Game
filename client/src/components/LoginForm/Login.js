@@ -93,9 +93,6 @@ function Login(props) {
           onChange={handleChange}
         />
       </form>
-      <p>
-        
-      </p>
       <Button onClick={handleSubmit}>Sign in</Button>
     </SlidingForm>
   )

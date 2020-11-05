@@ -53,7 +53,7 @@ function Pregame(props) {
         <Button id="ready-btn" onClick={() => props.onReady()}>Ready</Button>
       <div className="tutorial" style={{marginTop:"5rem"}}>
         <Button id="tutorial-btn" onClick={() => expandTutorial()}>Tutorial</Button>
-      <Tutorial />
+      <Tutorial id="tutorial"/>
       </div>
 
       </div>
