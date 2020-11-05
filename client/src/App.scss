@@ -150,8 +150,9 @@ body {
       // width: 100vw;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 10px 10px -15px $nav-hover-color
+      justify-content: space-evenly;
+      box-shadow: 0 10px 10px -15px $nav-hover-color;
+      width: 50%;
 
     }
     ul {
@@ -233,7 +234,7 @@ body {
   }
   
   &__layout {
-    background: yellow;
+    // background: yellow;
     height: 60px;
     box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
 
@@ -243,6 +244,10 @@ body {
     display: flex;
     width: 100vw;
     justify-content: space-between;
+
+    h1 {
+      color: white
+    }
   }
 }
 
