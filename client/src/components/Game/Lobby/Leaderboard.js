@@ -38,9 +38,9 @@ function Leaderboard() {
   const listScores = ranking(state);
 
   return (
-    <div>
+    <div >
 
-      <Button
+      <Button 
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}

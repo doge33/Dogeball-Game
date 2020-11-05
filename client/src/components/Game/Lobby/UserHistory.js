@@ -18,7 +18,8 @@ function UserHistory() {
   const sortedHistory = userMatches.sort((a,b) => new Date(b.day_played) - new Date(a.day_played))
 
   const userHistory = sortedHistory.map((match) => {
-    const date = new Date(match.day_played)
+
+      const date = new Date(match.day_played)
     const dateParsed = `${date.getUTCFullYear()}. ${date.getUTCMonth()+1}. ${date.getUTCDate()}`
     
 
@@ -29,6 +30,8 @@ function UserHistory() {
       </tr>
     
     );
+    
+    
   })
   
   return (
@@ -37,7 +40,7 @@ function UserHistory() {
         aria-controls="example-collapse-text"
         aria-expanded={open}>
           <h1> Game History </h1>
-        </Button>
+      </Button>
 
         <Collapse in={open}>
         <div id="collapse-text"><Table2 className="table" listScores={userHistory}/></div>

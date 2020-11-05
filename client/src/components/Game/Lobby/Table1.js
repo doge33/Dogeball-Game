@@ -17,7 +17,7 @@ function Table1(props){
           <th scope="col">Player</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
         {listScores}
       </tbody>
     </table>
