@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import "./tables.scss";
 
 //table for Leaderboard
 function Table1(props){
@@ -8,8 +9,8 @@ function Table1(props){
  
   return(
 
-      <table class="table table-hover table-dark">
-      <thead class="thead-dark">
+      <table class="table table-hover table-striped table-dark">
+      <thead class="thead">
         <tr>
           <th scope="col">#Rank</th>
           <th scope="col">Highest_Score</th>

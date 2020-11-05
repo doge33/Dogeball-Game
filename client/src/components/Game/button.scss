@@ -17,10 +17,17 @@
   border: 1px solid orange;
   font-family: Orbitron;
   color: white;
+
+  
 }
 
 .collapse {
   overflow-y: scroll;
-  max-height: 400px;
+  max-height: 1000px;
   overflow:hidden;
+  //background-color: #50A3A4 !important;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  //box-shadow: 120px 80px 40px 20px #0ff;
 }

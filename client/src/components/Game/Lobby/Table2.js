@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import "./tables.scss";
 
 //table for User history
 function Table2(props){
@@ -8,7 +9,7 @@ function Table2(props){
  
   return(
 
-      <table class="table table-hover table-dark" >
+      <table class="table table-hover" >
       <thead class="thead-dark">
         <tr>
           <th scope="col">Score</th>
