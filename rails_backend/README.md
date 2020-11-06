@@ -5,15 +5,15 @@ To install Bundler 2, simply run "gem install bundler". For more information, vi
 
 ## To Install:
 
-Run command `bundle install`.
+Run command `bundle install`
 
-Configure database in database.yml.
-*The database is currently configured for PG as the DBMS to be used*
+Configure database in database.yml
+> *The database is currently configured for PG as the DBMS to be used*
 
-Run `rake db:reset` and `rake db:migrate`.
+Run `rake db:reset` and `rake db:migrate`
 
 ## To Run Server:
 
-`rails s -p 3001` (for Vagrant: rails s -p 3001 -b 0.0.0.0).
+`rails s -p 3001` (for Vagrant: rails s -p 3001 -b 0.0.0.0)
 
 
