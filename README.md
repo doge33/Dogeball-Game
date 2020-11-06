@@ -8,8 +8,6 @@ and consumes JSON APIs using Ruby on Rails.
 
 ## Final Product
 !["game play"](https://github.com/doge33/Dogeball-Game/blob/master/docs/DogeBall.gif?raw=true)
-!["landing page"](https://github.com/doge33/Dogeball-Game/blob/master/docs/LandingPage.png?raw=true)
-!["leaderboard"](https://github.com/doge33/Dogeball-Game/blob/master/docs/Leaderboard.png?raw=true)
 
 ## Install Dependencies:
 Front-end:
