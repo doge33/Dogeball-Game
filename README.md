@@ -7,8 +7,10 @@ The project is built with React JS, CSS/SASS, Bootstrap, Axios, TensorFlow JS, a
 and consumes JSON APIs using Ruby on Rails.
 
 ## Install Dependencies:
+Front-end:
 - Go into the client directory and run ```npm i``` or ```npm install```
 
+Backend: 
 - The project dependencies require that Bundler 2 be installed, which requires at least Ruby v2.3.0 and RubyGems v2.5.0. To install Bundler 2, simply run "gem install bundler". For more information, visit https://bundler.io/guides/bundler_2_upgrade.html
 - Please make sure you have Rails 5.2 or above installed.
 - In the rails_backend directory, run ```bundle install```
