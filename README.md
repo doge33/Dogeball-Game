@@ -15,7 +15,7 @@ Back-end:
 - Please make sure you have Rails 5.2 or above installed.
 - In the rails_backend directory, run ```bundle install```
 
-## configure database in database.yml:
+## Configure database in database.yml:
 
 The database is currently configured for PG as the DBMS to be used
 - In the rails_backedn directory, run ```rake db:reset``` and ```rake db:migrate```
