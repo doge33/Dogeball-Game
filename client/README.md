@@ -26,11 +26,10 @@ The PoseNet model being used has several different configuration options that va
       
 In order to adjust how many DogeBalls are rendered on screen, you can increase the iterator on the below loop (also located in NewCamera.js):
 
-  `for (let i = 0; i < 9; i++) {
-    // Generates random number between 0 and .99 that is used to plot coordinates on canvas
-    projectileGenerator(projectileCoords, badProjectile);
-    
-  }`
+```for (let i = 0; i < 9; i++) {
+    projectileGenerator(projectileCoords, badProjectile);  
+  }
+```
 
 
 
