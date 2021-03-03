@@ -1,12 +1,12 @@
 # Dogeball-Game
 
+This app is currently being hosted at https://dogeball-game.herokuapp.com/
+
 Dogeball is a motion-controlled browser game built with the PoseNet model of TensorFlow JS and the Canvas API. Players need to use their
 head and hands to intercept avatars on screen and get rewarded or penalized according to the type of avatars they "catch". 
 
 The project is built with React JS, CSS/SASS, Bootstrap, Axios, TensorFlow JS, and HTML Canvas on the front end. On the backend, it uses PostgreSQL database 
 and consumes JSON APIs using Ruby on Rails.
-
-This app is currently being hosted at https://dogeball-game.herokuapp.com/
 
 ## Final Product
 !["game play"](https://github.com/doge33/Dogeball-Game/blob/master/docs/DogeBall.gif?raw=true)
